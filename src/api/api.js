@@ -6,7 +6,7 @@ let instanceKey = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
     headers: {
-        'API-KEY': '9d3c2c13-9a3c-426a-9da9-73356b20f629'
+        'API-KEY': '90f6bb5f-d49e-4ce0-9b94-451b72b70866'
     }
 });
 
@@ -85,22 +85,7 @@ export let profileApi = {
 
 
 
-let instanceTest = axios.create({
-    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    withCredentials: true,
-    'headers': {
-        'API-KEY': '05f184ea-0f3b-4931-ad90-59f01c0f5749'
-    }
-})
 
 
-export const musicApi = {
-    getMusic(pageSize = 2, currentPage = 1) {
-        return (
-            instanceTest.get(`users?count=${pageSize}&page=${currentPage}`)
-                .then(response => response.data)
-        )
-    }
-};
 
 

@@ -1,0 +1,102 @@
+
+.dialogs {
+    padding: 20px 15px 25px 15px;
+    display: grid;
+    grid-template-columns: minmax(auto, 170px) minmax(auto, 800px);
+    column-gap: 15px;
+
+}
+
+.dialogsItems {
+    display: grid;
+    row-gap: 30px;
+    border-right: 1px solid rgba(195, 183, 183, 0.521);
+}
+
+.dialog {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.icon {
+    overflow: hidden;
+    flex: 0 0 50px;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.name {
+    font-size: 16px;
+    font-weight: 500;
+    &:active {
+        color: rgb(189, 189, 187);
+    }
+}
+
+
+.newMessage {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.area {
+    min-height: 80px;
+    background-color: RGB(240, 242, 245);
+    padding: 10px;
+}
+
+[class*= error] {
+    background-color: #c7163d;
+}
+  .button {
+    align-self: flex-end;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+    background-color: #485ab2;
+    padding: 0 40px;
+    transition: all 0.3s ease 0s;
+  
+    @media (min-width: 992px){
+        &:hover {
+          background-color: #2a3988;
+        }
+    }
+  }
+
+
+
+
+
+
+
+
+
+.active {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(189, 189, 187);
+}
+
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    padding-left: 20px;
+}
+
+.message {
+    font-size: 16px;
+}

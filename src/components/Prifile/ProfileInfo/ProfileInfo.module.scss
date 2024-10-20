@@ -1,0 +1,55 @@
+
+
+.body {
+  display: flex;
+  column-gap: 25px;
+  &:not(:last-child) {
+  margin-bottom: 50px;
+  }
+}
+
+.avatar {
+  flex: 0 0 140px;
+
+  display: block;
+  &:not(:last-child) {
+  margin-bottom: 10px;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+}
+
+.info {
+ display: flex;
+ flex-direction: column;
+}
+
+.name {
+  color: rgb(61, 57, 57);
+  font-size: 24px;
+  font-weight: 600;
+  &:not(:last-child) {
+      margin-bottom: 20px;
+  }
+}
+
+.aboutMe {
+  color: rgb(61, 57, 57);
+  font-size: 18px;
+  font-weight: 500;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.lookingForAJobDescription {
+  color: rgb(61, 57, 57);
+  font-size: 18px;
+  font-weight: 500;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+

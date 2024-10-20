@@ -1,0 +1,17 @@
+
+.formsControls {
+    &.eror input {
+        border: 1px solid red;
+    }
+
+    &.eror span {
+        color: red;
+    }
+}
+
+
+.someFormError {
+    border: 1px solid red;
+    color: red;
+    padding: 5px;
+}

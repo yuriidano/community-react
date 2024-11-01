@@ -1,19 +1,21 @@
-import { profileApi } from "../api/api";
+import { stopSubmit } from "redux-form";
+import { musicApi, profileApi } from "../api/api";
 
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET-USER-PROFILE';
-const SET_USER_STATUS = 'SET-USER-STATUS';
-const DELETE_MESSAGE = 'DELETE-MESSAGE';
-
-
+const ADD_POST = 'profile/ADD-POST';
+const SET_USER_STATUS = 'profile/SET-USER-STATUS';
+const DELETE_MESSAGE = 'profile/DELETE-MESSAGE';
+const SET_PROFILE = 'profile/SET-PROFILE';
+const SET_PHOTO = 'profile/SET-PHOTO';
+const TOGGLE_IS_UPDATE_PROGRESS = 'profile/TOGGLE-IS-UPDATE-PROGRESS';
 
 let initialState = {
     posts: [
         { id: 1, message: 'Hello world', likeCounter: 10 },
         { id: 2, message: 'My name is Yura', likeCounter: 2 },
     ],
+    status: '',
     profile: null,
-    status: ''
+    isUpdateProgress: false,
 };
 
 
@@ -34,15 +36,25 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: state.posts.filter(p => p.id !== action.userId)
             }
-        case SET_USER_PROFILE:
-            return {
-                ...state,
-                profile: action.profile
-            }
         case SET_USER_STATUS:
             return {
                 ...state,
                 ...action.data
+            }
+        case SET_PROFILE:
+            return {
+                ...state,
+                profile: {...action.newProfile}
+            }
+        case SET_PHOTO:
+            return {
+                ...state,
+                profile: {...state.profile, photos: {...action.newPhotos}}
+            }
+        case TOGGLE_IS_UPDATE_PROGRESS:
+            return {
+                ...state,
+                isUpdateProgress: true
             }
         default:
             return state;
@@ -52,20 +64,17 @@ const profileReducer = (state = initialState, action) => {
 
 export const addPostCriator = (data) => ({type: ADD_POST, data});
 
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
-
 const setUserStatus = (status) => ({type: SET_USER_STATUS, data: {status: status}});
 
 export const deleteMessage = (userId) => ({type: DELETE_MESSAGE, userId});
 
+const setProfile = (newProfile) => ({type: SET_PROFILE, newProfile});
+
+const setPhoto = (newPhotos) => ({type: SET_PHOTO, newPhotos});
+
+const toggleIsUpdateProgress = () => ({type: TOGGLE_IS_UPDATE_PROGRESS})
 
 
-
-
-export const getProfileId = (userId) => async (dispatch) => {
-    let data = await profileApi.getProfileId(userId)
-    dispatch(setUserProfile(data))
-}
 
 
 export const getUserStatus = (userId) => async (dispatch) => {
@@ -79,6 +88,51 @@ export const updateUserStatus = (status) => async (dispatch) => {
     dispatch(setUserStatus(status))
 }
 }
+
+export const requestProfile = (userId) => async (dispatch) => {
+    let data = await profileApi.getProfile(userId);
+    dispatch(setProfile(data));
+}
+
+export let requestPhoto = (filePhoto) => async (dispatch) => {
+     let data = await profileApi.updagePhoto(filePhoto);
+     dispatch(setPhoto(data.photos))
+}
+
+export const SumeError = () => (dispatch) => {
+    dispatch(stopSubmit('music', {_error: 'some error'}))
+}
+
+export const updateProfile = (profileData) => async (dispatch, getState) => {
+    let userId = getState().auth.userId;
+    let data = await profileApi.updateProfile(profileData);
+
+    if(data.resultCode === 0) {
+        dispatch(requestProfile(userId));
+        dispatch(toggleIsUpdateProgress())
+    } else {
+        let message = data.messages.length > 0 ? data.messages[0] : 'some error';
+
+
+        let messageArray = message.split('');
+
+        let messageForm = messageArray.slice(
+            messageArray.indexOf('>') + 1,
+            messageArray.indexOf(')')
+        ).join('').toLowerCase();
+
+
+
+     
+        console.log(messageForm);
+
+        dispatch(stopSubmit('profile', {'contacts': {[messageForm]: message}}))
+    }
+}
+
+
+
+
 
 
 export default profileReducer;

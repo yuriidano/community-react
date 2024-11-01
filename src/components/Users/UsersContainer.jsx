@@ -5,7 +5,7 @@ import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 import withAuthNavigate from '../../hoc/withAuthNavigate';
 import { compose } from 'redux';
-import { getcurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers, getUsersOld, } from '../../redux/users-selectors';
+import { getcurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getPortionSize, getTotalUsersCount, getUsers, getUsersOld, } from '../../redux/users-selectors';
 
 class UsersAPIComponent extends React.Component {
 
@@ -53,7 +53,7 @@ let mapStateToProps = (state) => {
         currentPage: getcurrentPage(state),
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state),
-        
+        portionSize: getPortionSize(state)
 
     };
 };

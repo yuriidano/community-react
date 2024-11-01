@@ -1,20 +1,15 @@
-import { retry } from "@reduxjs/toolkit/query";
 import axios from "axios";
-
-
-let instanceKey = axios.create({
-    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    withCredentials: true,
-    headers: {
-        'API-KEY': 'eee529df-443d-4969-80d0-8d42c0b139d7'
-    }
-});
 
 
 let instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    withCredentials: true
+    withCredentials: true,
+    headers: {
+        'API-KEY': 'df7dab77-f6e8-4bf9-b5ec-611106eb801d'
+    }
 });
+
+
 
 
 export let usersApi = {
@@ -28,14 +23,14 @@ export let usersApi = {
 
 export let followApi = {
     followPost(userId) {
-        return instanceKey.post(`follow/${userId}`, {},)
+        return instance.post(`follow/${userId}`, {},)
             .then((response) => {
                 return response.data;
             })
     },
 
     followDelete(userId) {
-        return instanceKey.delete(`follow/${userId}`)
+        return instance.delete(`follow/${userId}`)
             .then((response) => {
                 return response.data;
             })
@@ -50,24 +45,24 @@ export let authApi = {
 
     login(email, password, rememberMe) {
         return (
-            instanceKey.post('auth/login', {email, password, rememberMe})
+            instance.post('auth/login', {email, password, rememberMe})
                 .then(response => {return response.data})
         )   
     },
     logout() {
         return (
-            instanceKey.delete('auth/login')
+            instance.delete('auth/login')
                 .then(response => {return response.data})
         )   
     },
 }
 
+
+
+
+
 export let profileApi = {
-    getProfileId(userId) {
-        return instance.get(`profile/${userId}`)
-            .then((response) => response.data)
-    },
-    
+
     getUserStatus(userId) {
         return (
             instance.get(`profile/status/${userId}`)
@@ -77,7 +72,34 @@ export let profileApi = {
 
     updateUserStatus(status) {
         return (
-            instanceKey.put('profile/status', {status})
+            instance.put('profile/status', {status})
+                .then(response => response.data)
+        )
+    },
+
+    getProfile(userId) {
+        return(
+            instance.get(`profile/${userId}`)
+                .then(response => response.data)
+        )
+    },
+
+    updagePhoto(filePhoto) {
+        let formData = new FormData();
+        formData.append('image', filePhoto)
+        return (
+            instance.put('profile/photo', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(response => response.data.data)
+        )
+    },
+
+    updateProfile(profileData) {
+        return (
+            instance.put('profile', {...profileData})
                 .then(response => response.data)
         )
     }
@@ -86,6 +108,23 @@ export let profileApi = {
 
 
 
+const instanceTest = axios.create({
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+    withCredentials: true,
+    headers: {
+        'API-KEY': 'df7dab77-f6e8-4bf9-b5ec-611106eb801d'
+    }
+});
+
+
+export const musicApi = {
+    getMusic(pageSize = 2, currentPage = 1) {
+        return (
+            instanceTest.get(`users?count=${pageSize}&page=${currentPage}`)
+                .then(response => response.data)
+        )
+    }
+}
 
 
 

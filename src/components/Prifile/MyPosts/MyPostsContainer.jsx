@@ -5,33 +5,21 @@ import { connect } from 'react-redux';
 
 
 
-// let mapStateToProps = (state) => {
-//   return {
-//     posts: state.profilePage.posts,
-//   };
-// };
+ let mapStateToProps = (state) => {
+   return {
+     posts: state.profilePage.posts,
+   };
+ };
 
 
-// let mapDispatchToProps = (dispatch) => {
-//   return {
-//     addPost: (data) => {
-//       dispatch(addPostCriator(data));
-//     },
-//   };
-// };
+ let mapDispatchToProps = (dispatch) => {
+   return {
+     addPost: (data) => {
+       dispatch(addPostCriator(data));
+     },
+   };
+ };
 
-// const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps) (MyPosts);
-
-let MyPostsContainer = (props) => {
-
-
-
-  return (
-    <MyPosts posts={props.posts}  />
-  )
-}
-
-
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps) (MyPosts);
 
 export default MyPostsContainer;
-

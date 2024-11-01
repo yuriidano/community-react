@@ -5,22 +5,9 @@ import MyPostFeduxForm from './MyPostsForm';
 
 
 
-
-
-
-
-
-
-
-
 const MyPosts = React.memo((props) => {
   let [age, setAge] = useState(33);
 
-  setTimeout(() => {
-    setAge(10)
-  }, 3000);
-
-  console.log('render');
 
   let postElement = [...props.posts].reverse().map(p => {
     return (

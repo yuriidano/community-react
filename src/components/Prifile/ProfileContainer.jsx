@@ -1,24 +1,26 @@
 import { connect } from "react-redux"
 import Profile from "./Profile"
 import React, { useEffect } from "react";
-import { addPostCriator, getProfileId, getUserStatus, updateUserStatus } from "../../redux/profile-reducer";
+import { addPostCriator, getUserStatus, requestPhoto, requestProfile, updateProfile, updateUserStatus } from "../../redux/profile-reducer";
 import { useParams } from "react-router-dom";
 import { compose } from "redux";
 import withAuthNavigate from "../../hoc/withAuthNavigate";
-import { getAutoRizedUserId, getIsAuth, getProfile, getStatus } from "../../redux/profile-selectors";
-
+import { getAutoRizedUserId, getIsAuth, getIsUpdateProgress, getPosts, getProfile, getStatus } from "../../redux/profile-selectors";
 
 
 
 
 let ProifleContainer = (props) => {
     let {userId} = useParams();
+    let owner = userId;
     if(!userId ) {
-        userId = props.autoRizedUserId; //31356
+        userId = props.autoRizedUserId; 
     };
 
+    
+
     useEffect(() => {
-        props.getProfileId(userId);
+        props.requestProfile(userId);
         props.getUserStatus(userId);
     }, [userId])
 
@@ -26,21 +28,23 @@ let ProifleContainer = (props) => {
     
     return (
         
-        <Profile {...props} />
+        <Profile {...props} isOwner={!owner} requestPhoto={props.requestPhoto} updateProfile={props.updateProfile} />
     )
 }
 
 let mapStateToProps = (state) => {
+    
     return {
-        profile: getProfile(state),
         status: getStatus(state),
         autoRizedUserId: getAutoRizedUserId(state),
         isAuth: getIsAuth(state),
-        posts: state.profilePage.posts
+        posts: getPosts(state),
+        profile: getProfile(state),
+        isUpdateProgress: getIsUpdateProgress(state)
     };
 };
 export default compose(
-    connect(mapStateToProps, {getProfileId, getUserStatus, updateUserStatus, addPostCriator}),
+    connect(mapStateToProps, {getUserStatus, updateUserStatus, addPostCriator, requestProfile, requestPhoto, updateProfile}),
     withAuthNavigate,
 ) (ProifleContainer)
 
@@ -49,24 +53,3 @@ export default compose(
 
 
 
-
-
-// class ProifleContainer extends React.Component {
-//     constructor(props) {
-//         super(props)
-//     }
-
-//     componentDidMount() {
-//         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
-//             .then((response) => {
-//                 this.props.setUserProfile(response.data)
-//             })
-//     }
-
-
-//     render() {
-//         return (
-//             <Profile {...this.props} />
-//         )
-//     }
-// }

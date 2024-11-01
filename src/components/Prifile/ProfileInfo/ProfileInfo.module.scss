@@ -9,9 +9,10 @@
 }
 
 .avatar {
-  flex: 0 0 140px;
-
+  position: relative;
   display: block;
+  min-width: 100px;
+  min-height: 100px;
   &:not(:last-child) {
   margin-bottom: 10px;
   }
@@ -27,11 +28,9 @@
 }
 
 .name {
-  color: rgb(61, 57, 57);
-  font-size: 24px;
-  font-weight: 600;
+
   &:not(:last-child) {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
   }
 }
 
@@ -53,3 +52,34 @@
   }
 }
 
+.preloader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  z-index: 5;
+  transform: translate(-50%, -50%);
+}
+
+.statusBody{
+  display: flex;
+ column-gap: 5px;
+}
+
+.status {
+  margin-bottom: 5px;
+}
+
+
+.lookingForAJob {
+  margin-bottom: 10px;
+}
+
+.contact {
+  padding-left: 10px;
+}
+
+.errorSome{
+  border: 1px solid red;
+  color: red;
+}

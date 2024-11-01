@@ -1,0 +1,11 @@
+
+
+.formControls {
+    &.errore input {
+        border: 1px solid red;
+    }
+
+    &.errore span {
+        color: red;
+    }
+}

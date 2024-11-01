@@ -11,18 +11,13 @@ import { appInitialize } from './redux/app-reducer';
 import React, { lazy, useEffect } from 'react';
 import Preloader from './components/common/Preloader/Preloader';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import withLazyMy from './hoc/withLazyMy';
-
+import withLAzy from './hoc/withLzy';
+import MusicContainer from './components/Music/MusicContainer';
 const ProfileContainer = lazy(() => import('./components/Prifile/ProfileContainer'));
 
-
-
+let ProfileContainerLazy = withLAzy(ProfileContainer);
 
 const App = (props) => {
-
-
-let LazyComponent = withLazyMy(ProfileContainer);
-
 
 
   useEffect(() => {
@@ -39,12 +34,13 @@ let LazyComponent = withLazyMy(ProfileContainer);
           <Sitebar state={props.state.sitebarPage} />
           <div className='app-content'>
             <Routes>
-              <Route path='/profile/:userId?/*' element={<LazyComponent />} />
+              <Route path='/profile/:userId?/*' element={<ProfileContainerLazy />} />
               <Route path='/dialogs/*' element={<DialogsContainer />} />
               <Route path='/news/*' element={<News />} />
               <Route path='/settings/*' element={<Settings />} />
               <Route path='/users' element={<UsersContainer />} />
               <Route path='/login' element={<LoginContainer />} />
+              <Route path='/music' element={<MusicContainer />} />
             </Routes>
           </div>
         </div>

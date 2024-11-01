@@ -1,15 +1,17 @@
 import { Field, reduxForm } from "redux-form"
-//import { Textarea } from "../../common/FormsControls/formsControls";
-//import { maxWidthCriator, required } from "../../../utils/validators/validations";
+import { maxLength, required } from "../../../utils/validators/validators";
+import { Textarea } from "../../common/FormsControls/formsControls";
 
-//let maxLength10 = maxWidthCriator(10)
+
+
+let maxLength10 = maxLength(10)
 
 const MyPostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field /*>component={Textarea}*/  component={'textarea'} name="myPosBody" 
-                //validate={[required, maxLength10]}
+                <Field component={Textarea}  name="myPosBody" 
+                validate={[required, maxLength10]}
                 />
             </div>
             <button>sent post</button>

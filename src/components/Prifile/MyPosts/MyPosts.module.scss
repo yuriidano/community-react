@@ -1,50 +1,103 @@
 
-.body {
- 
+.myPosts {
+  padding: 0 15px 15px 15px;
 }
+ 
 
-.postsTitle {
-  color: rgb(61, 57, 57);
+
+.title {
   font-size: 30px;
   font-weight: 600;
   &:not(:last-child) {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
   }
 }
 
 .newPost {
-  display: flex;
-  flex-direction: column;
-  row-gap: 15px;
-}
 
-.area {
-  min-height: 80px;
-  background-color: RGB(240, 242, 245);
-  padding: 10px;
-}
-
-.button {
-  align-self: flex-end;
-  min-height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  color: white;
-  font-weight: 600;
-  background-color: #485ab2;
-  padding: 0 40px;
-  transition: all 0.3s ease 0s;
-
-  @media (min-width: 992px){
-      &:hover {
-        background-color: #2a3988;
-      }
+  &:not(:last-child) {
+  margin-bottom: 40px;
   }
 }
 
 .posts {
+  padding-left: 100px;
+  padding-right: 25px;
   display: grid;
   row-gap: 25px;
 }
+
+
+.body {
+  min-height: 60px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 60px;
+  padding-right: 15px;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  -webkit-box-shadow: 0px 1px 13px -7px rgba(128, 113, 133, 1);
+  -moz-box-shadow: 0px 1px 13px -7px rgba(128, 113, 133, 1);
+  box-shadow: 0px 1px 13px -7px rgba(128, 113, 133, 1);
+  position: relative;
+}
+
+.userPost {
+  background-color: #0E6EFB;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(0, -50%);
+  img {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+
+.input {
+
+
+  & input::placeholder {
+    font-size: 16px;
+
+  }
+}
+
+.button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #0E6EFB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease 0s;
+  
+  @media (any-hover: hover) {
+    &:hover {
+        background-color: #0051ca;
+    }
+  }
+
+  img {
+    position: relative;
+    z-index: 2;
+    width: 15px;
+    height: 15px;
+  }
+}
+
+
+
+
+

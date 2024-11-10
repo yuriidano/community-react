@@ -1,9 +1,11 @@
 import Preloader from '../../common/Preloader/Preloader';
-import s from './ProfileInfo.module.scss';
+import styles from './ProfileInfo.module.scss';
 import ProfileStatus from './ProfileStatus';
 import profilePhoto from '../../../assets/images/user.jpg';
 import ProfileDataFormRedux from './ProfileDadaForm';
 import { useState } from 'react';
+import fon from '../../../assets/images/fon.jpeg'
+import camera from '../../../assets/images/icons/camera.svg'
 
 const ProfileInfo = (props) => {
 
@@ -24,26 +26,32 @@ const ProfileInfo = (props) => {
   }
 
   let onSubmit = (formData) => {
-   props.updateProfile(formData);
-   props.isUpdateProgress && setEditMode(false)
+    props.updateProfile(formData);
+    props.isUpdateProgress && setEditMode(false)
   }
 
   return (
-    <div className={s.body}>
-      <div>
-        <a href="#" className={s.avatar}>
-          <img src={props.profile.photos.small != null ? props.profile.photos.small : profilePhoto} alt="avatar" />
-        </a>
-        {props.isOwner && <input type='file' onChange={onPhotoChange} />}
-        <div >
-          <div className={s.statusBody}>
-            {editMode ? 
-                        <ProfileFormData onSubmit={onSubmit} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} />  
-                      : <ProfileData isOwner={props.isOwner} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} 
-                        activateEditMode={activateEditMode}/>}
+    <div className={styles.profileInfo}>
+      <div className={styles.images}>
+        <div className={styles.fon}>
+          <img src={fon} alt="fon" />
+        </div>
+          <div className={styles.avatar}>
+            <img src={props.profile.photos.small != null ? props.profile.photos.small : profilePhoto} alt="avatar" />
+          </div>
+          <label className={styles.changeAvatar} for="changeAvatar">
+            <img src={camera} alt="camera" />
+          </label>
+      </div>
+      <div className={styles.body}>
+            {props.isOwner && <input className={styles.input} id="changeAvatar" type='file' onChange={onPhotoChange} />}
+          <div className={styles.statusBody}>
+            {editMode ?
+              <ProfileFormData onSubmit={onSubmit} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} />
+              : <ProfileData isOwner={props.isOwner} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus}
+                activateEditMode={activateEditMode} />}
           </div>
         </div>
-      </div>
     </div>
   );
 };
@@ -52,31 +60,35 @@ const ProfileInfo = (props) => {
 const ProfileData = ({ profile, status, updateUserStatus, isOwner, activateEditMode }) => {
   return (
     <div>
-      {
-        isOwner && <button onClick={activateEditMode} >Edit mode</button>
-      }
-      <div style={{marginBottom: '5px'}}>
-        <b>full name: </b> {profile.fullName}
+      <div className={styles.top}>
+        <div className={styles.info}>
+          <div className={styles.name}>
+            {profile.fullName}
+          </div>
+          <div className={styles.status}>
+            <ProfileStatus status={status} updateUserStatus={updateUserStatus} />
+          </div>
+        </div>
+        {
+          isOwner && <button className={styles.button} onClick={activateEditMode} >Edit mode</button>
+        }
       </div>
-      <div style={{ display: 'flex', columnGap: '5px' }}>
-        <b>status:</b > <ProfileStatus status={status} updateUserStatus={updateUserStatus} />
+      <div className={styles.LookingForAJob}>
+        <span >LookingForAJob:</span>  {profile.lookingForAJob ? 'yes' : 'no'}
       </div>
-      <div>
-        <b>lookingForAJob:</b>  {profile.lookingForAJob ? 'yes' : 'no'}
-      </div>
-      <div>
+      <div className={styles.skils}>
         { profile.lookingForAJob &&
           <div>
-            <b>my profesional skils:</b>  {profile.lookingForAJobDescription}
+            <span>My profesional skils:</span>  {profile.lookingForAJobDescription}
           </div>
         }
       </div>
-      <div>
-        <b>contacts: </b>
-        <div style={{paddingLeft: '10px'}}>
+      <div className={styles.contacts}>
+        <span>Contacts: </span>
+        <div className={styles.contact}>
           {Object.keys(profile.contacts).map(key => {
             return (
-              contacts(key, profile.contacts[key])
+              <Contacts key={key} contactTitle={key} contactValue={profile.contacts[key]} />  
             )
           })}
         </div>
@@ -90,15 +102,15 @@ const ProfileData = ({ profile, status, updateUserStatus, isOwner, activateEditM
 const ProfileFormData = ({ profile, status, updateUserStatus, onSubmit }) => {
   return (
     <>
-      <ProfileDataFormRedux initialValues={profile} onSubmit={onSubmit} profile={profile} status={status} updateUserStatus={updateUserStatus} contacts={contacts} />
+      <ProfileDataFormRedux initialValues={profile} onSubmit={onSubmit} profile={profile} status={status} updateUserStatus={updateUserStatus} contacts={Contacts} />
     </>
   )
 }
 
-const contacts = (contactTitle, contactValue) => {
+const Contacts = ({contactTitle, contactValue}) => {
   return (
     <div>
-      <b>{contactTitle}</b>: {contactValue}
+      <span>{contactTitle}</span>: {contactValue}
     </div>
   )
 }

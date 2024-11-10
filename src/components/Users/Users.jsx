@@ -1,11 +1,13 @@
 import Paginator from '../common/Paginator/Paginator';
+import InfoContainer from '../Info/InfoContainer';
 import User from './User';
+import styles from './Users.module.scss'
 
 
 let Users = (props) => {
 
     return (
-        <div>
+        <div className={styles.users}>
             <div>
                 <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage}
                     onPagesChanged={props.onPagesChanged} portionSize={props.portionSize} />
@@ -13,11 +15,12 @@ let Users = (props) => {
             {
                 props.users.map(user => {
                     return (
-                        <User user={user} {...props} />
+                        <User key={user.id} user={user} {...props} />
                     )
                 })
             }
         </div>
+
     )
 };
 

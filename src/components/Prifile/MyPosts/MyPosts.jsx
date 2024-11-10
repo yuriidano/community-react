@@ -1,38 +1,37 @@
 import React, { useState } from 'react';
-import s from './MyPosts.module.scss';
+import styles from './MyPosts.module.scss';
 import Post from './Post/Post';
 import MyPostFeduxForm from './MyPostsForm';
+import Preloader from '../../common/Preloader/Preloader';
 
 
 
-const MyPosts = React.memo((props) => {
-  let [age, setAge] = useState(33);
+const MyPosts = (props) => {
 
 
   let postElement = [...props.posts].reverse().map(p => {
     return (
-      <Post message={p.message} likeCounter={p.likeCounter} key={p.id} />
+      <Post profileMy={props.profileMy} message={p.message} likeCounter={p.likeCounter} key={p.id} />
     )
   });
 
 
   const addPostForm = (formData) => {
-    props.addPost(formData.myPosBody);
+    props.addPostCriator(formData.myPosBody);
   }
 
  
   return (
-    <div className={s.body}>
-      <div className={s.postsTitle} >My posts</div>
-      <div className={s.newPost}>
+    <div className={styles.myPosts}>
+      <div className={styles.newPost}>
           <MyPostFeduxForm onSubmit={addPostForm} />
       </div>
-      <div className={s.posts}>
+      <div className={styles.posts}>
         {postElement}
       </div>
     </div>
   );
-})
+}
 
 export default MyPosts;
 

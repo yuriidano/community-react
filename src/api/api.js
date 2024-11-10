@@ -43,9 +43,9 @@ export let authApi = {
         .then((response) => response.data)
     },
 
-    login(email, password, rememberMe) {
+    login(email, password, rememberMe, captcha = null) {
         return (
-            instance.post('auth/login', {email, password, rememberMe})
+            instance.post('auth/login', {email, password, rememberMe, captcha})
                 .then(response => {return response.data})
         )   
     },
@@ -55,11 +55,13 @@ export let authApi = {
                 .then(response => {return response.data})
         )   
     },
+    captcha() {
+        return (
+            instance.get('security/get-captcha-url')
+                .then(response => response.data)
+        )
+    }
 }
-
-
-
-
 
 export let profileApi = {
 
@@ -72,8 +74,8 @@ export let profileApi = {
 
     updateUserStatus(status) {
         return (
-            instance.put('profile/status', {status})
-                .then(response => response.data)
+            instance.put(`profile/status`, {status})
+            .then(response => response.data)
         )
     },
 
@@ -105,25 +107,13 @@ export let profileApi = {
     }
 }
 
-
-
-
-const instanceTest = axios.create({
-    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    withCredentials: true,
-    headers: {
-        'API-KEY': 'df7dab77-f6e8-4bf9-b5ec-611106eb801d'
-    }
-});
-
-
-export const musicApi = {
-    getMusic(pageSize = 2, currentPage = 1) {
-        return (
-            instanceTest.get(`users?count=${pageSize}&page=${currentPage}`)
+export const infoApi = {
+    getProfileInfo(userId) {
+        return(
+            instance.get(`profile/${userId}`)
                 .then(response => response.data)
         )
-    }
+    },
 }
 
 

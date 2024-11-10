@@ -1,29 +1,66 @@
 
 
 .post {
-  color: rgb(61, 57, 57);
-  font-weight: 500;
+  display: flex;
+  align-items: flex-start;
+  column-gap: 20px;
 }
 
-.body {
-  display: flex;
-  column-gap: 25px;
-  align-items: flex-start;
-}
 
 .avatar {
-  width: 50px;
-  height: 50px;
+  max-width: 35px;
+  max-height: 35px;
   border-radius: 50%;
+  overflow: hidden;
   img {
-    max-width: 100%;
+      max-width: 100%;
   }
 }
 
-.text {
-  font-size: 28px;
+
+.body {
+  flex: 1 1 auto;
 }
 
-.button {
-  font-size: 20px;
+.text {
+  min-height: 40px;
+  background-color: #EFF2F6;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  &:not(:last-child) {
+  margin-bottom: 5px;
+  }
+}
+
+.likeBody {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+
+.like {
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+
+.likeIcon {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  background-color: #0E6EFB;
+  border-radius: 50%;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 13px;
+    height: 13px;
+    background: url('../../../../assets/images/icons/like.svg') 0 0 no-repeat;
+    transform: translate(-50%, -50%);
+  }
 }

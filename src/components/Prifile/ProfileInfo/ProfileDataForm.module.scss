@@ -1,0 +1,164 @@
+
+
+.profileDataForm {}
+
+
+
+.top{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 140px;
+    justify-content: space-between;
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+  }
+  
+  .info {
+    padding-left: 230px;
+    min-height: 68px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+  }
+  
+  .name {
+    display: flex;
+    align-items: center;
+    column-gap: 7px;
+    font-size: 18px;
+    font-weight: bold;
+
+
+    & span {}
+   
+  }
+
+  .editName {
+    border: 1px solid #6C757D;
+     min-height: 25px;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    border-radius: 3px;
+
+    & input {
+        color: #6C757D;
+    }
+  }
+  
+.status {
+    max-width: 250px;
+}
+.button {
+    align-self: end;
+    position: relative;
+    border: 1px solid #0E6EFB;
+    background-color: #ffffff;
+    color: #0E6EFB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 35px;
+    border-radius: 10px;
+    width: 135px;
+  
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease 0s;
+
+  
+    @media (any-hover: hover) {
+        &:hover {
+          background-color: #f6f0f0;
+        }
+      }
+  
+    
+}
+
+.lookingForAJob{
+    & span {
+        display: inline-block;
+      font-weight: bold;
+      font-size: 18px;
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+}
+
+.skils {
+    display: flex;
+    align-items: center;
+    column-gap: 7px;
+    & span {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+  }
+
+  .editSkils {
+    border: 1px solid #6C757D;
+    min-height: 25px;
+    display: inline-flex;
+    align-items: center;
+    padding-left: 5px;
+    border-radius: 3px;
+    & input {
+        color: #6C757D;
+    }
+  }
+
+
+  .contacts {
+    & span {
+      font-weight: bold;
+      font-size: 18px;
+      display: inline-block;
+    }
+  }
+  
+  .title {
+    &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+  }
+
+
+
+  .elements {
+    padding-left: 15px;
+    display: grid;
+    row-gap: 5px;
+  }
+
+  .contactBody {
+    display: flex;
+    align-items: center;
+    column-gap: 7px;
+  }
+
+  .contact {
+    align-self: center;
+  }
+
+  .editContact{
+    border: 1px solid #6C757D;
+    min-height: 25px;
+   display: flex;
+   align-items: center;
+   padding-left: 5px;
+   border-radius: 3px;
+
+   & input {
+       color: #6C757D;
+   }
+  }

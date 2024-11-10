@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from '../../Users/Users.module.scss';
+import classNames from 'classnames';
 
 const Paginator = ({totalUsersCount, pageSize, currentPage, onPagesChanged, portionSize = 10}) => {
     let pagesCount =totalUsersCount / pageSize;
@@ -25,7 +26,7 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPagesChanged, port
                 pages
                 .filter(p => p >= leftBorderPortion && p <= rigthBorderPortion)
                 .map(p => {
-                    return <span className={p === currentPage && styles.selected}
+                    return <span key={p} className={classNames({[styles.selected]: p === currentPage})}
                         onClick={(e) => { onPagesChanged(p) }} >{p}</span>
                 })
             }
@@ -34,7 +35,7 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPagesChanged, port
                  
             }
             
-            
+          
         </>
     )
 };

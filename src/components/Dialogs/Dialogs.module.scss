@@ -1,8 +1,8 @@
 
 .dialogs {
-    padding: 20px 15px 25px 15px;
+    padding: 20px 0px 25px 15px;
     display: grid;
-    grid-template-columns: minmax(auto, 170px) minmax(auto, 800px);
+    grid-template-columns: minmax(auto, 170px) minmax(auto, 800px) minmax(auto, 300px);
     column-gap: 15px;
 
 }

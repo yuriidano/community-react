@@ -13,14 +13,13 @@ export const updateObjectInArraay = (items, objPropName, actionId, newObjProps) 
 
 
 
-export const updateObjectInArrayTest = (items, objectPrName, actionAd, newObjProp) => {
+export const objectHelpersTest = (items, objectProperty, actionId, newObjectProps) => {
     return (
         items.map(item => {
-            if(item[objectPrName] == actionAd) {
-                return {...item, ...newObjProp}
+            if(item[objectProperty] === actionId) {
+                return {...item, ...newObjectProps}
             }
-
             return item;
-        })
+        }) 
     )
 }

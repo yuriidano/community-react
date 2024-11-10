@@ -12,7 +12,20 @@ let LoginForm = (props) => {
 
             {createField(10, Input, "password", "password...", [required], null)}
 
-            {createField(10, Input, "rememberMy", "password...", [required], 'checkbox')}
+            <div style={{display: 'flex', alignItems: 'flex-start', columnGap: '5px'}}>
+            {createField(10, Input, "rememberMy", "password...", [required], 'checkbox')}<b>remember my</b>
+            </div>
+
+
+            {props.captcha &&
+                <div>
+                    <div style={{maxWidth: '150px'}} >
+                        <img  style={{marginBottom: '5px', maxWidth: '100%'}} src={props.captcha.url} alt="" />
+                    </div>
+                    {createField(10, Input, "captcha", "captcha...", [required], null)}
+                </div>
+            }
+
             {props.error &&
                 <div className={s.someFormError}>{props.error}</div>
             }

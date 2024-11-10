@@ -1,85 +1,204 @@
 
 
-.body {
-  display: flex;
-  column-gap: 25px;
+.profileInfo {
   &:not(:last-child) {
-  margin-bottom: 50px;
+    margin-bottom: 30px;
   }
+}
+
+
+.images {
+  position: relative;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.fon {
+  width: 100%;
+  position: relative;
+  padding-bottom: 20%;
+  overflow: hidden;
+      img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 15px 15px 0 0;
+      }
+}
+
+.avararBody {
+  position: relative;
 }
 
 .avatar {
   position: relative;
-  display: block;
-  min-width: 100px;
-  min-height: 100px;
+
+       img {
+           position: absolute;
+           top: 0;
+           left: 20%;
+           width: 140px;
+           height: 140px;
+           border-radius: 50%;
+           transform: translate(-50%, -45%);
+           border: 5px solid #77A0C6;
+       }
+}
+
+.changeAvatar{
+  cursor: pointer;
+    position: absolute;
+    bottom: -39.6%;
+    left: 26.2%;
+    width: 30px;
+    height: 30px;
+    background-color: #c2c9d4;
+    border-radius: 50%;
+    transition: all 0.3s ease 0s;
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: #b1b7c0;
+      }
+    }
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      transform: translate(-50%, -50%);
+    }
+}
+
+
+.input {
+  display: none;
+}
+
+
+.body {
+  padding: 0 15px;
+}
+
+
+
+
+.top{
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 140px;
+  justify-content: space-between;
   &:not(:last-child) {
-  margin-bottom: 10px;
-  }
-  
-  img {
-    max-width: 100%;
+    margin-bottom: 40px;
   }
 }
 
 .info {
- display: flex;
- flex-direction: column;
+  padding-left: 230px;
+  min-height: 68px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .name {
-
-  &:not(:last-child) {
-      margin-bottom: 10px;
-  }
-}
-
-.aboutMe {
-  color: rgb(61, 57, 57);
-  font-size: 18px;
-  font-weight: 500;
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
-}
-
-.lookingForAJobDescription {
-  color: rgb(61, 57, 57);
-  font-size: 18px;
-  font-weight: 500;
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
-}
-
-.preloader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  z-index: 5;
-  transform: translate(-50%, -50%);
-}
-
-.statusBody{
   display: flex;
- column-gap: 5px;
+  align-items: center;
+  column-gap: 7px;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 4px;
 }
 
 .status {
-  margin-bottom: 5px;
+  max-width: 250px;
+  line-height: 120%;
 }
 
 
-.lookingForAJob {
-  margin-bottom: 10px;
+
+.button {
+  align-self: end;
+  position: relative;
+  border: 1px solid #0E6EFB;
+  background-color: #ffffff;
+  color: #0E6EFB;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 35px;
+  border-radius: 10px;
+  width: 135px;
+  padding-right: 20px;
+
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.3s ease 0s;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    width: 15px;
+    height: 15px;
+    background: url('../../../assets//images/icons/pen.svg') 0 0 no-repeat;
+    transform: translate(0, -50%);
+  }
+
+  @media (any-hover: hover) {
+      &:hover {
+        background-color: #f6f0f0;
+      }
+    }
+
+  
+}
+
+.statusSpan {
+  font-size: 16px;
+}
+
+.statusInput{}
+
+.LookingForAJob{
+  & span {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.skils {
+  & span {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  &:not(:last-child) {
+    margin-bottom: 40px;
+  }
+}
+
+
+.contacts {
+  & span {
+    font-weight: bold;
+    font-size: 18px;
+    display: inline-block;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
 }
 
 .contact {
-  padding-left: 10px;
+  padding-left: 15px;
+  display: grid;
+  row-gap: 5px;
 }
 
-.errorSome{
-  border: 1px solid red;
-  color: red;
-}
+

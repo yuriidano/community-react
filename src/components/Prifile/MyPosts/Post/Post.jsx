@@ -1,16 +1,24 @@
-import s from './Post.module.scss';
+import Preloader from '../../../common/Preloader/Preloader';
+import styles from './Post.module.scss';
 
 
 const Post = (props) => {
+
+  if(!props.profileMy) return <Preloader />
+
   return (
-    <div className={s.post}>
-      <div className={s.body}>
-        <div className={s.avatar}>
-          <img src="https://mighty.tools/mockmind-api/content/human/57.jpg" alt="avatar" />
-        </div>
-        <div className={s.text}>{props.message}</div>
+    <div className={styles.post}>
+      <div className={styles.avatar}>
+        <img src={props.profileMy.photos.large} alt="" />
       </div>
-      <button className={s.button}>like{props.likeCounter}</button>
+      <div className={styles.body}>
+        <div className={styles.text}>{props.message}</div>
+        <div className={styles.likeBody}>
+        <div className={styles.likeIcon}></div>
+          <button className={styles.like}>{props.likeCounter}</button>
+
+        </div>
+      </div>
     </div>
   );
 };

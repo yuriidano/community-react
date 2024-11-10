@@ -20,11 +20,11 @@ export const Input = FormsControls('input');
 
 
 
-export const createField = (marginBottom, component, name, placeholder, validate, type) => {
+export const createField = (marginBottom, component, name, placeholder, validate, type, id) => {
     return (
-        <div style={{ marginBottom: `${marginBottom}px` }} >
+        <div style={{ marginBottom: `${marginBottom}px`}} >
             <Field component={component} name={name} placeholder={placeholder} type={type}
-                validate={[...validate]}
+                validate={[...validate]} id={id}
             />
         </div>
     )

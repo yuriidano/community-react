@@ -1,0 +1,91 @@
+
+.info {
+    background-color: #fff;
+    min-height: 100%;
+    border-radius: 15px;
+
+}
+
+.images {
+    width: 100%;
+    &:not(:last-child) {
+        margin-bottom: 40px;
+    }
+}
+
+.fon {
+    width: 100%;
+    position: relative;
+    padding-bottom: 30%;
+    overflow: hidden;
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px 15px 0 0;
+        }
+}
+
+.avatar {
+   position: relative;
+   border-radius: 15px;
+ 
+        img {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            transform: translate(-50%, -50%);
+            border: 4px solid #77A0C6;
+        }
+}
+
+.body {
+    padding: 15px;
+}
+
+.foolName {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    &:not(:last-child) {
+        margin-bottom: 30px;
+    }
+}
+
+.skils {
+   
+    & span {
+        font-weight: bold;
+        line-height: 150%;
+    }
+    &:not(:last-child) {
+        margin-bottom: 40px;
+    }
+}
+
+.contacts {
+    font-weight: bold;
+    &:not(:last-child) {
+        margin-bottom: 25px;
+    }
+}
+
+.list {
+    padding-left: 10px;
+    display: grid;
+    row-gap: 20px;
+}
+
+.item {
+    color: #6C757D;
+}
+
+.link {
+    color: #6C757D;
+    text-decoration: underline;
+}

@@ -3,10 +3,9 @@ import LoginReduxForm from "./LoginForm";
 
 
 let Login = (props) => {
-
     let sendLogin = (formData) => {
-        let {email, password, rememberMy} = formData;
-        props.login(email, password, rememberMy);
+        let {email, password, rememberMy, captcha} = formData;
+        props.login(email, password, rememberMy, captcha);
     }
 
     if(props.isAuth) return <Navigate to={'/profile'} />
@@ -14,7 +13,7 @@ let Login = (props) => {
     return (
         <div style={{backgroundColor: 'RGB(94, 150, 242)', minHeight: '100%', padding: '15px'}}>
             <h1 style={{ fontWeight: 'bold', marginBottom: '20px' }}>LOGIN</h1>
-            <LoginReduxForm  onSubmit={sendLogin} />
+            <LoginReduxForm captcha={props.captcha} onSubmit={sendLogin} />
         </div>
     )
 }

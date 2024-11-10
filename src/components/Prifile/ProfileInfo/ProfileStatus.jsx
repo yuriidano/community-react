@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { reduxForm } from "redux-form";
-import s from './ProfileInfo.module.scss'
+import styles from './ProfileInfo.module.scss'
 
 
 
@@ -31,15 +31,15 @@ let ProfileStatus = (props) => {
     }
 
     return (
-        <div className={s.status}>
+        <div className={styles.status}>
             {!editMode &&
                 <div>
-                    <span onClick={activateEditMode} style={{ backgroundColor: 'gray' }} >{props.status || '------'}</span>
+                    <span className={styles.statusSpan} onClick={activateEditMode} >{props.status || '------'}</span>
                 </div>
             }
             {editMode &&
                 <div>
-                    <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} type="text" value={status} />
+                    <input className={styles.statusInput} onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} type="text" value={status} />
                 </div >
             }
         </div>

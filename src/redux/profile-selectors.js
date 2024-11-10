@@ -21,3 +21,8 @@ export const getProfile = (state) => {
 export const getIsUpdateProgress = (state) => {
     return state.profilePage.isUpdateProgress;
 }
+
+export const getProfileMy = (state) => {
+    return state.infoPage.profileInfo;
+}
+

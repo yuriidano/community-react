@@ -1,68 +1,81 @@
 
 .header {
-    //grid-column: span 2;
-    background-color: #485ab2;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+   
 }
 .container {
-    min-height: 80px;
-    background-color: #485ab2;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(2, 1fr);
+   min-height: 80px;
+   display: grid;
+   grid-template-columns: 25% 73.3%;
+   column-gap: 25px;
 }
+
+.body {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+  //  padding-right: 15px;
+}
+
 .logo {
+    display: inline-block;
+    max-width: 70px;
+    img {
+        max-width: 100%;
+    }
+}
+
+.logoText {
     font-size: 20px;
     font-weight: 700;
-    color: white;
+   color: #807185;
+   @media (max-width: 1200px){
+      display: none;
+   }
 }
 
 
 .loginBlock {
-    justify-self: end;
-    font-size: 20px;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 0 15px;
+  //  padding-right: 15px;
     display: flex;
-    column-gap: 10px;
     align-items: center;
-        color: white;
+    justify-content: flex-end;
 
-    a {
-        font-size: 20px;
-        color: white;
+
+   .loginBody {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+   }
+
+   .login {
+    font-size: 22px;
+    font-weight: 300;
+   }
+
+   .button {
+        background-color: #0E6EFB;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        border-radius: 10px;
+       min-width: 100px;
+       //padding: 0 40px;
+        color: #FFFFFF;
+        font-weight: 500;
+        font-size: 16px;
         transition: all 0.3s ease 0s;
-        &:hover {
-            color: rgb(184, 174, 174);
-        }
 
-    }
-}
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: #0051ca;
+            }
+          }
+   }
 
-
-.user {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items:  center;
-    column-gap: 20px;
-    
-}
-
-.avatar {
-    max-width: 30px;
-    
-
-    img {
-        max-width: 100%;
-    }
-}
-
-
-.userAuthAvatar {
-    max-width: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-
-    img {
-        max-width: 100%;
-
-    }
 }

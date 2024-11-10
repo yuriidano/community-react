@@ -77,16 +77,21 @@ const toggleIsUpdateProgress = () => ({type: TOGGLE_IS_UPDATE_PROGRESS})
 
 
 
-export const getUserStatus = (userId) => async (dispatch) => {
-    let data = await profileApi.getUserStatus(userId)
-    dispatch(setUserStatus(data))
+export const requestUserStatus = (userId) => async (dispatch) => {
+    try {
+        let data = await profileApi.getUserStatus(userId);
+        dispatch(setUserStatus(data))
+    } catch (error) {
+    }
 }
 
 export const updateUserStatus = (status) => async (dispatch) => {
-   let data = await profileApi.updateUserStatus(status)
-   if(data.resultCode === 0) {
-    dispatch(setUserStatus(status))
-}
+
+    let data = await profileApi.updateUserStatus(status)    
+    debugger
+    if (data.resultCode === 0) {
+        dispatch(setUserStatus(status))
+    }
 }
 
 export const requestProfile = (userId) => async (dispatch) => {

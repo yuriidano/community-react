@@ -1,9 +1,7 @@
 import React from 'react';
-import s from './Dialogs.module.scss';
+import styles from './Dialogs.module.scss';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { Navigate } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
 import DialogsReduxForm from './DialogsForm';
 
 
@@ -24,13 +22,13 @@ const Dialogs = (props) => {
 
 
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
+        <div className={styles.dialogs}>
+            <div className={styles.dialogsItems}>
                 {dialogsElement}
             </div>
-            <div className={s.messages}>
+            <div className={styles.messages}>
                 {messageElement}
-                <div className={s.newMessage}>
+                <div className={styles.newMessage}>
                     <DialogsReduxForm onSubmit={sendMessage} />
                 </div>
             </div>

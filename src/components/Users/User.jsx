@@ -35,8 +35,6 @@ let User = ({user, ...restProps}) => {
                     <div className={styles.status}>{user.status}</div>
                 </div>
                 <div className={styles.location}>
-                    {/* <div className={styles.country}>{'location.country'}</div>
-                    <div className={styles.city}>{'location.city'}</div> */}
                 </div>
             </div>
         </div>

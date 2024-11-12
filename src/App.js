@@ -52,7 +52,7 @@ const App = (props) => {
     <div className='wrapper'>
       <div className='header' ><HeaderContainer /></div>
       <div className='app-page'>
-        <div className={classNames('app-page__container', {'app-page__containerLogin': !props.isAuth})} >
+        <div className={classNames({'app-page__containerLogin': !props.isAuth, 'app-page__container': props.isAuth})} >
           <div className='app-page__sitebar'><SitebarContainer /></div>
           <div className='app-page__main'>
             <Routes>

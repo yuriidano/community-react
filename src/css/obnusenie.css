@@ -19,7 +19,7 @@ a:focus, a:active {
 nav, footer, header, aside {
   display: block; }
 
-html, body {
+html, body, #root {
   height: 100%;
   width: 100%;
   font-size: 100%;

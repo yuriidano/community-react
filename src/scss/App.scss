@@ -29,10 +29,11 @@ body {
   /*-------------wrapper-----------*/
   
   .wrapper {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    // min-height: 100%;
+    // display: flex;
+    // flex-direction: column;
+    // overflow: hidden;
+     display: flex; flex-direction: column; height: 100%
   
   }
   
@@ -47,7 +48,6 @@ body {
     flex: 1 1 auto;
     position: relative;
     padding-bottom: 20px;
-    height: 100%;
     &__sitebar {}
 
     &__container {
@@ -69,10 +69,10 @@ body {
 
 
     &__containerLogin {
-      display: grid;
-      grid-template-columns: 100%;
-
-    }
+      //display: grid;
+      //grid-template-columns: 100%;
+      min-height: 100%;
+    } 
   }
   
   /*-------------footer-----------*/

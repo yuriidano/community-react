@@ -13,7 +13,7 @@ let LoginForm = (props) => {
             {createField(10, Input, "password", "password...", [required], null)}
 
             <div style={{display: 'flex', alignItems: 'flex-start', columnGap: '5px'}}>
-            {createField(10, Input, "rememberMy", "password...", [required], 'checkbox')}<b>remember my</b>
+            {createField(10, Input, "rememberMy", "password...", [], 'checkbox')}<b>remember my</b>
             </div>
 
 

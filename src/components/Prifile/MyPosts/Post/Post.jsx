@@ -4,7 +4,7 @@ import styles from './Post.module.scss';
 
 const Post = (props) => {
 
-  if(!props.profileMy) return <Preloader />
+  if(!props.profileMy) return null
 
   return (
     <div className={styles.post}>

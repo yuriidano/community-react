@@ -1,15 +1,40 @@
-.users {
-    //display: flex;
-    align-items: top;
-    column-gap: 10px;
-    margin-bottom: 20px;
 
+
+.users {
+    padding: 20px 15px 25px 15px;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+}
+
+.paginator {
+    &:not(:last-child) {
+    margin-bottom: 15px;
+    }
+}
+
+.items {
+    max-width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 25px;
+    padding-left: 20px;
+}
+
+.userBody {
+    display: flex;
+    align-items: center;
 }
 .user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 5px;
 }
 .avatar {
     max-width: 100px;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
     overflow: hidden;
     
     img {
@@ -17,26 +42,29 @@
         border-radius: 50%;
     }
 }
-.body {
-}
-.info {
-}
-.name {
-}
-.status {
-}
-.location {
-}
-.country {
-}
-.city {
-}
 
 
-.selected {
-    font-weight: bold;
-    
+.button {
+    background-color: #0E6EFB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 25px;
+    border-radius: 5px;
+    min-width: 80px;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease 0s;
+
+    @media (any-hover: hover) {
+        &:hover {
+            background-color: #0051ca;
+        }
+      }
+      margin-bottom: 10px;
 }
+
 
 span {
     margin-right: 5px;

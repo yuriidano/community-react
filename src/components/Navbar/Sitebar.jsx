@@ -33,9 +33,10 @@ const Sitebar = (props) => {
             </li>
           </ul>
         </nav>
-        </div>
       </div>
-    );
+      <div className={style.copyrite}>© 2021 All Rights Reserved</div>
+    </div>
+  );
 };
 
 export default Sitebar;

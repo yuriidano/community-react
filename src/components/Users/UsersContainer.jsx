@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { follow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFeching, unfollow, toggleFollowingInProgress, requestUsers } from '../../redux/users-reducer';
 import React from 'react';
 import Users from './Users';
-import Preloader from '../common/Preloader/Preloader';
 import withAuthNavigate from '../../hoc/withAuthNavigate';
 import { compose } from 'redux';
 import { getcurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getPortionSize, getTotalUsersCount, getUsers, getUsersOld, } from '../../redux/users-selectors';
@@ -21,9 +20,6 @@ class UsersAPIComponent extends React.Component {
     render() {    
         return (
             <>
-                {
-                    this.props.isFetching ?  <Preloader /> : null
-                }
                 <Users  onPagesChanged={this.onPagesChanged}
                        totalUsersCount={this.props.totalUsersCount}
                        pageSize={this.props.pageSize}
@@ -33,6 +29,7 @@ class UsersAPIComponent extends React.Component {
                        users={this.props.users}
                        followingInProgress={this.props.followingInProgress}
                        toggleFollowingInProgress={this.props.toggleFollowingInProgress}
+                       isFetching={this.props.isFetching}
                  />
             </>
         )

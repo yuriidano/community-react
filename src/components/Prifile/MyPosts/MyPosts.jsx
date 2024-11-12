@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styles from './MyPosts.module.scss';
 import Post from './Post/Post';
 import MyPostFeduxForm from './MyPostsForm';
-import Preloader from '../../common/Preloader/Preloader';
 
 
 

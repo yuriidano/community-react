@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from '../../Users/Users.module.scss';
+import styles from './Paginator.module.scss';
 import classNames from 'classnames';
 
 const Paginator = ({totalUsersCount, pageSize, currentPage, onPagesChanged, portionSize = 10}) => {
@@ -18,25 +18,29 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPagesChanged, port
 
 
     return (
-        <>
-            { portionPage > 1 &&
-                <span onClick={() => {setPortionPage(portionPage - 1)}} >prev</span>
-            }
-            {
-                pages
-                .filter(p => p >= leftBorderPortion && p <= rigthBorderPortion)
-                .map(p => {
-                    return <span key={p} className={classNames({[styles.selected]: p === currentPage})}
-                        onClick={(e) => { onPagesChanged(p) }} >{p}</span>
-                })
-            }
-            { portionPage < portionCount &&
-                 <span onClick={() => {setPortionPage(portionPage + 1)}} >next</span>
-                 
-            }
-            
-          
-        </>
+        <div className={styles.paginator}>
+            <div className={classNames(styles.buttonPrev, {[styles.buttonPrevActive]: portionPage > 1})}>
+                {
+                    <span className={styles.buttonPrevSpan} onClick={() => { setPortionPage(portionPage - 1) }} ></span>
+                }
+            </div>
+            <div className={styles.body}>
+                {
+                    pages
+                        .filter(p => p >= leftBorderPortion && p <= rigthBorderPortion)
+                        .map(p => {
+                            return <span key={p} className={classNames(styles.item, {[styles.selected]: p === currentPage })}
+                                onClick={(e) => { onPagesChanged(p) }} >{p}</span>
+                        })
+                }
+            </div>
+            <div className={styles.buttonNext}>
+                {portionPage < portionCount &&
+                    <span className={styles.buttonNextSpan} onClick={() => { setPortionPage(portionPage + 1) }} ></span>
+
+                }
+            </div>
+        </div>
     )
 };
 

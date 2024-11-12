@@ -5,7 +5,7 @@ import Preloader from '../common/Preloader/Preloader';
 
 const Info = ({profile}) => {
 
-    if(!profile) return <Preloader />
+    if(!profile) return null;
 
     return (
         <div className={styles.info}>

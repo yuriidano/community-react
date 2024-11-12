@@ -12,7 +12,7 @@ const ProfileInfo = (props) => {
   let [editMode, setEditMode] = useState(false);
 
   if (!props.profile) {
-    return <Preloader />
+    return null
   }
 
   let onPhotoChange = (e) => {

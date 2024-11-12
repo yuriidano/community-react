@@ -2,9 +2,11 @@
 .dialogs {
     padding: 20px 0px 25px 15px;
     display: grid;
-    grid-template-columns: minmax(auto, 170px) minmax(auto, 800px) minmax(auto, 300px);
+    grid-template-columns: minmax(auto, 170px) minmax(auto, 800px);
     column-gap: 15px;
-
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    min-height: 100%;
 }
 
 .dialogsItems {
@@ -12,6 +14,7 @@
     row-gap: 30px;
     border-right: 1px solid rgba(195, 183, 183, 0.521);
 }
+
 
 .dialog {
     display: flex;
@@ -32,71 +35,69 @@
 }
 
 .name {
-    font-size: 16px;
-    font-weight: 500;
-    &:active {
-        color: rgb(189, 189, 187);
-    }
-}
-
-
-.newMessage {
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-}
-
-.area {
-    min-height: 80px;
-    background-color: RGB(240, 242, 245);
-    padding: 10px;
-}
-
-// [class*= error] {
-//     background-color: #c7163d;
-// }
-  .button {
-    align-self: flex-end;
-    min-height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    color: white;
     font-weight: 600;
-    background-color: #485ab2;
-    padding: 0 40px;
-    transition: all 0.3s ease 0s;
-  
-    @media (min-width: 992px){
-        &:hover {
-          background-color: #2a3988;
-        }
-    }
-  }
-
-
-
-
-
-
-
-
-
-.active {
-    font-size: 16px;
-    font-weight: 500;
-    color: rgb(189, 189, 187);
+    color: #6C757D;
 }
+
+
 
 
 .messages {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     row-gap: 30px;
-    padding-left: 20px;
+    &:not(:last-child) {
+    margin-bottom: 140px;
+    }
 }
 
 .message {
+    background-color: #EFF2F6;
+    border-radius: 25px;
+    padding: 5px 10px;
+}
+
+
+.body {
+    &:not(:last-child) {
+        margin-bottom: 20px;
+        }
+}
+
+.areaBody {
+    &:not(:last-child) {
+        margin-bottom: 15px;
+    }
+}
+
+.area {
+    min-height: 70px;
+    background-color: RGB(240, 242, 245);
+    padding: 10px;
+    resize: none;
+    border-radius: 10px;
+    min-width: 300px;
+
+}
+
+
+.button {
+    background-color: #0E6EFB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 35px;
+    border-radius: 10px;
+   min-width: 100px;
+    color: #FFFFFF;
+    font-weight: 500;
     font-size: 16px;
+    transition: all 0.3s ease 0s;
+
+    @media (any-hover: hover) {
+        &:hover {
+            background-color: #0051ca;
+        }
+      }
 }

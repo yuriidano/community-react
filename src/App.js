@@ -70,7 +70,6 @@ const App = (props) => {
           <div className='app-page_info'><InfoContainer /></div>
         </div>
       </div>
-      <div>footer</div>
     </div>
   );
 };

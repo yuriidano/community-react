@@ -41,7 +41,10 @@ body {
   
   /*-------------header-----------*/
   
-  .header {}
+  .header {
+    //
+    flex: 0 0
+  }
   
   /*-------------page-----------*/
   .app-page {
@@ -54,7 +57,7 @@ body {
       display: grid;
       grid-template-columns: 25% 50% 21.6%;
       column-gap: 25px;
-     height: 100%;
+      height: 100%;
       
 
     }

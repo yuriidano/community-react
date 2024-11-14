@@ -1,5 +1,5 @@
 import { Field, reduxForm } from "redux-form"
-import s from '../common/FormsControls/FormsControls.module.scss'
+import styles from './Login.module.scss'
 
 import { required } from "../../utils/validators/validators";
 import { createField, Input } from "../common/FormsControls/formsControls";
@@ -8,28 +8,37 @@ import { createField, Input } from "../common/FormsControls/formsControls";
 let LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit} >
-            {createField(15, Input, "email", "email...", [required], null)}
+            <div className={styles.loginEmail}>
+                {createField(null, Input, "email", "email...", [required], null)}
+            </div>
 
-            {createField(10, Input, "password", "password...", [required], null)}
+            <div className={styles.loginPassword}>
+                {createField(null, Input, "password", "password...", [required], null)}
+            </div>
 
-            <div style={{display: 'flex', alignItems: 'flex-start', columnGap: '5px'}}>
-            {createField(10, Input, "rememberMy", "password...", [], 'checkbox')}<b>remember my</b>
+            <div className={styles.loginFormBody}>
+                <div className={styles.loginRemember}>{createField(10, Input, "rememberMy", "password...", [], 'checkbox')}</div>
+                <span className={styles.loginRemember}>remember my</span>
             </div>
 
 
             {props.captcha &&
                 <div>
-                    <div style={{maxWidth: '150px'}} >
-                        <img  style={{marginBottom: '5px', maxWidth: '100%'}} src={props.captcha.url} alt="" />
+                    <div className={styles.captchaFoto}>
+                        <img  src={props.captcha.url} alt="" />
                     </div>
-                    {createField(10, Input, "captcha", "captcha...", [required], null)}
+                    <div  className={styles.captcha}>
+                        {createField(10, Input, "captcha", "captcha...", [required], null)}
+                    </div>
                 </div>
             }
 
             {props.error &&
-                <div className={s.someFormError}>{props.error}</div>
+                <div className={styles.someFormError}>{props.error}</div>
             }
-            <button>login</button>
+            <div className={styles.loginButtonBody}>
+            <button  className={styles.loginButton}>login</button>
+            </div>
         </form>
     )
 };

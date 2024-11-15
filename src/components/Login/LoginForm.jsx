@@ -1,4 +1,4 @@
-import { Field, reduxForm } from "redux-form"
+import { reduxForm } from "redux-form"
 import styles from './Login.module.scss'
 
 import { required } from "../../utils/validators/validators";
@@ -33,9 +33,11 @@ let LoginForm = (props) => {
                 </div>
             }
 
-            {props.error &&
-                <div className={styles.someFormError}>{props.error}</div>
-            }
+            <div className={styles.someFormError}>
+                {props.error &&
+                    <div >{props.error}</div>
+                }
+            </div>
             <div className={styles.loginButtonBody}>
                 <button className={styles.loginButton}>login</button>
             </div>

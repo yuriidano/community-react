@@ -37,7 +37,7 @@ let LoginForm = (props) => {
                 <div className={styles.someFormError}>{props.error}</div>
             }
             <div className={styles.loginButtonBody}>
-            <button  className={styles.loginButton}>login</button>
+                <button className={styles.loginButton}>login</button>
             </div>
         </form>
     )

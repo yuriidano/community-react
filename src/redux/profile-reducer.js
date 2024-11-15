@@ -7,6 +7,7 @@ const DELETE_MESSAGE = 'profile/DELETE-MESSAGE';
 const SET_PROFILE = 'profile/SET-PROFILE';
 const SET_PHOTO = 'profile/SET-PHOTO';
 const TOGGLE_IS_UPDATE_PROGRESS = 'profile/TOGGLE-IS-UPDATE-PROGRESS';
+const TOGGLE_PROFILE_MOUNT = 'profile/TOGGLE-PROFILE-MOUNT';
 
 let initialState = {
     posts: [
@@ -16,6 +17,7 @@ let initialState = {
     status: '',
     profile: null,
     isUpdateProgress: false,
+    profileMoutn: false
 };
 
 
@@ -56,6 +58,12 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 isUpdateProgress: true
             }
+
+        case TOGGLE_PROFILE_MOUNT:
+            return {
+                ...state,
+                ...action.payload
+            }
         default:
             return state;
     };
@@ -72,7 +80,9 @@ const setProfile = (newProfile) => ({type: SET_PROFILE, newProfile});
 
 const setPhoto = (newPhotos) => ({type: SET_PHOTO, newPhotos});
 
-const toggleIsUpdateProgress = () => ({type: TOGGLE_IS_UPDATE_PROGRESS})
+const toggleIsUpdateProgress = () => ({type: TOGGLE_IS_UPDATE_PROGRESS});
+
+const toggleProfilemount = (profileMoutn) => ({type: TOGGLE_PROFILE_MOUNT, payload: {profileMoutn}});
 
 
 
@@ -134,6 +144,10 @@ export const updateProfile = (profileData) => async (dispatch, getState) => {
         dispatch(stopSubmit('profile', {'contacts': {[messageForm]: message}}))
     }
 }
+
+export const profileMount = (profileMoutn) => (dispatch) => {
+    dispatch(toggleProfilemount(profileMoutn));
+};
 
 
 

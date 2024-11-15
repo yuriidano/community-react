@@ -10,8 +10,9 @@
 }
 
 .dialogsItems {
-    display: grid;
-    row-gap: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 60px;
     border-right: 1px solid rgba(195, 183, 183, 0.521);
 }
 

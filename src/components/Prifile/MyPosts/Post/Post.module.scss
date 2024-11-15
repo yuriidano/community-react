@@ -24,9 +24,10 @@
 
 .text {
   min-height: 40px;
+  min-width: 700px;
   background-color: #EFF2F6;
   border-radius: 10px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   padding-left: 10px;
   &:not(:last-child) {

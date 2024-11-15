@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import Profile from "./Profile"
 import React, { useEffect } from "react";
-import { addPostCriator, requestPhoto, requestProfile, requestProfileMy, requestUserStatus, updateProfile, updateUserStatus } from "../../redux/profile-reducer";
+import { addPostCriator, profileMount, requestPhoto, requestProfile, requestProfileMy, requestUserStatus, updateProfile, updateUserStatus } from "../../redux/profile-reducer";
 import { useParams } from "react-router-dom";
 import { compose } from "redux";
 import withAuthNavigate from "../../hoc/withAuthNavigate";
@@ -23,6 +23,11 @@ let ProifleContainer = (props) => {
     useEffect(() => {
         props.requestProfile(userId);
         props.requestUserStatus(userId);
+        props.profileMount(true);
+
+        return () => {
+            props.profileMount(false);
+        }
     }, [userId])
 
     
@@ -47,7 +52,7 @@ let mapStateToProps = (state) => {
     };
 };
 export default compose(
-    connect(mapStateToProps, {requestUserStatus, updateUserStatus, addPostCriator, requestProfile, requestPhoto, updateProfile}),
+    connect(mapStateToProps, {requestUserStatus, updateUserStatus, addPostCriator, requestProfile, requestPhoto, updateProfile, profileMount}),
     withAuthNavigate,
 ) (ProifleContainer)
 

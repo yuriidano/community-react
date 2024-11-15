@@ -34,7 +34,7 @@ const Sitebar = (props) => {
           </ul>
         </nav>
       </div>
-      <div className={style.copyrite}>© 2021 All Rights Reserved</div>
+      <div className={style.copyrite}>© 2024 All Rights Reserved</div>
     </div>
   );
 };

@@ -23,10 +23,21 @@ let Login = (props) => {
                     <a href="#" className={styles.logoText}>Community React</a>
                 </div>
             </div>
-            <div className={classNames({[styles.loginContent]: !props.captcha, [styles.loginContentCaptcha]: props.captcha})}>
-                    <h1 className={styles.title}>Sign in</h1>
-                    <LoginReduxForm captcha={props.captcha} onSubmit={sendLogin} />
+            <div className={classNames({ [styles.loginContent]: !props.captcha, [styles.loginContentCaptcha]: props.captcha })}>
+                <h1 className={styles.title}>Sign in</h1>
+                <LoginReduxForm captcha={props.captcha} onSubmit={sendLogin} />
+                <div className={styles.testData}>
+                    <div className={styles.testDataTitle}>Test data</div>
+                    <div className={styles.TestDataEmailBody}>
+                        <div className={styles.TestDataEmaiTitle}>Email:</div>
+                        <div className={styles.TestDataEmai}>free@samuraijs.com</div>
+                    </div>
+                    <div className={styles.TestDataPasswordBody}>
+                        <div className={styles.TestDataPasswordTitle}>Password:</div>
+                        <div className={styles.TestDataPassword}>free</div>
+                    </div>
                 </div>
+            </div>
         </div>
     )
 }

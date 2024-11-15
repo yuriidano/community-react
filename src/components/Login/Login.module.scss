@@ -54,6 +54,7 @@
     display: flex;
     align-items: center;
     column-gap: 30px;
+    margin-left: -10px;
 }
 
 .logo {
@@ -124,17 +125,18 @@
 .loginButtonBody {
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .loginButton {
-    flex: 1 1 auto;
+    flex: 1 0 auto;
     background-color: #0E6EFB;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 35px;
     border-radius: 10px;
-   min-width: 100px;
+    min-width: 100px;
     color: #FFFFFF;
     font-weight: 500;
     font-size: 16px;
@@ -170,3 +172,43 @@
         
     }
 }
+
+
+
+.testData {
+    position: absolute;
+    top: 53%;
+    left: 45%;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.testDataTitle {
+   font-weight: 700;
+   margin-bottom: 7px;
+}
+
+.TestDataEmailBody {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    &:not(:last-child) {
+    margin-bottom: 5px;
+    }
+}
+.TestDataEmaiTitle {
+    font-weight: bold;
+}
+.TestDataEmai {}
+
+.TestDataPasswordBody {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+   
+}
+.TestDataPasswordTitle {
+    font-weight: bold;
+}
+.TestDataPassword {}

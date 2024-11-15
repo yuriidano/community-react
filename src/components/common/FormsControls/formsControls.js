@@ -1,5 +1,5 @@
 import { Field } from 'redux-form';
-import s from './FormsControls.module.scss'
+import styles from './FormsControls.module.scss'
 
 
 const FormsControls = Element => props => {
@@ -7,8 +7,8 @@ const FormsControls = Element => props => {
     let {meta: {touched, error}, input,   ...restProps} = props;
     let errors = touched && error;
     return (
-        <div className={s.formsControls + ' ' + (errors && s.eror)} >
-            <div>{<Element {...input} {...restProps} />}</div>
+        <div className={styles.formsControls + ' ' + (errors && styles.eror)} >
+            <div className={styles.element}>{<Element {...input} {...restProps} />}</div>
             {errors && <span>{error}</span>}
         </div>
     )

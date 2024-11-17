@@ -44,14 +44,14 @@ const ProfileInfo = (props) => {
           </label>
       </div>
       <div className={styles.body}>
-            {props.isOwner && <input className={styles.input} id="changeAvatar" type='file' onChange={onPhotoChange} />}
-          <div className={styles.statusBody}>
-            {editMode ?
-              <ProfileFormData onSubmit={onSubmit} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} />
-              : <ProfileData isOwner={props.isOwner} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus}
-                activateEditMode={activateEditMode} />}
-          </div>
+        {props.isOwner && <input className={styles.input} id="changeAvatar" type='file' onChange={onPhotoChange} />}
+        <div className={styles.statusBody}>
+          {editMode ?
+            <ProfileFormData onSubmit={onSubmit} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} />
+            : <ProfileData isOwner={props.isOwner} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus}
+              activateEditMode={activateEditMode} />}
         </div>
+      </div>
     </div>
   );
 };
@@ -78,11 +78,13 @@ const ProfileData = ({ profile, status, updateUserStatus, isOwner, activateEditM
       </div>
       <div className={styles.skils}>
         { profile.lookingForAJob &&
-          <div>
-            <span>My profesional skils:</span>  {profile.lookingForAJobDescription}
+          <div className={styles.skilsBody}>
+            <span>My profesional skils:</span><span>{profile.lookingForAJobDescription}</span>
           </div>
         }
       </div>
+
+      
       <div className={styles.contacts}>
         <span>Contacts: </span>
         <div className={styles.contact}>

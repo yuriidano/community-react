@@ -3,6 +3,7 @@ import Sitebar from "./Sitebar"
 import { connect } from "react-redux";
 import withAuthNavigate from "../../hoc/withAuthNavigate";
 import { getActiveMenu } from "../../redux/sitebar-selectors";
+import { toggleActiveMenu } from "../../redux/header-reducer";
 
 
 const SitebarContainer = (props) => {
@@ -21,6 +22,6 @@ const mapstateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapstateToProps, {}),
+    connect(mapstateToProps, {toggleActiveMenu}),
     withAuthNavigate
 )(SitebarContainer)

@@ -12,6 +12,11 @@
   &:not(:last-child) {
     margin-bottom: 10px;
   }
+  @media (max-width: 550px){
+    &:not(:last-child) {
+      margin-bottom: 55px;
+    }
+  }
 }
 
 .fon {
@@ -19,6 +24,9 @@
   position: relative;
   padding-bottom: 20%;
   overflow: hidden;
+  @media (max-width: 410px){
+    padding-bottom: 30%;
+  }
       img {
           position: absolute;
           top: 0;
@@ -53,6 +61,14 @@
             width: 80px;
             height: 80px;
           }
+          @media (max-width: 767px){
+            width: 100px;
+            height: 100px;
+          }
+          @media (max-width: 680px){
+            width: 70px;
+            height: 70px;
+          }
        }
 }
 
@@ -76,6 +92,57 @@
       height: 20px;
       left: 24.4%;
     }
+    @media (max-width: 767px){
+      width: 30px;
+      height: 30px;
+      left: 24.0%;
+    }
+    @media (max-width: 680px){
+      width: 20px;
+      height: 20px;
+      left: 22.8%;
+      bottom: -26.7%;
+    }
+    @media (max-width: 530px){
+      left: 23.7%;
+      bottom: -28.2%;
+    }
+    @media (max-width: 480px){
+      left: 23.5%;
+      bottom: -33.4%;
+    }
+    @media (max-width: 440px){
+      left: 23.9%;
+      bottom: -35.1%;
+    }
+    @media (max-width: 430px){
+      left: 24.9%;
+      bottom: -35.1%;
+    }
+    @media (max-width: 414px){
+      left: 24.6%;
+      bottom: -42%;
+    }
+    @media (max-width: 412px){
+      left: 25.3%;
+      bottom: -35.1%;
+    }
+    @media (max-width: 410px){
+      left: 25.5%;
+      bottom: -35.1%;
+    }
+    @media (max-width: 390px){
+      left: 24.7%;
+      bottom: -29.7%;
+    }
+    @media (max-width: 345px){
+      left: 26%;
+      bottom: -45.3%;
+    }
+    @media (max-width: 344px){
+      left: 25.1%;
+      bottom: -36.9%;
+    }
     img {
       position: absolute;
       top: 50%;
@@ -87,22 +154,22 @@
         width: 12px;
         height: 12px;
       }
+      @media (max-width: 767px){
+        width: 20px;
+        height: 20px;
+      }
+      @media (max-width: 680px){
+        width: 12px;
+        height: 12px;
+      }
     }
 }
-
-
 .input {
   display: none;
 }
-
-
 .body {
   padding: 0 15px;
 }
-
-
-
-
 .top{
   display: grid;
   align-items: center;
@@ -114,8 +181,18 @@
   @media (max-width: 992px){
     grid-template-columns: 1fr 100px;
   }
+  @media (max-width: 550px){
+    justify-content: flex-start;
+    grid-template-columns: 1fr auto;
+  }
+  @media (max-width: 400px){
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
 }
-
 .info {
   padding-left: 280px;
   min-height: 68px;
@@ -128,8 +205,19 @@
   @media (max-width: 992px){
     padding-left: 150px;
   }
+  @media (max-width: 767px){
+    padding-left: 220px;
+  }
+  @media (max-width: 680px){
+    padding-left: 180px;
+  }
+  @media (max-width: 580px){
+    padding-left: 140px;
+  }
+  @media (max-width: 550px){
+    padding-left: 0px;
+  }
 }
-
 .name {
   display: flex;
   align-items: center;
@@ -137,8 +225,10 @@
   font-size: 18px;
   font-weight: bold;
   padding-top: 4px;
+  @media (max-width: 680px){
+    font-size: 16px;
+  }
 }
-
 .status {
   max-width: 250px;
   line-height: 120%;
@@ -179,6 +269,12 @@
     justify-content: center;
     min-height: 30px;
   }
+  @media (max-width: 400px){
+    font-size: 14px;
+    width: 80px;
+    border-radius: 5px;
+    min-height: 25px;
+  }
 
 
   @media (any-hover: hover) {
@@ -189,27 +285,37 @@
 
   
 }
-
 .statusSpan {
   font-size: 16px;
 }
-
-.statusInput{}
-
 .LookingForAJob{
   & span {
     font-weight: bold;
     font-size: 18px;
+    @media (max-width: 400px){
+      font-size: 16px;
+      font-weight: 600;
+    }
   }
   &:not(:last-child) {
     margin-bottom: 20px;
   }
 }
-
+.skilsBody {
+  @media (max-width: 380px){
+    display: flex;
+    flex-direction: column;
+  }
+}
 .skils {
   & span {
     font-weight: bold;
     font-size: 18px;
+    line-height: 150%;
+    @media (max-width: 400px){
+      font-size: 16px;
+      font-weight: 600;
+    }
   }
   &:not(:last-child) {
     margin-bottom: 40px;
@@ -220,8 +326,6 @@
     }
   }
 }
-
-
 .contacts {
   & span {
     font-weight: bold;
@@ -229,6 +333,10 @@
     display: inline-block;
     &:not(:last-child) {
       margin-bottom: 10px;
+    }
+    @media (max-width: 400px){
+      font-size: 16px;
+      font-weight: 600;
     }
   }
 }

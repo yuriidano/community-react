@@ -1,12 +1,19 @@
 
 .dialogs {
-    padding: 20px 0px 25px 15px;
+    padding: 20px 15px 25px 15px;
     display: grid;
     grid-template-columns: minmax(auto, 170px) minmax(auto, 800px);
     column-gap: 15px;
     background-color: #FFFFFF;
     border-radius: 15px;
     min-height: 100%;
+    @media (max-width: 767px){
+        grid-template-columns: minmax(140px, 170px) minmax(auto, 800px);
+    }
+    @media (max-width: 420px){
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 .dialogsItems {
@@ -17,6 +24,9 @@
     @media (max-width: 992px){
         row-gap: 40px;  
     }
+    @media (max-width: 420px){
+        flex: 0 1 30%;
+    }
 }
 
 
@@ -24,6 +34,12 @@
     display: flex;
     align-items: center;
     column-gap: 10px;
+    @media (max-width: 420px){
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 10px;
+    }
 }
 
 .icon {
@@ -43,8 +59,14 @@
     color: #6C757D;
 }
 
-
-
+.body {
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+    @media (max-width: 420px){
+        flex: 0 1 70%;
+    }
+}
 
 .messages {
     display: flex;
@@ -52,7 +74,12 @@
     align-items: flex-start;
     row-gap: 30px;
     &:not(:last-child) {
-    margin-bottom: 140px;
+        margin-bottom: 140px;
+    }
+    @media (max-width: 450px){
+        &:not(:last-child) {
+            margin-bottom: 80px;
+        }
     }
 }
 
@@ -62,12 +89,6 @@
     padding: 5px 10px;
 }
 
-
-.body {
-    &:not(:last-child) {
-        margin-bottom: 20px;
-        }
-}
 
 .areaBody {
     &:not(:last-child) {
@@ -82,9 +103,14 @@
     resize: none;
     border-radius: 10px;
     min-width: 300px;
+    @media (max-width: 550px){
+        min-width: 200px;
+    }
+    @media (max-width: 350px){
+        min-width: 150px;
+    }
 
 }
-
 
 .button {
     background-color: #0E6EFB;

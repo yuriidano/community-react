@@ -21,10 +21,6 @@ const ProfileDataForm = ({ profile, status, updateUserStatus, handleSubmit, erro
                     </div>
                     <button className={styles.button}>Save</button>
                 </div>
-
-
-
-
                 <div className={styles.lookingForAJob}>
                     <span>LookingForAJob:</span>  {profile.lookingForAJob ? 'yes' : 'no'}
                     {createField(null, Input, 'lookingForAJob', null, [], 'checkbox')}

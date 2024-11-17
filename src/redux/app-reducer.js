@@ -1,6 +1,6 @@
 import { authMe } from "./auth-reducer";
 
-const INITIALIZE_SUCCES = 'INITIALIZE-SUCCES';
+const INITIALIZE_SUCCES = 'app/INITIALIZE-SUCCES';
 
 
 const initialState = {

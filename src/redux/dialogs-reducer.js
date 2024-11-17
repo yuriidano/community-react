@@ -1,5 +1,5 @@
-const SEND_MESSAGE = 'SEND-MESSAGE';
-const DELETE_MESAGE = 'DELETE-MESAGE';
+const SEND_MESSAGE = 'dialogs/SEND-MESSAGE';
+const DELETE_MESAGE = 'dialogs/DELETE-MESAGE';
 
 let initialState = {
     dialods: [
@@ -21,32 +21,31 @@ let initialState = {
 const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        
         case SEND_MESSAGE: 
             let newMessage = {id: 4, message: action.data}
-       
         return {
             ...state,
             messages: [...state.messages, newMessage],
         };
-
         case DELETE_MESAGE:
             return {
                 ...state,
                 messages: state.messages.filter(m => m.id != action.userId)
             }
-
         default:
             return state; 
     }
 };
 
-
 export const newMessage = (data) => ({type: SEND_MESSAGE, data});
 export const deleteMessage = (userId) => ({type: DELETE_MESAGE, userId});
+
 
 export const sendMessage = (data) => (dispatch) => {
     dispatch(newMessage(data))
 };
+
+
+
 
 export default dialogsReducer;

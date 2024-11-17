@@ -1,6 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-
 const getUsersSelector = (state) => {
     return state.usersPage.users;
 };
@@ -13,17 +12,13 @@ export const getPageSize = (state) => {
     return state.usersPage.pageSize;
 }
 
-
 export const getUsersOld = (state) => {
     return state.usersPage.users.filter(u => true)
 };
 
-
-
 export const getTotalUsersCount = (state) => {
     return state.usersPage.totalUsersCount;
 };
-
 
 export const getcurrentPage = (state) => {
     return state.usersPage.currentPage;

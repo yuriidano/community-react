@@ -4,7 +4,10 @@
     margin-bottom: 20px;
     position: relative;
     z-index: 100;
-   
+    @media (max-width: 767px){
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
 }
 .container {
    min-height: 80px;
@@ -15,7 +18,7 @@
     min-height: 70px;
    }
    @media (max-width: 992px){
-    min-height: 60px;
+    min-height: 70px;
     column-gap: 15px;
   }
   @media (max-width: 767px){
@@ -41,7 +44,7 @@
 }
 
 .logoMobile {
-    max-width: 35px;
+    max-width: 45px;
     img {
         max-width: 100%;
     }
@@ -116,7 +119,7 @@
         font-size: 16px;
         transition: all 0.3s ease 0s;
         @media (max-width: 1200px){
-            min-height: 30px;
+            min-height: 35px;
             min-width: 80px;
         }
 
@@ -128,11 +131,6 @@
         }
 
 }
-
-
-
-
-
 
 .burger {
     display: none;

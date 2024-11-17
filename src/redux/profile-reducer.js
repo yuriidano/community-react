@@ -1,5 +1,5 @@
 import { stopSubmit } from "redux-form";
-import { musicApi, profileApi } from "../api/api";
+import { profileApi } from "../api/api";
 
 const ADD_POST = 'profile/ADD-POST';
 const SET_USER_STATUS = 'profile/SET-USER-STATUS';
@@ -58,7 +58,6 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 isUpdateProgress: true
             }
-
         case TOGGLE_PROFILE_MOUNT:
             return {
                 ...state,
@@ -96,9 +95,7 @@ export const requestUserStatus = (userId) => async (dispatch) => {
 }
 
 export const updateUserStatus = (status) => async (dispatch) => {
-
     let data = await profileApi.updateUserStatus(status)    
-    debugger
     if (data.resultCode === 0) {
         dispatch(setUserStatus(status))
     }

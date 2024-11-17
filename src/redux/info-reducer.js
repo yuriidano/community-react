@@ -6,7 +6,6 @@ const SET_PROFILE_INFO = 'info/SET-PROFILE-INFO';
 
 let initialState = {
     profileInfo: null,
-
 };
 
 
@@ -24,7 +23,6 @@ const infoReducer = (state = initialState, action) => {
 
 
 const setProfileInfo = (newProfile) => ({type: SET_PROFILE_INFO, newProfile});
-
 
 
 export const requestProfileInfo = (userId) => async (dispatch) => {

@@ -1,5 +1,3 @@
-
-
 export const getStatus = (state) => {
     return state.profilePage.status;
 }

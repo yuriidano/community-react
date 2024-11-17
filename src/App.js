@@ -11,7 +11,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import withLAzy from './hoc/withLazy';
 import InfoContainer from './components/Info/InfoContainer';
 import { getIsAuth } from './redux/auth-selectors';
-import { getInitialize, getProfileMount } from './redux/app-selectors';
+import { getActiveMenu, getInitialize, getProfileMount } from './redux/app-selectors';
 import classNames from 'classnames';
 import SitebarContainer from './components/Navbar/SitebarContainer';
 import NotFound from './components/Not-found/NotFound'
@@ -50,7 +50,7 @@ const App = (props) => {
       <div className='header' ><HeaderContainer /></div>
       <div className='app-page'>
         <div className={classNames({'app-page__containerLogin': !props.isAuth, 'app-page__container': props.isAuth, 'app-page__containerProfile': props.profileMoutn, })} >
-          <div className='app-page__sitebar'><SitebarContainer /></div>
+          <div className={classNames('app-page__sitebar', {'_activeSiteBar': props.activeMenu})}><SitebarContainer /></div>
           <div className='app-page__main'>
             <Routes>
               <Route path='/' element={<Navigate to={'/profile'} />} />
@@ -74,7 +74,8 @@ const mapStateToProps = (state) => {
   return {
     initialize: getInitialize(state),
     isAuth: getIsAuth(state),
-    profileMoutn: getProfileMount(state)
+    profileMoutn: getProfileMount(state),
+    activeMenu: getActiveMenu(state)
   }
 }
 

@@ -48,7 +48,7 @@ const App = (props) => {
   return (
     <div className='wrapper'>
       <div className={classNames('header', {'headerBurger': props.activeMenu})} ><HeaderContainer /></div>
-      <div className={classNames('app-page', {'app-pageBurger': props.activeMenu})}>
+      <div className={classNames('app-page', {'app-pageBurger': props.activeMenu, 'app-pageLogin': !props.isAuth})}>
         <div className={classNames({'app-page__containerLogin': !props.isAuth, 'app-page__container': props.isAuth, 'app-page__containerProfile': props.profileMoutn, })} >
           <div className={classNames('app-page__sitebar', {'_activeSiteBar': props.activeMenu})}><SitebarContainer /></div>
           <div className='app-page__main'>

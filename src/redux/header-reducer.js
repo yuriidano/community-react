@@ -1,7 +1,7 @@
 const TOGGLE_ACTIVE_MENU = 'header/TOGGLE-ACTIVE-MENU';
 
 const initialState = {
-    activeMenu: false
+    activeMenu: true
 }
 
 const headerReducer = (state = initialState, action) => {

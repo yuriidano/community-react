@@ -2,7 +2,7 @@ import { compose } from "redux"
 import Login from "./Login"
 import { connect } from "react-redux"
 import { login } from "../../redux/auth-reducer"
-import { getCaptcha, getIsAuth } from "../../redux/auth-selectors"
+import { getActiveMenu, getCaptcha, getIsAuth } from "../../redux/auth-selectors"
 
 
 
@@ -24,7 +24,7 @@ let mapStateToProps = (state) =>     {
     
     return {
         isAuth: getIsAuth(state),
-        captcha: getCaptcha(state)
+        captcha: getCaptcha(state),
     }
 }
 

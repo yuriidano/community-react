@@ -8,6 +8,7 @@ import { thunk } from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import appReducer from "./app-reducer";
 import infoReducer from "./info-reducer";
+import headerReducer from "./header-reducer";
 
 
 
@@ -20,7 +21,8 @@ let reducers = combineReducers({
     auth: authReducer,
     form: formReducer,
     app: appReducer,
-    infoPage: infoReducer
+    infoPage: infoReducer,
+    header: headerReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

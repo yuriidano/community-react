@@ -12,6 +12,9 @@
     &:not(:last-child) {
       margin-bottom: 40px;
     }
+    @media (max-width: 992px){
+      grid-template-columns: 1fr 100px;
+    }
   }
   
   .info {
@@ -20,7 +23,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
+    @media (max-width: 1200px){
+      padding-left: 200px;
+    }
+    @media (max-width: 992px){
+      padding-left: 150px;
+    }
   }
   
   .name {
@@ -29,6 +37,9 @@
     column-gap: 7px;
     font-size: 18px;
     font-weight: bold;
+    @media (max-width: 992px){
+      font-size: 16px;
+    }
 
 
     & span {}
@@ -37,11 +48,16 @@
 
   .editName {
     border: 1px solid #6C757D;
-     min-height: 25px;
+    min-height: 25px;
     display: flex;
     align-items: center;
     padding-left: 5px;
     border-radius: 3px;
+    @media (max-width: 992px){
+      max-width: 150px;
+      min-height: 20px;
+    }
+
 
     & input {
         color: #6C757D;
@@ -62,12 +78,14 @@
     justify-content: center;
     min-height: 35px;
     border-radius: 10px;
-    width: 135px;
-  
+    width: 100px;
     font-weight: 500;
     font-size: 16px;
     transition: all 0.3s ease 0s;
-
+    @media (max-width: 992px){
+      width: 100px;
+      min-height: 30px;
+    }
   
     @media (any-hover: hover) {
         &:hover {
@@ -102,6 +120,11 @@
     }
     &:not(:last-child) {
       margin-bottom: 40px;
+    }
+    @media (max-width: 992px){
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
     }
   }
 

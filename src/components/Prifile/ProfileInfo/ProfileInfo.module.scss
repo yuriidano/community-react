@@ -45,6 +45,14 @@
            border-radius: 50%;
            transform: translate(-50%, -45%);
            border: 5px solid #77A0C6;
+           @media (max-width: 1200px){
+            width: 100px;
+            height: 100px;
+          }
+          @media (max-width: 992px){
+            width: 80px;
+            height: 80px;
+          }
        }
 }
 
@@ -63,6 +71,11 @@
         background-color: #b1b7c0;
       }
     }
+    @media (max-width: 992px){
+      width: 20px;
+      height: 20px;
+      left: 24.4%;
+    }
     img {
       position: absolute;
       top: 50%;
@@ -70,6 +83,10 @@
       width: 20px;
       height: 20px;
       transform: translate(-50%, -50%);
+      @media (max-width: 992px){
+        width: 12px;
+        height: 12px;
+      }
     }
 }
 
@@ -94,6 +111,9 @@
   &:not(:last-child) {
     margin-bottom: 40px;
   }
+  @media (max-width: 992px){
+    grid-template-columns: 1fr 100px;
+  }
 }
 
 .info {
@@ -102,6 +122,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media (max-width: 1200px){
+    padding-left: 200px;
+  }
+  @media (max-width: 992px){
+    padding-left: 150px;
+  }
 }
 
 .name {
@@ -122,7 +148,6 @@
 
 .button {
   align-self: end;
-  position: relative;
   border: 1px solid #0E6EFB;
   background-color: #ffffff;
   color: #0E6EFB;
@@ -132,12 +157,13 @@
   min-height: 35px;
   border-radius: 10px;
   width: 135px;
-  padding-right: 20px;
-
   font-weight: 500;
   font-size: 16px;
   transition: all 0.3s ease 0s;
-  &::before {
+  @media (min-width: 992px){
+    padding-right: 20px;
+    position: relative;
+      &::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -146,7 +172,14 @@
     height: 15px;
     background: url('../../../assets//images/icons/pen.svg') 0 0 no-repeat;
     transform: translate(0, -50%);
+    }
   }
+  @media (max-width: 992px){
+    width: 100px;
+    justify-content: center;
+    min-height: 30px;
+  }
+
 
   @media (any-hover: hover) {
       &:hover {
@@ -180,6 +213,11 @@
   }
   &:not(:last-child) {
     margin-bottom: 40px;
+  }
+  @media (max-width: 992px){
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
   }
 }
 

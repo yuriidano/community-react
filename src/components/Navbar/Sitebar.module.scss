@@ -1,9 +1,11 @@
 
 .sitebar {
     padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 25px;
     padding-bottom: 35px;  
+    @media (min-width: 992px){
+        padding-right: 15px;
+        padding-top: 25px;
+    }
 }
 
 
@@ -11,16 +13,22 @@
 }
 .menu:not(:last-child) {
     margin-bottom: 50px;
+    @media (max-width: 992px){
+        margin-bottom: 30px;
+    }
 }
 .body {
 }
 .list {
     display: grid;
     row-gap: 20px;
+    @media (max-width: 992px){
+        row-gap: 15px;
+    }
 }
 .item {
-position: relative;
-    &:nth-child(1):before {
+    position: relative;
+    &::before {
         content: '';
         position: absolute;
         top: 50%;
@@ -29,6 +37,10 @@ position: relative;
         height: 20px;
         background: url('../../assets/images/icons/profile.svg') 0 0 no-repeat;
         transform: translate(0, -50%);
+        @media (max-width: 992px){
+            width: 15px;
+            height: 15px;
+        }
     }
     &:nth-child(2):before {
         content: '';
@@ -39,6 +51,10 @@ position: relative;
         height: 20px;
         background: url('../../assets/images/icons/message.svg') 0 0 no-repeat;
         transform: translate(0, -50%);
+        @media (max-width: 992px){
+            width: 15px;
+            height: 15px;
+        }
     }
     &:nth-child(3):before {
         content: '';
@@ -49,6 +65,10 @@ position: relative;
         height: 20px;
         background: url('../../assets/images/icons/newspaper.svg') 0 0 no-repeat;
         transform: translate(0, -50%);
+        @media (max-width: 992px){
+            width: 15px;
+            height: 15px;
+        }
     }
     &:nth-child(4):before {
         content: '';
@@ -59,6 +79,10 @@ position: relative;
         height: 20px;
         background: url('../../assets/images/icons/users.svg') 0 0 no-repeat;
         transform: translate(0, -50%);
+        @media (max-width: 992px){
+            width: 15px;
+            height: 15px;
+        }
     }
     &:nth-child(5):before {
         content: '';
@@ -69,6 +93,10 @@ position: relative;
         height: 20px;
         background: url('../../assets/images/icons/music.svg') 0 0 no-repeat;
         transform: translate(0, -50%);
+        @media (max-width: 992px){
+            width: 15px;
+            height: 15px;
+        }
     }
     &:nth-child(6):before {
         content: '';
@@ -79,6 +107,10 @@ position: relative;
         height: 20px;
         background: url('../../assets/images/icons/settings.svg') 0 0 no-repeat;
         transform: translate(0, -50%);
+        @media (max-width: 992px){
+            width: 15px;
+            height: 15px;
+        }
     }
 
 
@@ -107,11 +139,10 @@ position: relative;
             box-shadow: 0px 1px 13px -7px rgba(128, 113, 133, 1);
         }
     }
-    
-    @media(max-width: 767px) {
+    @media (max-width: 992px){
         font-size: 16px;
+        min-height: 40px;
     }
-
 }
 
 .active {
@@ -135,15 +166,19 @@ position: relative;
     -moz-box-shadow: 0px 1px 13px -7px rgba(128, 113, 133, 1);
     box-shadow: 0px 1px 13px -7px rgba(128, 113, 133, 1);
     
-    @media(max-width: 767px) {
+    @media (max-width: 992px){
         font-size: 16px;
+        min-height: 40px;
     }
-
 }
 
 
 .copyrite {
     padding-left: 15px;
+    line-height: 150%;
+    @media (max-width: 992px){
+        font-size: 14px;
+    }
 }
 
 

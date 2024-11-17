@@ -31,7 +31,14 @@
   align-items: center;
   padding-left: 10px;
   &:not(:last-child) {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
+  }
+  @media (max-width: 1200px){
+    min-width: 535px;
+  }
+  @media (max-width: 992px){
+    min-height: 35px;
+    min-width: 350px;
   }
 }
 

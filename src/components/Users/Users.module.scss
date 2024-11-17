@@ -37,6 +37,9 @@
     max-width: 100px;
     margin-bottom: 2px;
     overflow: hidden;
+    @media (max-width: 1200px){
+        max-width: 70px;
+    }
     
     img {
         max-width: 100%;

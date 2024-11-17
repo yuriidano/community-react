@@ -4,6 +4,8 @@ import React from "react";
 import { authMe, logout,} from "../../redux/auth-reducer";
 import { compose } from "redux";
 import withAuthNavigate from "../../hoc/withAuthNavigate";
+import { activeMenu, toggleActiveMenu } from "../../redux/header-reducer";
+import { getActiveMenu, getIsAuth, getLogin, getUserId } from "../../redux/header-selectors";
 
 
 class HeaderContainer extends React.Component {
@@ -19,15 +21,16 @@ class HeaderContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth,
-        login: state.auth.login,
-        userId: state.auth.userId,
+        isAuth: getIsAuth(state),
+        login: getLogin(state),
+        userId: getUserId(state),
+        activeMenu: getActiveMenu(state)
     };
 };
 
 
 export default compose(
-    connect(mapStateToProps, {logout}),
+    connect(mapStateToProps, {logout, toggleActiveMenu}),
     withAuthNavigate
 ) (HeaderContainer);
 

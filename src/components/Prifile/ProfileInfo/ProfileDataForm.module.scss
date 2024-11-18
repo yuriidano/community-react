@@ -66,10 +66,20 @@
     display: flex;
     align-items: center;
     padding-left: 5px;
-    border-radius: 3px;
+    border-radius: 5px;
     @media (max-width: 992px){
       max-width: 150px;
       min-height: 20px;
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 1.5px;
+        right: 0;
+        width: 1px;
+        height: 15.8px;
+        background-color: #6C757D;
+      }
     }
 
 
@@ -210,4 +220,10 @@
    & input {
        color: #6C757D;
    }
+  }
+
+
+  .elementForm {
+    display: flex;
+    align-items: center;
   }

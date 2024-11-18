@@ -9,7 +9,7 @@ let LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit} >
             <div className={styles.loginEmail}>
-                {createField(null, Input, "email", "email...", [required], 'password', null)}
+                {createField(null, Input, "email", "email...", [required], null, null)}
             </div>
 
             <div className={styles.loginPassword}>

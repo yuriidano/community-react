@@ -9,15 +9,15 @@ let LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit} >
             <div className={styles.loginEmail}>
-                {createField(null, Input, "email", "email...", [required], null)}
+                {createField(null, Input, "email", "email...", [required], 'password', null)}
             </div>
 
             <div className={styles.loginPassword}>
-                {createField(null, Input, "password", "password...", [required], null)}
+                {createField(null, Input, "password", "password...", [required], 'password', null)}
             </div>
 
             <div className={styles.loginFormBody}>
-                <div className={styles.loginRemember}>{createField(10, Input, "rememberMy", "password...", [], 'checkbox')}</div>
+                <div className={styles.loginRemember}>{createField(10, Input, "rememberMy", null, [], 'checkbox')}</div>
                 <span className={styles.loginRemember}>remember my</span>
             </div>
 

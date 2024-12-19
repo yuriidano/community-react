@@ -18,7 +18,6 @@ type MapStateType = {
     followingInProgress: number[],
     portionSize: number | null
 }
-
 type DispatchType = {
     requestUsers: (pageSize: number, currentPage: number) => void,
     follow: (userId: number) => void,
@@ -28,6 +27,9 @@ type DispatchType = {
 type OwnType = {}
 
 type PropsUsersContainerType  = MapStateType & DispatchType & OwnType;
+
+
+
 
 class UsersAPIComponent extends React.Component<PropsUsersContainerType> {
 
@@ -43,7 +45,8 @@ class UsersAPIComponent extends React.Component<PropsUsersContainerType> {
     render() {    
         return (
             <>
-                <Users  onPagesChanged={this.onPagesChanged}
+                <Users 
+                       onPagesChanged={this.onPagesChanged}
                        totalUsersCount={this.props.totalUsersCount}
                        pageSize={this.props.pageSize}
                        currentPage={this.props.currentPage}

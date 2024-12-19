@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './Dialogs.module.scss';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import DialogsReduxForm from './DialogsForm';
+import { StateType } from './DialogsContainer';
 
 
+type PropsDialogsType = {
+    sendMessage: (data: string) => void,
+    state: StateType
+}
 
-
-const Dialogs = (props) => { 
+const Dialogs: FC<PropsDialogsType> = (props) => { 
     let state = props.state;
 
     let dialogsElement = state.dialods.map( d => <DialogItem name={d.name} id={d.id} icon={d.url} key={d.id} />); 
 
 
-    let sendMessage = (formData) => {
+    let sendMessage = (formData: any) => {
         props.sendMessage(formData.message);
     };
 

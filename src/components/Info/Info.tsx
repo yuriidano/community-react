@@ -2,9 +2,15 @@ import styles from './info.module.scss';
 import fon from '../../assets/images/fon.jpeg'
 import UserPhoto from '../../assets/images/user.jpg';
 import classNames from 'classnames';
+import { ProfileType } from '../../types/types';
+import { FC } from 'react';
 
 
-const Info = ({profile}) => {
+type PropsInfoType = {
+    profile: ProfileType
+}
+
+const Info: FC<PropsInfoType> = ({profile}) => {
 
     if(!profile) return null;
 

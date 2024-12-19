@@ -18,6 +18,7 @@ type InitialStateType = {
 }
 
 
+
 let initialState: InitialStateType = {
     dialods: [
         { id: 1, name: 'Yura', url: 'https://mighty.tools/mockmind-api/content/human/72.jpg' },

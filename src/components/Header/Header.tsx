@@ -2,8 +2,19 @@ import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/images/logo.png'
 import classNames from 'classnames';
+import { FC } from 'react';
 
-const Header = (props) => {
+
+type PropsHeaderType = {
+    logout: () => void,
+    toggleActiveMenu: () => void,
+    isAuth: boolean,
+    login: string | null,
+    userId: number | null,
+    activeMenu: boolean
+}
+
+const Header: FC<PropsHeaderType> = (props) => {
 
     const onChangeActiveMenu = () => {
         props.toggleActiveMenu()

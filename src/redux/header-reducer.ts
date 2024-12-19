@@ -4,7 +4,9 @@ const initialState = {
     activeMenu: true
 }
 
-const headerReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState;
+
+const headerReducer = (state = initialState, action: any): InitialStateType => {
     switch(action.type) {
         case TOGGLE_ACTIVE_MENU:
             return {
@@ -17,10 +19,12 @@ const headerReducer = (state = initialState, action) => {
 };
 
 
-const setActiveMenu = () => ({type: TOGGLE_ACTIVE_MENU});
+
+type SetActiveMenuType = {type: typeof TOGGLE_ACTIVE_MENU};
+const setActiveMenu = (): SetActiveMenuType => ({type: TOGGLE_ACTIVE_MENU});
 
 
-export const toggleActiveMenu = () => (dispatch) => {
+export const toggleActiveMenu = () => (dispatch: any) => {
     dispatch(setActiveMenu());
 };
 

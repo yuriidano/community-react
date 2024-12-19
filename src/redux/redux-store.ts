@@ -11,7 +11,7 @@ import headerReducer from "./header-reducer";
 
 
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
@@ -22,10 +22,19 @@ let reducers = combineReducers({
     header: headerReducer
 });
 
+type RootReducerType = typeof rootReducer; //(state: GLOBAL_STATE_TYPE): GLOBAL_STATE_TYPE => state;
+export type AppStateType = ReturnType<RootReducerType>;
+
+
+
+
+// @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = legacy_createStore(reducers,  composeEnhancers(applyMiddleware(thunk)));
+const store = legacy_createStore(rootReducer,  composeEnhancers(applyMiddleware(thunk)));
 
 
+
+// @ts-ignore
 window.__store__ = store;
 
 export default store;

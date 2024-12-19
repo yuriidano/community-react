@@ -1,5 +1,6 @@
 import { stopSubmit } from "redux-form";
 import { profileApi } from "../api/api";
+import { PhotosType, PostType, ProfileType } from "../types/types";
 
 const ADD_POST = 'profile/ADD-POST';
 const SET_USER_STATUS = 'profile/SET-USER-STATUS';
@@ -9,19 +10,26 @@ const SET_PHOTO = 'profile/SET-PHOTO';
 const TOGGLE_IS_UPDATE_PROGRESS = 'profile/TOGGLE-IS-UPDATE-PROGRESS';
 const TOGGLE_PROFILE_MOUNT = 'profile/TOGGLE-PROFILE-MOUNT';
 
+
+
+
+
+
 let initialState = {
     posts: [
         { id: 1, message: 'Hello world', likeCounter: 10 },
         { id: 2, message: 'My name is Yura', likeCounter: 2 },
-    ],
+    ] as Array<PostType>,
     status: '',
-    profile: null,
+    profile: null as ProfileType | null,
     isUpdateProgress: false,
     profileMoutn: false
 };
 
 
-const profileReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState;
+
+const profileReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case ADD_POST:
             let newPost = {
@@ -41,7 +49,7 @@ const profileReducer = (state = initialState, action) => {
         case SET_USER_STATUS:
             return {
                 ...state,
-                ...action.data
+                ...action.data,
             }
         case SET_PROFILE:
             return {
@@ -51,8 +59,8 @@ const profileReducer = (state = initialState, action) => {
         case SET_PHOTO:
             return {
                 ...state,
-                profile: {...state.profile, photos: {...action.newPhotos}}
-            }
+                profile: {...state.profile, photos: {...action.newPhotos} } as ProfileType
+            } 
         case TOGGLE_IS_UPDATE_PROGRESS:
             return {
                 ...state,
@@ -69,24 +77,68 @@ const profileReducer = (state = initialState, action) => {
 };
 
 
-export const addPostCriator = (data) => ({type: ADD_POST, data});
-
-const setUserStatus = (status) => ({type: SET_USER_STATUS, data: {status: status}});
-
-export const deleteMessage = (userId) => ({type: DELETE_MESSAGE, userId});
-
-const setProfile = (newProfile) => ({type: SET_PROFILE, newProfile});
-
-const setPhoto = (newPhotos) => ({type: SET_PHOTO, newPhotos});
-
-const toggleIsUpdateProgress = () => ({type: TOGGLE_IS_UPDATE_PROGRESS});
-
-const toggleProfilemount = (profileMoutn) => ({type: TOGGLE_PROFILE_MOUNT, payload: {profileMoutn}});
+type AddPostCriatorType = {
+    type: typeof ADD_POST,
+    data: string
+}
+export const addPostCriator = (data: string): AddPostCriatorType => ({type: ADD_POST, data});
 
 
+type SetUserStatusType = {
+    type: typeof SET_USER_STATUS,
+    data: {status: string}
+}
+const setUserStatus = (status: string): SetUserStatusType => ({type: SET_USER_STATUS, data: {status: status}});
 
 
-export const requestUserStatus = (userId) => async (dispatch) => {
+type DeleteMessageType = {
+    type: typeof DELETE_MESSAGE,
+    userId: number
+}
+export const deleteMessage = (userId: number): DeleteMessageType => ({type: DELETE_MESSAGE, userId});
+
+
+type SetProfileType = {
+    type: typeof SET_PROFILE,
+    newProfile: ProfileType
+}
+const setProfile = (newProfile: ProfileType) => ({type: SET_PROFILE, newProfile});
+
+
+
+type SetPhotoType = {
+    type: typeof SET_PHOTO,
+    newPhotos: PhotosType
+}
+const setPhoto = (newPhotos: PhotosType): SetPhotoType => ({type: SET_PHOTO, newPhotos});
+
+
+
+
+type ToggleIsUpdateProgressType = {
+    type: typeof TOGGLE_IS_UPDATE_PROGRESS
+}
+const toggleIsUpdateProgress = (): ToggleIsUpdateProgressType => ({type: TOGGLE_IS_UPDATE_PROGRESS});
+
+
+type ToggleProfilemountType = {
+    type: typeof TOGGLE_PROFILE_MOUNT,
+    payload: {profileMoutn: boolean}
+}
+const toggleProfilemount = (profileMoutn: boolean): ToggleProfilemountType => ({type: TOGGLE_PROFILE_MOUNT, payload: {profileMoutn}});
+
+
+
+
+
+
+
+
+
+
+
+
+export const requestUserStatus = (userId: number) => async (dispatch: any) => {
     try {
         let data = await profileApi.getUserStatus(userId);
         dispatch(setUserStatus(data))
@@ -94,28 +146,28 @@ export const requestUserStatus = (userId) => async (dispatch) => {
     }
 }
 
-export const updateUserStatus = (status) => async (dispatch) => {
+export const updateUserStatus = (status: string) => async (dispatch: any) => {
     let data = await profileApi.updateUserStatus(status)    
     if (data.resultCode === 0) {
         dispatch(setUserStatus(status))
     }
 }
 
-export const requestProfile = (userId) => async (dispatch) => {
+export const requestProfile = (userId: number) => async (dispatch: any) => {
     let data = await profileApi.getProfile(userId);
     dispatch(setProfile(data));
 }
 
-export let requestPhoto = (filePhoto) => async (dispatch) => {
+export let requestPhoto = (filePhoto: any) => async (dispatch: any) => {
      let data = await profileApi.updagePhoto(filePhoto);
      dispatch(setPhoto(data.photos))
 }
 
-export const SumeError = () => (dispatch) => {
+export const SumeError = () => (dispatch: any) => {
     dispatch(stopSubmit('music', {_error: 'some error'}))
 }
 
-export const updateProfile = (profileData) => async (dispatch, getState) => {
+export const updateProfile = (profileData: ProfileType) => async (dispatch: any, getState: any) => {
     let userId = getState().auth.userId;
     let data = await profileApi.updateProfile(profileData);
 
@@ -132,9 +184,6 @@ export const updateProfile = (profileData) => async (dispatch, getState) => {
             messageArray.indexOf('>') + 1,
             messageArray.indexOf(')')
         ).join('').toLowerCase();
-
-
-
      
         console.log(messageForm);
 
@@ -142,7 +191,7 @@ export const updateProfile = (profileData) => async (dispatch, getState) => {
     }
 }
 
-export const profileMount = (profileMoutn) => (dispatch) => {
+export const profileMount = (profileMoutn: boolean) => (dispatch: any) => {
     dispatch(toggleProfilemount(profileMoutn));
 };
 
@@ -152,3 +201,6 @@ export const profileMount = (profileMoutn) => (dispatch) => {
 
 
 export default profileReducer;
+
+
+

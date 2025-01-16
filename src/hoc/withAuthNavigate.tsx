@@ -1,15 +1,21 @@
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { AppStateType } from "../redux/redux-store";
+import { FC } from "react";
 
-let mapStateToPropsForAuthComponent = (state) => {
+let mapStateToPropsForAuthComponent = (state: AppStateType) => {
     return {
         isAuth: state.auth.isAuth,
     }
 }
 
-let withAuthNavigate = (Component) => {
+type PropsNavigateComponentType = {
+    isAuth: boolean
+}
 
-    let navigateComponent = (props) => {
+let withAuthNavigate = (Component: any) => {
+
+    let navigateComponent: FC<PropsNavigateComponentType> = (props) => {
         if(!props.isAuth) return <Navigate to={'/login'} />;
 
         return <Component {...props} />

@@ -1,4 +1,3 @@
-import { retry } from "@reduxjs/toolkit/query"
 import { Suspense } from "react";
 
 const withLAzy = (Component) => () => {

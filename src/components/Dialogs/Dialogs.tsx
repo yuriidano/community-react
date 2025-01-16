@@ -11,17 +11,19 @@ type PropsDialogsType = {
     state: StateType
 }
 
+export type FormDataType = {
+    message: string 
+}
+
 const Dialogs: FC<PropsDialogsType> = (props) => { 
     let state = props.state;
 
     let dialogsElement = state.dialods.map( d => <DialogItem name={d.name} id={d.id} icon={d.url} key={d.id} />); 
 
 
-    let sendMessage = (formData: any) => {
+    let sendMessage = (formData: FormDataType) => {
         props.sendMessage(formData.message);
     };
-
-
 
 
     return (

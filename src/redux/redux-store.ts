@@ -8,6 +8,7 @@ import { reducer as formReducer } from 'redux-form'
 import appReducer from "./app-reducer";
 import infoReducer from "./info-reducer";
 import headerReducer from "./header-reducer";
+import musicReducer from "./music-reducer";
 
 
 
@@ -19,13 +20,45 @@ let rootReducer = combineReducers({
     form: formReducer,
     app: appReducer,
     infoPage: infoReducer,
-    header: headerReducer
+    header: headerReducer,
+    musicPage: musicReducer
 });
 
 type RootReducerType = typeof rootReducer; //(state: GLOBAL_STATE_TYPE): GLOBAL_STATE_TYPE => state;
 export type AppStateType = ReturnType<RootReducerType>;
 
+type PropertyType<T> = T extends {[key: string]: infer U} ? U : never;
+export type InferActionsTypes<A extends {[key: string]: (...arg: Array<any>) => any}> = ReturnType<PropertyType<A>>;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+type PropertyTestType<T> = T extends {[key: string]: infer U} ? U : never;
+export type InferTestActionsTypes<T extends {[key: string]: (...arg: any[]) => any}> = ReturnType<PropertyTestType<T>>
 
 
 // @ts-ignore
@@ -38,8 +71,4 @@ const store = legacy_createStore(rootReducer,  composeEnhancers(applyMiddleware(
 window.__store__ = store;
 
 export default store;
-
-
-
-
 

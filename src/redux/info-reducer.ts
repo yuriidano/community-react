@@ -1,18 +1,18 @@
-import { infoApi } from "../api/api";
-
-
-const SET_PROFILE_INFO = 'info/SET-PROFILE-INFO';
+import { ThunkAction } from "redux-thunk";
+import { AppStateType, InferActionsTypes } from "./redux-store";
+import { infoApi } from "../api/info-api";
+import { ProfileType } from "../types/types";
 
 
 let initialState = {
-    profileInfo: null,
+    profileInfo: {} as ProfileType,
 };
 
 type InitialStateType = typeof initialState;
 
-const infoReducer = (state = initialState, action: any): InitialStateType => {
+const infoReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case SET_PROFILE_INFO:
+        case 'info/SET_PROFILE_INFO':
             return {
                 ...state,
                 profileInfo: {...action.newProfile}
@@ -22,44 +22,20 @@ const infoReducer = (state = initialState, action: any): InitialStateType => {
     };
 };
 
+type ActionsTypes = InferActionsTypes<typeof actions>;
 
-
-type SetProfileInfoContactsType = {
-    github: string,
-    vk: string,
-    facebook: string,
-    instagram: string,
-    twitter: string,
-    website: string ,
-    youtube: string,
-    mainLink: string
+const actions = {
+    setProfileInfo: (newProfile: ProfileType) => ({type: 'info/SET_PROFILE_INFO', newProfile}as const)
 }
 
-type SetProfileInfoPhotosType = {
-    small: string,
-    large: string
-}
 
-type sSetProfileInfoNewProfileType = {
-    userId: number,
-    lookingForAJob: boolean,
-    lookingForAJobDescription: string,
-    fullName: string,
-    contacts: SetProfileInfoContactsType,
-    photos: SetProfileInfoPhotosType
-}
-type setProfileInfoType = {
-    type: typeof SET_PROFILE_INFO,
-    newProfile: sSetProfileInfoNewProfileType
-}
-const setProfileInfo = (newProfile: sSetProfileInfoNewProfileType): setProfileInfoType => ({type: SET_PROFILE_INFO, newProfile});
+type ExtraThunkArgType = {};
+type ThunkType = ThunkAction<Promise<void>, AppStateType, ExtraThunkArgType, ActionsTypes>
 
-
-export const requestProfileInfo = (userId: number) => async (dispatch: any) => {
+export const requestProfileInfo = (userId: number): ThunkType => async (dispatch) => {
     try {
         let data = await infoApi.getProfileInfo(userId);
-        
-        dispatch(setProfileInfo(data))
+        dispatch(actions.setProfileInfo(data))
     } catch(error) {
 
     }

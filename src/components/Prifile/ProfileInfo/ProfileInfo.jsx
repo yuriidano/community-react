@@ -3,9 +3,13 @@ import styles from './ProfileInfo.module.scss';
 import ProfileStatus from './ProfileStatus';
 import profilePhoto from '../../../assets/images/user.jpg';
 import ProfileDataFormRedux from './ProfileDadaForm';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import fon from '../../../assets/images/fon.jpeg'
-import camera from '../../../assets/images/icons/camera.svg'
+import camera from '../../../assets/images/icons/camera.svg';
+import { ProfileType } from '../../../types/types';
+
+
+
 
 const ProfileInfo = (props) => {
 
@@ -16,7 +20,7 @@ const ProfileInfo = (props) => {
   }
 
   let onPhotoChange = (e) => {
-    if (e.target.files.length) {
+    if (e.target.files && e.target.files.length) {
       props.requestPhoto(e.target.files[0])
     }
   }
@@ -39,7 +43,7 @@ const ProfileInfo = (props) => {
           <div className={styles.avatar}>
             <img src={props.profile.photos.small != null ? props.profile.photos.small : profilePhoto} alt="avatar" />
           </div>
-          <label className={styles.changeAvatar} for="changeAvatar">
+          <label className={styles.changeAvatar} htmlFor="changeAvatar">
             <img src={camera} alt="camera" />
           </label>
       </div>
@@ -55,6 +59,7 @@ const ProfileInfo = (props) => {
     </div>
   );
 };
+
 
 
 const ProfileData = ({ profile, status, updateUserStatus, isOwner, activateEditMode }) => {
@@ -101,6 +106,7 @@ const ProfileData = ({ profile, status, updateUserStatus, isOwner, activateEditM
 
 
 
+
 const ProfileFormData = ({ profile, status, updateUserStatus, onSubmit }) => {
   return (
     <>
@@ -108,6 +114,10 @@ const ProfileFormData = ({ profile, status, updateUserStatus, onSubmit }) => {
     </>
   )
 }
+
+
+
+
 
 const Contacts = ({contactTitle, contactValue}) => {
   return (

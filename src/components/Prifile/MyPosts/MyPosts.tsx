@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './MyPosts.module.scss';
 import Post from './Post/Post';
 import MyPostFeduxForm from './MyPostsForm';
+import { PostType, ProfileType } from '../../../types/types';
 
 
+type PropsMyPostsType = {
+    posts: Array<PostType>,
+    profileMy: ProfileType,
+    addPost: (data: string) => void,
+}
 
-const MyPosts = (props) => {
+
+export type FormDataType = {
+  myPosBody: string
+}
+
+const MyPosts: FC<PropsMyPostsType> = (props) => {
 
 
   let postElement = [...props.posts].reverse().map(p => {
@@ -15,8 +26,8 @@ const MyPosts = (props) => {
   });
 
 
-  const addPostForm = (formData) => {
-    props.addPostCriator(formData.myPosBody);
+  const addPostForm = (formData: FormDataType) => {
+    props.addPost(formData.myPosBody);
   }
 
  

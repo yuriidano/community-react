@@ -1,23 +1,31 @@
-import { reduxForm } from "redux-form"
+import { InjectedFormProps, reduxForm } from "redux-form"
 import styles from './Login.module.scss'
 
 import { required } from "../../utils/validators/validators";
 import { createField, Input } from "../common/FormsControls/formsControls";
+import { FC } from "react";
+import { FormDataType } from "./Login";
 
 
-let LoginForm = (props) => {
+type PropsLoginFormType = {
+    captcha: string | null,
+};
+
+type KeysNamesType = Extract<keyof FormDataType, string>
+
+let LoginForm:FC<InjectedFormProps<FormDataType, PropsLoginFormType> &PropsLoginFormType> = (props) => {
     return (
         <form onSubmit={props.handleSubmit} >
             <div className={styles.loginEmail}>
-                {createField(null, Input, "email", "email...", [required], null, null)}
+                {createField<KeysNamesType>(undefined, Input, "email", "email...", [required], undefined, undefined)}
             </div>
 
             <div className={styles.loginPassword}>
-                {createField(null, Input, "password", "password...", [required], 'password', null)}
+                {createField<KeysNamesType>(undefined, Input, "password", "password...", [required], 'password', undefined)}
             </div>
 
             <div className={styles.loginFormBody}>
-                <div className={styles.loginRemember}>{createField(10, Input, "rememberMy", null, [], 'checkbox')}</div>
+                <div className={styles.loginRemember}>{createField<KeysNamesType>(10, Input, "rememberMy", undefined, [], 'checkbox', undefined)}</div>
                 <span className={styles.loginRemember}>remember my</span>
             </div>
 
@@ -25,10 +33,10 @@ let LoginForm = (props) => {
             {props.captcha &&
                 <div>
                     <div className={styles.captchaFoto}>
-                        <img  src={props.captcha.url} alt="" />
+                        <img  src={props.captcha} alt="" />
                     </div>
                     <div  className={styles.captcha}>
-                        {createField(10, Input, "captcha", "captcha...", [required], null)}
+                        {createField<KeysNamesType>(10, Input, "captcha", "captcha...", [required], undefined, undefined)}
                     </div>
                 </div>
             }
@@ -45,6 +53,6 @@ let LoginForm = (props) => {
     )
 };
 
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
+const LoginReduxForm = reduxForm<FormDataType, PropsLoginFormType>({form: 'login'})(LoginForm);
 
 export default LoginReduxForm;

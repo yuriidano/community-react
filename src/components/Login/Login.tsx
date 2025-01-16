@@ -3,10 +3,25 @@ import LoginReduxForm from "./LoginForm";
 import styles from './Login.module.scss';
 import logo from '../../assets/images/logo.png'
 import classNames from "classnames";
+import { FC } from "react";
 
 
-let Login = (props) => {
-    let sendLogin = (formData) => {
+type PropsLoginType = {
+    isAuth: boolean,
+    captcha: string | null,
+    login: (email: string, password: string, rememberMy: boolean, captcha: string) => void
+};
+
+export type FormDataType = {
+    email: string, 
+    password: string, 
+    rememberMy: boolean, 
+    captcha: string
+}
+
+let Login:FC<PropsLoginType> = (props) => {
+
+    let sendLogin = (formData: FormDataType) => {
         let {email, password, rememberMy, captcha} = formData;
         props.login(email, password, rememberMy, captcha);
     }

@@ -1,18 +1,10 @@
 import { stopSubmit } from "redux-form";
-import { profileApi } from "../api/api";
+import { ResultCodeEnum } from "../api/api";
 import { PhotosType, PostType, ProfileType } from "../types/types";
-
-const ADD_POST = 'profile/ADD-POST';
-const SET_USER_STATUS = 'profile/SET-USER-STATUS';
-const DELETE_MESSAGE = 'profile/DELETE-MESSAGE';
-const SET_PROFILE = 'profile/SET-PROFILE';
-const SET_PHOTO = 'profile/SET-PHOTO';
-const TOGGLE_IS_UPDATE_PROGRESS = 'profile/TOGGLE-IS-UPDATE-PROGRESS';
-const TOGGLE_PROFILE_MOUNT = 'profile/TOGGLE-PROFILE-MOUNT';
-
-
-
-
+import { ThunkAction } from "redux-thunk";
+import { AppStateType, InferActionsTypes } from "./redux-store";
+import { Dispatch } from "redux";
+import { profileApi } from "../api/profile-api";
 
 
 let initialState = {
@@ -29,9 +21,9 @@ let initialState = {
 
 type InitialStateType = typeof initialState;
 
-const profileReducer = (state = initialState, action: any): InitialStateType => {
+const profileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case ADD_POST:
+        case 'profile/ADD_POST':
             let newPost = {
                 id: 3,
                 message: action.data,
@@ -41,32 +33,32 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
                 ...state,
                 posts: [...state.posts, newPost],
             };
-        case DELETE_MESSAGE:
+        case 'profile/DELETE_MESSAGE':
             return {
                 ...state,
                 posts: state.posts.filter(p => p.id !== action.userId)
             }
-        case SET_USER_STATUS:
+        case 'profile/SET_USER_STATUS':
             return {
                 ...state,
                 ...action.data,
             }
-        case SET_PROFILE:
+        case 'profile/SET_PROFILE':
             return {
                 ...state,
                 profile: {...action.newProfile}
             }
-        case SET_PHOTO:
+        case 'profile/SET_PHOTO':
             return {
                 ...state,
                 profile: {...state.profile, photos: {...action.newPhotos} } as ProfileType
             } 
-        case TOGGLE_IS_UPDATE_PROGRESS:
+        case 'profile/TOGGLE_IS_UPDATE_PROGRESS':
             return {
                 ...state,
                 isUpdateProgress: true
             }
-        case TOGGLE_PROFILE_MOUNT:
+        case 'profile/TOGGLE_PROFILE_MOUNT':
             return {
                 ...state,
                 ...action.payload
@@ -76,104 +68,61 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
     };
 };
 
+type ActionsTypes = InferActionsTypes<typeof actions>;
 
-type AddPostCriatorType = {
-    type: typeof ADD_POST,
-    data: string
+
+export const actions = {
+    addPost: (data: string) => ({ type: 'profile/ADD_POST', data } as const),
+    setUserStatus: (status: string) => ({ type: 'profile/SET_USER_STATUS', data: { status: status } } as const),
+    deleteMessage: (userId: number) => ({ type: 'profile/DELETE_MESSAGE', userId } as const),
+    setProfile: (newProfile: ProfileType) => ({ type: 'profile/SET_PROFILE', newProfile } as const),
+    setPhoto: (newPhotos: PhotosType) => ({ type: 'profile/SET_PHOTO', newPhotos } as const),
+    toggleIsUpdateProgress: () => ({ type: 'profile/TOGGLE_IS_UPDATE_PROGRESS' } as const),
+    toggleProfilemount: (profileMoutn: boolean) => ({ type: 'profile/TOGGLE_PROFILE_MOUNT', payload: { profileMoutn } } as const)
 }
-export const addPostCriator = (data: string): AddPostCriatorType => ({type: ADD_POST, data});
-
-
-type SetUserStatusType = {
-    type: typeof SET_USER_STATUS,
-    data: {status: string}
-}
-const setUserStatus = (status: string): SetUserStatusType => ({type: SET_USER_STATUS, data: {status: status}});
-
-
-type DeleteMessageType = {
-    type: typeof DELETE_MESSAGE,
-    userId: number
-}
-export const deleteMessage = (userId: number): DeleteMessageType => ({type: DELETE_MESSAGE, userId});
-
-
-type SetProfileType = {
-    type: typeof SET_PROFILE,
-    newProfile: ProfileType
-}
-const setProfile = (newProfile: ProfileType) => ({type: SET_PROFILE, newProfile});
 
 
 
-type SetPhotoType = {
-    type: typeof SET_PHOTO,
-    newPhotos: PhotosType
-}
-const setPhoto = (newPhotos: PhotosType): SetPhotoType => ({type: SET_PHOTO, newPhotos});
+type ExtraThunkArgType = {};
+type ThunkType = ThunkAction<Promise<void>, AppStateType, ExtraThunkArgType, ActionsTypes>
 
 
-
-
-type ToggleIsUpdateProgressType = {
-    type: typeof TOGGLE_IS_UPDATE_PROGRESS
-}
-const toggleIsUpdateProgress = (): ToggleIsUpdateProgressType => ({type: TOGGLE_IS_UPDATE_PROGRESS});
-
-
-type ToggleProfilemountType = {
-    type: typeof TOGGLE_PROFILE_MOUNT,
-    payload: {profileMoutn: boolean}
-}
-const toggleProfilemount = (profileMoutn: boolean): ToggleProfilemountType => ({type: TOGGLE_PROFILE_MOUNT, payload: {profileMoutn}});
-
-
-
-
-
-
-
-
-
-
-
-
-export const requestUserStatus = (userId: number) => async (dispatch: any) => {
+export const requestUserStatus = (userId: number):ThunkType => async (dispatch) => {
     try {
         let data = await profileApi.getUserStatus(userId);
-        dispatch(setUserStatus(data))
+        dispatch(actions.setUserStatus(data))
     } catch (error) {
     }
 }
 
-export const updateUserStatus = (status: string) => async (dispatch: any) => {
+export const updateUserStatus = (status: string):ThunkType => async (dispatch) => {
     let data = await profileApi.updateUserStatus(status)    
-    if (data.resultCode === 0) {
-        dispatch(setUserStatus(status))
+    if (data.resultCode === ResultCodeEnum.Succes) {
+        dispatch(actions.setUserStatus(status))
     }
 }
 
-export const requestProfile = (userId: number) => async (dispatch: any) => {
+export const requestProfile = (userId: number):ThunkType => async (dispatch) => {
     let data = await profileApi.getProfile(userId);
-    dispatch(setProfile(data));
+    dispatch(actions.setProfile(data));
 }
 
-export let requestPhoto = (filePhoto: any) => async (dispatch: any) => {
+export let requestPhoto = (filePhoto: File):ThunkType => async (dispatch) => {
      let data = await profileApi.updagePhoto(filePhoto);
-     dispatch(setPhoto(data.photos))
+     dispatch(actions.setPhoto(data.photos))
 }
 
-export const SumeError = () => (dispatch: any) => {
+export const SumeError = () => (dispatch: Dispatch<ActionsTypes>) => {
     dispatch(stopSubmit('music', {_error: 'some error'}))
 }
 
-export const updateProfile = (profileData: ProfileType) => async (dispatch: any, getState: any) => {
+export const updateProfile = (profileData: ProfileType): ThunkType => async (dispatch, getState) => {
     let userId = getState().auth.userId;
     let data = await profileApi.updateProfile(profileData);
 
     if(data.resultCode === 0) {
-        dispatch(requestProfile(userId));
-        dispatch(toggleIsUpdateProgress())
+        dispatch(requestProfile(Number(userId)));
+        dispatch(actions.toggleIsUpdateProgress())
     } else {
         let message = data.messages.length > 0 ? data.messages[0] : 'some error';
 
@@ -191,12 +140,13 @@ export const updateProfile = (profileData: ProfileType) => async (dispatch: any,
     }
 }
 
-export const profileMount = (profileMoutn: boolean) => (dispatch: any) => {
-    dispatch(toggleProfilemount(profileMoutn));
+export const profileMount = (profileMoutn: boolean) => (dispatch: Dispatch<ActionsTypes>, getState: () => AppStateType) => {
+    dispatch(actions.toggleProfilemount(profileMoutn));
 };
 
-
-
+export const addPost = (data: string) => (dispatch:Dispatch<ActionsTypes>, getState: () => AppStateType) => {
+    dispatch(actions.addPost(data))
+}       
 
 
 

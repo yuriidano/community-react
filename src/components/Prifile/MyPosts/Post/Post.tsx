@@ -1,15 +1,21 @@
-import Preloader from '../../../common/Preloader/Preloader';
+import { FC } from 'react';
+import { ProfileType } from '../../../../types/types';
 import styles from './Post.module.scss';
 
 
-const Post = (props) => {
+type PropsPostType = {
+  profileMy: ProfileType,
+  message: string,
+  likeCounter: number
+}
 
-  if(!props.profileMy) return null
+const Post: FC<PropsPostType> = (props) => {
+  if(!props.profileMy.photos) return null
 
   return (
     <div className={styles.post}>
       <div className={styles.avatar}>
-        <img src={props.profileMy.photos.large} alt="" />
+        <img src={props.profileMy.photos.large || ''} alt="" />
       </div>
       <div className={styles.body}>
         <div className={styles.text}>{props.message}</div>

@@ -1,5 +1,5 @@
 export type PhotosType = {
-    small: string | null ,
+    small: string | null,
     large: string | null
 }
 
@@ -12,17 +12,12 @@ export type UserType = {
 }
 
 export type ContactsType = {
-    github: string,
-    vk: string,
-    facebook: string,
-    instagram: string,
-    twitter: string,
-    website: string,
-    youtube: string,
-    mainLink: string
+    [key : string]: string | null,
+
 }
 
 export type ProfileType = {
+    aboutMe: string,
     userId: number,
     lookingForAJob: boolean,
     lookingForAJobDescription: string,

@@ -1,6 +1,6 @@
 
 
-const Settings = (props) => {
+const Settings = ({}) => {
     return (
         <>
         </>

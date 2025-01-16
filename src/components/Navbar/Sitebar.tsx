@@ -1,9 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Sitebar.module.scss'
 import classNames from 'classnames';
+import { FC } from 'react';
 
 
-const Sitebar = (props) => {
+type PropsType = {
+  activeMenu: boolean,
+  toggleActiveMenu: () => void
+}
+
+const Sitebar: FC<PropsType> = (props) => {
 
  console.log(styles);
   return (

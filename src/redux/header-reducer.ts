@@ -1,4 +1,6 @@
-const TOGGLE_ACTIVE_MENU = 'header/TOGGLE-ACTIVE-MENU';
+import { ThunkAction } from "redux-thunk";
+import { AppStateType, InferActionsTypes } from "./redux-store";
+
 
 const initialState = {
     activeMenu: true
@@ -6,9 +8,9 @@ const initialState = {
 
 type InitialStateType = typeof initialState;
 
-const headerReducer = (state = initialState, action: any): InitialStateType => {
+const headerReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {
-        case TOGGLE_ACTIVE_MENU:
+        case 'heade/TOGGLE_ACTIVE_MENU':
             return {
                 ...state,
                 activeMenu: !state.activeMenu
@@ -18,14 +20,20 @@ const headerReducer = (state = initialState, action: any): InitialStateType => {
     }
 };
 
+type ActionsTypes = InferActionsTypes<typeof actions>;
+
+const actions = {
+    setActiveMenu: () => ({type: 'heade/TOGGLE_ACTIVE_MENU'} as const)
+}
 
 
-type SetActiveMenuType = {type: typeof TOGGLE_ACTIVE_MENU};
-const setActiveMenu = (): SetActiveMenuType => ({type: TOGGLE_ACTIVE_MENU});
 
 
-export const toggleActiveMenu = () => (dispatch: any) => {
-    dispatch(setActiveMenu());
+type ExtraThunkArgType = {};
+type ThunkType = ThunkAction<void, AppStateType, ExtraThunkArgType, ActionsTypes>
+
+export const toggleActiveMenu = ():ThunkType => (dispatch) => {
+    dispatch(actions.setActiveMenu());
 };
 
 

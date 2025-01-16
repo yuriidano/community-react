@@ -15,7 +15,7 @@ import { getActiveMenu, getInitialize, getProfileMount } from './redux/app-selec
 import classNames from 'classnames';
 import SitebarContainer from './components/Navbar/SitebarContainer';
 import NotFound from './components/Not-found/NotFound'
-
+import MusicContainer from './components/Music/MusicContainer';
 
 
 const ProfileContainer = lazy(() => import('./components/Prifile/ProfileContainer'));
@@ -58,6 +58,7 @@ const App = (props) => {
               <Route path='/dialogs/*' element={<DialogsContainer />} />
               <Route path='/users' element={<UsersContainer />} />
               <Route path='/login' element={<LoginContainer />} />
+              <Route path='/music' element={<MusicContainer />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>

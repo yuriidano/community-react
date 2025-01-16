@@ -1,6 +1,6 @@
 import style from './NotFount.module.scss';
 
-const NotFound = (props) => {
+const NotFound = ({}) => {
 
     return (
         <div className={style.notFound}>

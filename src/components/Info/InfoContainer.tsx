@@ -10,7 +10,7 @@ import { ProfileType } from "../../types/types";
 
 type MapStateType = {
     profile: ProfileType,
-    userId: number
+    userId: number 
 }
 type MapDispatchType = {
     requestProfileInfo: (userId: number) => void
@@ -36,14 +36,16 @@ let InfoContainer: FC<PropsType> = (props) => {
 
     return (
 
-        <Info {...props} />
+        <>
+            <Info {...props} />
+        </>
     )
 }
 
 let mapStateToProps = (state: AppStateType): MapStateType => {
     return {
         profile: getProfile(state),
-        userId: getUserId(state)
+        userId: getUserId(state) ?? 0
     };
 };
 export default compose(

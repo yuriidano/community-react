@@ -1,5 +1,5 @@
-const SEND_MESSAGE = 'dialogs/SEND-MESSAGE';
-const DELETE_MESAGE = 'dialogs/DELETE-MESAGE';
+import { ThunkAction } from "redux-thunk";
+import { AppStateType, InferActionsTypes } from "./redux-store";
 
 
 type dialogsItemType = {
@@ -16,7 +16,6 @@ type InitialStateType = {
     dialods: Array<dialogsItemType>,
     messages: Array<messageItemType>
 }
-
 
 
 let initialState: InitialStateType = {
@@ -36,16 +35,16 @@ let initialState: InitialStateType = {
 };
 
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
 
     switch (action.type) {
-        case SEND_MESSAGE: 
+        case 'dialogs/SEND_MESSAGE': 
             let newMessage = {id: 4, message: action.data}
         return {
             ...state,
             messages: [...state.messages, newMessage],
         };
-        case DELETE_MESAGE:
+        case 'dialogs/DELETE_MESAGE':
             return {
                 ...state,
                 messages: state.messages.filter(m => m.id != action.userId)
@@ -55,21 +54,21 @@ const dialogsReducer = (state = initialState, action: any): InitialStateType => 
     }
 };
 
+type ActionsTypes = InferActionsTypes<typeof actions>;
 
-type NewMessageType = {type: typeof SEND_MESSAGE, data: string};
-export const newMessage = (data: string): NewMessageType => ({type: SEND_MESSAGE, data});
-
-type deleteMessageType = {type: typeof DELETE_MESAGE, userId: number}
-export const deleteMessage = (userId: number): deleteMessageType => ({type: DELETE_MESAGE, userId});
-
-
+const actions = {
+    newMessage: (data: string) => ({ type: 'dialogs/SEND_MESSAGE', data } as const),
+    deleteMessage: (userId: number) => ({ type: 'dialogs/DELETE_MESAGE', userId } as const)
+}
 
 
 
+type ExtraThunkArgType = {};
+type ThunkType = ThunkAction<void, AppStateType, ExtraThunkArgType, ActionsTypes>
 
 
-export const sendMessage = (data: string) => (dispatch: any) => {
-    dispatch(newMessage(data))
+export const sendMessage = (data: string):ThunkType => (dispatch) => {
+    dispatch(actions.newMessage(data))
 };
 
 

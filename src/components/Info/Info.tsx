@@ -4,6 +4,7 @@ import UserPhoto from '../../assets/images/user.jpg';
 import classNames from 'classnames';
 import { ProfileType } from '../../types/types';
 import { FC } from 'react';
+import Preloader from '../common/Preloader/Preloader';
 
 
 type PropsInfoType = {
@@ -11,8 +12,7 @@ type PropsInfoType = {
 }
 
 const Info: FC<PropsInfoType> = ({profile}) => {
-
-    if(!profile) return null;
+    if(!profile.photos) return <Preloader />;
 
     return (
         <div className={styles.info}>

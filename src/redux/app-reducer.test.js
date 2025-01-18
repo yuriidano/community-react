@@ -1,4 +1,4 @@
-import appReducer, { initialiseSucces } from "./app-reducer"
+import appReducer, { actions, initialiseSucces } from "./app-reducer"
 
 
 
@@ -9,7 +9,7 @@ it('initialise should be correct', () => {
         initialize: false
     }
 
-    let action = initialiseSucces(true);
+    let action = actions.initialiseSucces(true);
     //action
     let newState = appReducer(state, action)
     //exeption

@@ -29,8 +29,7 @@ const actions = {
 }
 
 
-type ExtraThunkArgType = {};
-type ThunkType = ThunkAction<Promise<void>, AppStateType, ExtraThunkArgType, ActionsTypes>
+type ThunkType = ThunkAction<Promise<void>, AppStateType, {}, ActionsTypes>
 
 export const requestProfileInfo = (userId: number): ThunkType => async (dispatch) => {
     try {

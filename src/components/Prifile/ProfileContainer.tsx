@@ -8,7 +8,7 @@ import withAuthNavigate from "../../hoc/withAuthNavigate";
 import { getAutoRizedUserId, getIsAuth, getIsUpdateProgress, getPosts, getProfile, getProfileMy, getStatus } from "../../redux/profile-selectors";
 import { AppStateType } from "../../redux/redux-store";
 import { PostType, ProfileType } from "../../types/types";
-import { strict } from "assert";
+
 
 type ParamsType = {
     userId: string
@@ -27,7 +27,7 @@ type MapDispatchType = {
     requestProfile: (userId: string) => void,
     requestUserStatus: (userId: string) => void,
     profileMount: (profileMoutn: boolean) => void,
-    requestPhoto: (filePhoto: any) => void,
+    requestPhoto: (filePhoto: File) => void,
     updateProfile: (profileData: ProfileType) => void,
     updateUserStatus: (status: string) => void,
     addPost: (data: string) => void,

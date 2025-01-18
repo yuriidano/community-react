@@ -1,9 +1,22 @@
-import { reduxForm } from "redux-form"
-import { createField, Input } from "../../common/FormsControls/formsControls"
+import { InjectedFormProps, reduxForm } from "redux-form"
+import { createField, ExtractKeysType, Input } from "../../common/FormsControls/formsControls"
 import ProfileStatus from "./ProfileStatus"
 import styles from './ProfileDataForm.module.scss'
+import { ProfileType } from "../../../types/types"
+import { FC } from "react"
+import { FormDataProfileInfoType } from "./ProfileInfo"
 
-const ProfileDataForm = ({ profile, status, updateUserStatus, handleSubmit, error }) => {
+
+
+type PropsProfileDataFormType = {
+    profile: ProfileType,
+    status: string,
+    updateUserStatus: (status: string) => void,
+}
+
+type KeysType = ExtractKeysType<FormDataProfileInfoType>
+
+const ProfileDataForm:FC<InjectedFormProps<FormDataProfileInfoType, PropsProfileDataFormType> & PropsProfileDataFormType> = ({ profile, status, updateUserStatus, handleSubmit, error }) => {
     return (
         <div className={styles.profileDataForm}>
             <form onSubmit={handleSubmit}>
@@ -12,7 +25,7 @@ const ProfileDataForm = ({ profile, status, updateUserStatus, handleSubmit, erro
                         <div className={styles.name}>
                             <span>full name: </span>
                             <div className={styles.editName}>
-                                {createField(null, Input, 'fullName', 'fullName...', [], null)}
+                                {createField<KeysType>(undefined, Input, 'fullName', 'fullName...', [], undefined, undefined)}
                             </div>
                         </div>
                         <div className={styles.status}>
@@ -23,14 +36,14 @@ const ProfileDataForm = ({ profile, status, updateUserStatus, handleSubmit, erro
                 </div>
                 <div className={styles.lookingForAJob}>
                     <span>LookingForAJob:</span>  {profile.lookingForAJob ? 'yes' : 'no'}
-                    {createField(null, Input, 'lookingForAJob', null, [], 'checkbox')}
+                    {createField<KeysType>(undefined, Input, 'lookingForAJob', undefined, [], 'checkbox', undefined)}
                 </div>
 
                 {profile.lookingForAJob &&
                     <div className={styles.skils}>
                         <span>My profesional skils:</span>
                         <div className={styles.editSkils}>
-                            {createField(null, Input, 'lookingForAJobDescription', 'my profesional skils...', [], null)}
+                            {createField<KeysType>(undefined, Input, 'lookingForAJobDescription', 'my profesional skils...', [], undefined, undefined)}
                         </div>
                     </div>
                 }
@@ -54,18 +67,22 @@ const ProfileDataForm = ({ profile, status, updateUserStatus, handleSubmit, erro
     )
 }
 
-const ContactsForm = ({contactsKey}) => {
+type ContactsFormType = {
+    contactsKey: string
+}
+
+const ContactsForm:FC<ContactsFormType> = ({contactsKey}) => {
     return (
         <div className={styles.contactBody}>
             <div className={styles.editContact}>
-                {createField(null, Input, 'contacts.' + contactsKey, `${contactsKey}...`, [], null)}
+                {createField(undefined, Input, 'contacts.' + contactsKey, `${contactsKey}...`, [], undefined, undefined)}
             </div>
         </div>
     )
 };
 
 
-const ProfileDataFormRedux = reduxForm({form: 'profile'})(ProfileDataForm);
+const ProfileDataFormRedux = reduxForm<FormDataProfileInfoType, PropsProfileDataFormType>({form: 'profile'})(ProfileDataForm);
 
 
 export default ProfileDataFormRedux;

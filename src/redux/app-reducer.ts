@@ -25,13 +25,13 @@ const appReducer = (state = initialState, action: ActionsTypes): initialStateTyp
 
 type ActionsTypes = InferActionsTypes<typeof actions>;
 
-const actions = {
+export const actions = {
     initialiseSucces: () => ({type: 'app/INITIALIZE_SUCCES'} as const)
 }
 
 
-type ExtraThunkArgType = {};
-type ThunkType = ThunkAction<void, AppStateType, ExtraThunkArgType, ActionsTypes>
+
+type ThunkType = ThunkAction<void, AppStateType, {}, ActionsTypes>
 
 export const appInitialize = (): ThunkType => (dispatch) => {
     let promise = dispatch(authMe());

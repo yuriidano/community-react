@@ -20,9 +20,10 @@ export const Textarea = FormsControls((props) => <textarea {...props} />);
 export const Input = FormsControls((props) => <input {...props} />);
 
 
+export type ExtractKeysType<T> = Extract<keyof T, string>
 
-
-export function createField<keysName extends string>(marginBottom: number | undefined, 
+export function createField<keysName extends string>(
+                            marginBottom: number | undefined, 
                             component: React.ComponentType<WrappedFieldProps>, 
                             name: keysName, 
                             placeholder: string | undefined, 

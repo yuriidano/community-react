@@ -56,15 +56,13 @@ const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStat
 
 type ActionsTypes = InferActionsTypes<typeof actions>;
 
-const actions = {
+export const actions = {
     newMessage: (data: string) => ({ type: 'dialogs/SEND_MESSAGE', data } as const),
     deleteMessage: (userId: number) => ({ type: 'dialogs/DELETE_MESAGE', userId } as const)
 }
 
 
-
-type ExtraThunkArgType = {};
-type ThunkType = ThunkAction<void, AppStateType, ExtraThunkArgType, ActionsTypes>
+type ThunkType = ThunkAction<void, AppStateType, {}, ActionsTypes>
 
 
 export const sendMessage = (data: string):ThunkType => (dispatch) => {

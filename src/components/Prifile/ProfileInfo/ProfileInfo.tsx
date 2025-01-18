@@ -1,17 +1,28 @@
-import Preloader from '../../common/Preloader/Preloader';
+
 import styles from './ProfileInfo.module.scss';
 import ProfileStatus from './ProfileStatus';
 import profilePhoto from '../../../assets/images/user.jpg';
 import ProfileDataFormRedux from './ProfileDadaForm';
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import fon from '../../../assets/images/fon.jpeg'
 import camera from '../../../assets/images/icons/camera.svg';
 import { ProfileType } from '../../../types/types';
 
+type PropsProfileInfoType = {
+  status: string,
+  updateUserStatus: (status: string) => void,
+  profile: ProfileType,
+  isOwner: boolean,
+  requestPhoto: (filePhoto: File) => void,
+  updateProfile: (profileData: ProfileType) => void,
+  isUpdateProgress: boolean
+};
 
 
+export type FormDataProfileInfoType = ProfileType;
 
-const ProfileInfo = (props) => {
+
+const ProfileInfo:FC<PropsProfileInfoType> = (props) => {
 
   let [editMode, setEditMode] = useState(false);
 
@@ -19,7 +30,7 @@ const ProfileInfo = (props) => {
     return null
   }
 
-  let onPhotoChange = (e) => {
+  let onPhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
       props.requestPhoto(e.target.files[0])
     }
@@ -29,7 +40,8 @@ const ProfileInfo = (props) => {
     setEditMode(true);
   }
 
-  let onSubmit = (formData) => {
+  let onSubmit = (formData: FormDataProfileInfoType) => {
+    debugger
     props.updateProfile(formData);
     props.isUpdateProgress && setEditMode(false)
   }
@@ -62,7 +74,16 @@ const ProfileInfo = (props) => {
 
 
 
-const ProfileData = ({ profile, status, updateUserStatus, isOwner, activateEditMode }) => {
+type PropsProfileDataType= {
+  status: string,
+  updateUserStatus: (status: string) => void,
+  profile: ProfileType,
+  isOwner: boolean,
+  activateEditMode: () => void
+
+}
+
+const ProfileData:FC<PropsProfileDataType> = ({ profile, status, updateUserStatus, isOwner, activateEditMode }) => {
   return (
     <div>
       <div className={styles.top}>
@@ -107,19 +128,29 @@ const ProfileData = ({ profile, status, updateUserStatus, isOwner, activateEditM
 
 
 
-const ProfileFormData = ({ profile, status, updateUserStatus, onSubmit }) => {
+type PropsProfileFormDataType = {
+  status: string,
+  updateUserStatus: (status: string) => void,
+  profile: ProfileType,
+  onSubmit: (formData: FormDataProfileInfoType) => void
+}
+
+const ProfileFormData:FC<PropsProfileFormDataType> = ({ profile, status, updateUserStatus, onSubmit }) => {
   return (
     <>
-      <ProfileDataFormRedux initialValues={profile} onSubmit={onSubmit} profile={profile} status={status} updateUserStatus={updateUserStatus} contacts={Contacts} />
+      <ProfileDataFormRedux initialValues={profile} onSubmit={onSubmit} profile={profile} status={status} updateUserStatus={updateUserStatus} />
     </>
   )
 }
 
 
 
+type ContactsTupe = {
+  contactTitle: string,
+  contactValue: string | null
+}
 
-
-const Contacts = ({contactTitle, contactValue}) => {
+const Contacts:FC<ContactsTupe> = ({contactTitle, contactValue}) => {
   return (
     <div>
       <span>{contactTitle}</span>: {contactValue}

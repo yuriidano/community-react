@@ -39,13 +39,13 @@ const actions = {
     setUserAuth: (userId: number | null, email: string | null, login: string | null, boollian: boolean) =>
         ({ type: 'auth/SET_USER_AUTH', payload: { userId, email, login, isAuth: boollian } } as const),
 
-    setCaptcha: (captcha: string | null) => ({ type: 'auth/SET_CAPTCHA', payload: { captcha } } as const)
+    setCaptcha: (captcha: string | null) => ({ type: 'auth/SET_CAPTCHA', payload: { captcha } } as const),
+    stopSubmit: (form: string, errors: any) => stopSubmit(form, errors)
 }
 
 
 
-type ExtraThunkArg = {};
-type ThunkType = ThunkAction<Promise<void>, AppStateType, ExtraThunkArg, ActionsTypes>
+type ThunkType = ThunkAction<Promise<void>, AppStateType, {}, ActionsTypes>
 
 
 export const authMe = ():ThunkType => async (dispatch) => {
@@ -56,7 +56,7 @@ export const authMe = ():ThunkType => async (dispatch) => {
     }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean, captcha: any): ThunkType => async (dispatch: any) => {
+export const login = (email: string, password: string, rememberMe: boolean, captcha: string):ThunkType => async (dispatch) => {
     let data = await authApi.login(email, password, rememberMe, captcha);
     if (data.resultCode === ResultCodeEnum.Succes) {
         dispatch(authMe());

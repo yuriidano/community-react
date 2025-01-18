@@ -64,7 +64,7 @@ let usersReducer = (state = initialState, action: ActionsTypes): InitialStateTyp
 type ActionsTypes = InferActionsTypes<typeof actions>;
 
 
-const actions = {
+export const actions = {
     followAccept: (userId: number) => ({type: 'users/FOLLOW', userId} as const ),
     unfollowAccept: (userId: number) => ({type: 'users/UNFOLLOW', userId} as const),
     setUsers: (users: Array<UserType>) => ({type: 'users/SET_USERS', users} as const),
@@ -78,8 +78,7 @@ const actions = {
 
 
 
-type ExtraThunkArgType = {};
-type ThunkType = ThunkAction<Promise<void>, AppStateType, ExtraThunkArgType, ActionsTypes>;
+type ThunkType = ThunkAction<Promise<void>, AppStateType, {}, ActionsTypes>;
 
 export const requestUsers = (pageSize: number, currentPage: number):ThunkType => async (dispatch) => {
     dispatch(actions.toggleIsFeching(true));

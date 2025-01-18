@@ -1,4 +1,4 @@
-import usersReducer, { followAccept, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFeching, unfollowAccept } from "./users-reducer";
+import usersReducer, { actions, followAccept, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFeching, unfollowAccept } from "./users-reducer";
 
 let state = {
     users: [{id: 1, name: 'Ola', followed: false}, {id: 1, name: 'Yura', followed: false}],
@@ -12,7 +12,7 @@ let state = {
 
 it('follow should be correct', () => {
     //start data
-    let action = followAccept(1);
+    let action = actions.followAccept(1);
 
     //action
     let newState = usersReducer(state, action);
@@ -23,7 +23,7 @@ it('follow should be correct', () => {
 
 it('unfollow should be correct', () => {
     //start data
-    let action = unfollowAccept(1);
+    let action = actions.unfollowAccept(1);
 
     //action
     let newState = usersReducer(state, action);
@@ -34,7 +34,7 @@ it('unfollow should be correct', () => {
 
 it('after added array length should be increase', () => {
     //start data
-    let action = setUsers([{}, {}, {}]);
+    let action = actions.setUsers([{}, {}, {}]);
 
     //action
     let newState = usersReducer(state, action);
@@ -45,7 +45,7 @@ it('after added array length should be increase', () => {
 
 it('the value currentPage should change', () => {
     //start data
-    let action = setCurrentPage(2);
+    let action = actions.setCurrentPage(2);
 
     //action
     let newState = usersReducer(state, action);
@@ -56,7 +56,7 @@ it('the value currentPage should change', () => {
 
 it('the value currentPage should change', () => {
     //start data
-    let action = setTotalUsersCount(10);
+    let action = actions.setTotalUsersCount(10);
 
     //action
     let newState = usersReducer(state, action);
@@ -67,7 +67,7 @@ it('the value currentPage should change', () => {
 
 it('follow should be correct', () => {
     //start data
-    let action = toggleIsFeching(true);
+    let action = actions.toggleIsFeching(true);
 
     //action
     let newState = usersReducer(state, action);

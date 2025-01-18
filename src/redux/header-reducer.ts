@@ -29,8 +29,7 @@ const actions = {
 
 
 
-type ExtraThunkArgType = {};
-type ThunkType = ThunkAction<void, AppStateType, ExtraThunkArgType, ActionsTypes>
+type ThunkType = ThunkAction<void, AppStateType, {}, ActionsTypes>
 
 export const toggleActiveMenu = ():ThunkType => (dispatch) => {
     dispatch(actions.setActiveMenu());

@@ -1,4 +1,4 @@
-import dialogsReducer, { deleteMessage, newMessage } from "./dialogs-reducer";
+import dialogsReducer, { actions, deleteMessage, newMessage } from "./dialogs-reducer";
 
 
 let state = {
@@ -12,7 +12,7 @@ let state = {
 
 it('after added message length should be increase', () => {
     //start data
-    let action = newMessage('hello my friends');
+    let action = actions.newMessage('hello my friends');
 
     //action
     let newState = dialogsReducer(state, action);
@@ -24,7 +24,7 @@ it('after added message length should be increase', () => {
 
 it('value should be correct', () => {
     //start data
-    let action = newMessage('hello my friends');
+    let action = actions.newMessage('hello my friends');
 
     //action
     let newState = dialogsReducer(state, action);
@@ -36,7 +36,7 @@ it('value should be correct', () => {
 
 it('should to be delete message', () => {
     //start data
-    let action = deleteMessage(1);
+    let action = actions.deleteMessage(1);
 
     //action
     let newState = dialogsReducer(state, action);
@@ -48,7 +48,7 @@ it('should to be delete message', () => {
 
 it('id should be correct', () => {
     //start data
-    let action = deleteMessage(1000);
+    let action = actions.deleteMessage(1000);
 
     //action
     let newState = dialogsReducer(state, action);

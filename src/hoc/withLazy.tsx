@@ -1,6 +1,6 @@
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 
-const withLAzy = (Component) => () => {
+const withLAzy = (Component: React.ComponentType) => () => {
     return (
         <Suspense fallback={'Loading...'}>
             <Component />

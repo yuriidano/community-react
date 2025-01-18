@@ -1,4 +1,4 @@
-import profileReducer, { addPostCriator, deleteMessage } from "./profile-reducer"
+import profileReducer, { actions, addPostCriator, deleteMessage } from "./profile-reducer"
 
 
 let state = {
@@ -12,7 +12,7 @@ let state = {
 
 it('after added message length should be increase', () => {
     //start data
-    let action = addPostCriator('it-camasutra');
+    let action = actions.addPost('it-camasutra');
 
     //action
     let newState = profileReducer(state, action);
@@ -24,7 +24,7 @@ it('after added message length should be increase', () => {
 
 it('value should be correct', () => {
     //start data
-    let action = addPostCriator('it-camasutra');
+    let action = actions.addPost('it-camasutra');
 
     //action
     let newState = profileReducer(state, action);
@@ -36,7 +36,7 @@ it('value should be correct', () => {
 
 it('should to be delete message', () => {
     //start data
-    let action = deleteMessage(1);
+    let action = actions.deleteMessage(1);
 
     //action
     let newState = profileReducer(state, action);
@@ -47,7 +47,7 @@ it('should to be delete message', () => {
 
 it('id should be correct', () => {
     //start data
-    let action = deleteMessage(100);
+    let action = actions.deleteMessage(100);
 
     //action
     let newState = profileReducer(state, action);

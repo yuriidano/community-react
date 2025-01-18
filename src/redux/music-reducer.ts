@@ -50,8 +50,7 @@ const actions = {
     toggleIsFachingMusic: (isFachingMusic: boolean) => ({type: 'music/TOGGLE-IS-FACHING-MUSIC', isFachingMusic}as const )
 };
 
-type ExtraThunkArgType = {};
-type ThunkType = ThunkAction<Promise<void>, AppStateType, ExtraThunkArgType, ActionsTypes>;
+type ThunkType = ThunkAction<Promise<void>, AppStateType, {}, ActionsTypes>;
 
 export const requestMusicPop = ():ThunkType => async (dispatch, getState) => {
     try{

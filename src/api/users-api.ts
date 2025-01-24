@@ -8,8 +8,8 @@ type GetUsersType = {
     error: null | string
 }
 export let usersApi = {
-    getUsers(pageSize: number, currentPage: number) {
-        return instance.get<GetUsersType>(`/users?count=${pageSize}&page=${currentPage}`)
+    getUsers(pageSize: number, currentPage: number, term: string = '', friend: null | boolean) {
+        return instance.get<GetUsersType>(`/users?count=${pageSize}&page=${currentPage}&term=${term}` + (friend !== null ? `&friend=${friend}` : ''))
             .then((response) => {
                 return response.data;
             })

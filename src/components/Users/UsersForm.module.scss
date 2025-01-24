@@ -1,0 +1,55 @@
+
+
+.error {
+    border: 1px solid red;
+}
+
+.errorSpan {
+    color: red;
+};
+
+.body {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    margin-bottom: 20px;
+    @media (max-width: 400px){
+        row-gap: 10px;
+        flex-wrap: wrap;
+  }
+}
+
+
+.term {
+    min-height: 25px;
+    border: 1px solid #6C757D;
+    border-radius: 5px;
+    padding: 0 5px;
+    color: #6C757D;
+
+}       
+
+.friend {
+    min-height: 25px;
+    border: 1px solid #6C757D;
+    color: #6C757D;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button {
+    min-height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    color: #ffffff;
+    background-color: RGB(14, 110, 251);
+    transition: all 0.3s ease 0s;
+    border-radius: 5px;
+    @media (any-hover: hover) {
+        &:hover {
+            background-color: #0051ca;
+        }
+      }
+}

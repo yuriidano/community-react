@@ -4,9 +4,12 @@ import classNames from 'classnames';
 import { FC } from 'react';
 
 
+
 type PropsType = {
   activeMenu: boolean,
-  toggleActiveMenu: () => void
+  toggleActiveMenu: () => void,
+
+
 }
 
 const Sitebar: FC<PropsType> = (props) => {

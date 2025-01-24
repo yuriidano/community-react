@@ -1,3 +1,4 @@
+import { ThunkAction } from 'redux-thunk';
 import { applyMiddleware, combineReducers, compose, legacy_createStore } from "redux";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
@@ -12,6 +13,7 @@ import musicReducer from "./music-reducer";
 
 
 
+
 let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
@@ -21,7 +23,8 @@ let rootReducer = combineReducers({
     app: appReducer,
     infoPage: infoReducer,
     header: headerReducer,
-    musicPage: musicReducer
+    musicPage: musicReducer,
+
 });
 
 type RootReducerType = typeof rootReducer; //(state: GLOBAL_STATE_TYPE): GLOBAL_STATE_TYPE => state;
@@ -32,6 +35,8 @@ export type InferActionsTypes<A extends {[key: string]: (...arg: Array<any>) => 
 
 
 
+
+export type ThunkType<P extends {type: string, [key: string]: any}> = ThunkAction<Promise<void>, AppStateType, {}, P>
 
 
 

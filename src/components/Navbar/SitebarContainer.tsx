@@ -8,16 +8,19 @@ import { AppStateType } from "../../redux/redux-store";
 import { FC } from "react";
 
 type MapStateType = {
-    activeMenu: boolean
+    activeMenu: boolean,
+
 }
 type MapDispatchType = {
-    toggleActiveMenu: () => void
+    toggleActiveMenu: () => void,
+
 };
 type OwnPropsType = {};
 type PropsType = MapStateType & MapDispatchType & OwnPropsType;
 
 
 const SitebarContainer: FC<PropsType> = (props) => {
+
 
     return (
         <Sitebar {...props} />
@@ -27,7 +30,7 @@ const SitebarContainer: FC<PropsType> = (props) => {
 
 const mapstateToProps = (state: AppStateType):MapStateType => {
     return {
-        activeMenu: getActiveMenu(state)
+        activeMenu: getActiveMenu(state),
     }
 }
 

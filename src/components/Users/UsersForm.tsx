@@ -5,6 +5,8 @@ import styless from './UsersForm.module.scss'
 import classNames from "classnames";
 import { useAppSelector } from "../../redux/redux-store";
 import { getFilter } from "../../redux/users-selectors";
+import { Button } from "@mui/material";
+import SendIcon from '@mui/icons-material/Send';
 
 
 type PropsUsersFormType = {
@@ -49,7 +51,7 @@ const UsersForm: FC<PropsUsersFormType> = (props) => {
                 <option value="true">Friends</option>
                 <option value="false">No friends</option>
             </select>
-            <button className={styless.button}>send</button>
+            <button className={styless.button}>find</button>
         </form>
     )
 };

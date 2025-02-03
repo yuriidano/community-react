@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import styles from './Paginator.module.scss';
 import classNames from 'classnames';
+import { Pagination } from '@mui/material';
 
 type PropsPaginatorType = {
     totalUsersCount: number,
@@ -11,7 +12,7 @@ type PropsPaginatorType = {
 }
 
 const Paginator: FC<PropsPaginatorType> = ({totalUsersCount, pageSize, currentPage, onPagesChanged, portionSize = 10}) => {
-    let pagesCount =totalUsersCount / pageSize;
+    let pagesCount = Math.ceil(totalUsersCount / pageSize); 
     let portionCount = Math.ceil(pagesCount / portionSize);
     let [portionPage, setPortionPage] = useState(1);
 
@@ -24,10 +25,15 @@ const Paginator: FC<PropsPaginatorType> = ({totalUsersCount, pageSize, currentPa
        pages.push(i);
     };
 
+    const handleChange = (e: React.ChangeEvent<unknown>, value: number) => {
+        onPagesChanged(value)
+    }
+
 
     return (
         <div className={styles.paginator}>
-            <div className={classNames(styles.buttonPrev, {[styles.buttonPrevActive]: portionPage > 1})}>
+            <Pagination count={pagesCount}  page={currentPage} onChange={handleChange} />
+            {/* <div className={classNames(styles.buttonPrev, {[styles.buttonPrevActive]: portionPage > 1})}>
                 {
                     <span className={styles.buttonPrevSpan} onClick={() => { setPortionPage(portionPage - 1) }} ></span>
                 }
@@ -47,7 +53,7 @@ const Paginator: FC<PropsPaginatorType> = ({totalUsersCount, pageSize, currentPa
                     <span className={styles.buttonNextSpan} onClick={() => { setPortionPage(portionPage + 1) }} ></span>
 
                 }
-            </div>
+            </div> */}
         </div>
     )
 };

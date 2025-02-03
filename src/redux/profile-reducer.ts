@@ -1,9 +1,7 @@
 import { stopSubmit } from "redux-form";
 import { ResultCodeEnum } from "../api/api";
 import { PhotosType, PostType, ProfileType } from "../types/types";
-import { ThunkAction } from "redux-thunk";
-import { AppStateType, InferActionsTypes } from "./redux-store";
-import { Dispatch } from "redux";
+import { InferActionsTypes, ThunkType } from "./redux-store";
 import { profileApi } from "../api/profile-api";
 
 
@@ -84,10 +82,10 @@ export const actions = {
 
 
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, {}, ActionsTypes>
 
+type ThunkTypeProfile = ThunkType<ActionsTypes>;
 
-export const requestUserStatus = (userId: number):ThunkType => async (dispatch) => {
+export const requestUserStatus = (userId: number):ThunkTypeProfile => async (dispatch) => {
     try {
         let data = await profileApi.getUserStatus(userId);
         dispatch(actions.setUserStatus(data))
@@ -95,28 +93,28 @@ export const requestUserStatus = (userId: number):ThunkType => async (dispatch) 
     }
 }
 
-export const updateUserStatus = (status: string):ThunkType => async (dispatch) => {
+export const updateUserStatus = (status: string):ThunkTypeProfile => async (dispatch) => {
     let data = await profileApi.updateUserStatus(status)    
     if (data.resultCode === ResultCodeEnum.Succes) {
         dispatch(actions.setUserStatus(status))
     }
 }
 
-export const requestProfile = (userId: number):ThunkType => async (dispatch) => {
+export const requestProfile = (userId: number):ThunkTypeProfile => async (dispatch) => {
     let data = await profileApi.getProfile(userId);
     dispatch(actions.setProfile(data));
 }
 
-export let requestPhoto = (filePhoto: File):ThunkType => async (dispatch) => {
+export let requestPhoto = (filePhoto: File):ThunkTypeProfile => async (dispatch) => {
      let data = await profileApi.updagePhoto(filePhoto);
      dispatch(actions.setPhoto(data.photos))
 }
 
-export const SumeError = () => (dispatch: Dispatch<ActionsTypes>) => {
+export const SumeError = ():ThunkTypeProfile => (dispatch) => {
     dispatch(stopSubmit('music', {_error: 'some error'}))
 }
 
-export const updateProfile = (profileData: ProfileType): ThunkType => async (dispatch, getState) => {
+export const updateProfile = (profileData: ProfileType):ThunkTypeProfile => async (dispatch, getState) => {
     let userId = getState().auth.userId;
     let data = await profileApi.updateProfile(profileData);
 
@@ -125,26 +123,20 @@ export const updateProfile = (profileData: ProfileType): ThunkType => async (dis
         dispatch(actions.toggleIsUpdateProgress())
     } else {
         let message = data.messages.length > 0 ? data.messages[0] : 'some error';
-
-
         let messageArray = message.split('');
-
         let messageForm = messageArray.slice(
             messageArray.indexOf('>') + 1,
             messageArray.indexOf(')')
         ).join('').toLowerCase();
-     
-        console.log(messageForm);
-
         dispatch(stopSubmit('profile', {'contacts': {[messageForm]: message}}))
     }
 }
 
-export const profileMount = (profileMoutn: boolean) => (dispatch: Dispatch<ActionsTypes>, getState: () => AppStateType) => {
+export const profileMount = (profileMoutn: boolean):ThunkTypeProfile => (dispatch) => {
     dispatch(actions.toggleProfilemount(profileMoutn));
 };
 
-export const addPost = (data: string) => (dispatch:Dispatch<ActionsTypes>, getState: () => AppStateType) => {
+export const addPost = (data: string):ThunkTypeProfile => (dispatch) => {
     dispatch(actions.addPost(data))
 }       
 

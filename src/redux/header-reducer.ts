@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import { AppStateType, InferActionsTypes } from "./redux-store";
+import { AppStateType, InferActionsTypes, ThunkType } from "./redux-store";
 
 
 const initialState = {
@@ -29,9 +29,10 @@ const actions = {
 
 
 
-type ThunkType = ThunkAction<void, AppStateType, {}, ActionsTypes>
 
-export const toggleActiveMenu = ():ThunkType => (dispatch) => {
+type ThunkTypeHeader = ThunkType<ActionsTypes>;
+
+export const toggleActiveMenu = ():ThunkTypeHeader => (dispatch) => {
     dispatch(actions.setActiveMenu());
 };
 

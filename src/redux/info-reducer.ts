@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import { AppStateType, InferActionsTypes } from "./redux-store";
+import { AppStateType, InferActionsTypes, ThunkType } from "./redux-store";
 import { infoApi } from "../api/info-api";
 import { ProfileType } from "../types/types";
 
@@ -29,9 +29,9 @@ const actions = {
 }
 
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, {}, ActionsTypes>
+type ThunkTypeInfo = ThunkType<ActionsTypes>;
 
-export const requestProfileInfo = (userId: number): ThunkType => async (dispatch) => {
+export const requestProfileInfo = (userId: number):ThunkTypeInfo => async (dispatch) => {
     try {
         let data = await infoApi.getProfileInfo(userId);
         dispatch(actions.setProfileInfo(data))

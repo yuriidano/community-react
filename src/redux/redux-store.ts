@@ -1,5 +1,5 @@
-import { ThunkAction } from 'redux-thunk';
-import { applyMiddleware, combineReducers, compose, legacy_createStore } from "redux";
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { Action, AnyAction, applyMiddleware, combineReducers, compose, legacy_createStore } from "redux";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
@@ -9,7 +9,10 @@ import { reducer as formReducer } from 'redux-form'
 import appReducer from "./app-reducer";
 import infoReducer from "./info-reducer";
 import headerReducer from "./header-reducer";
-import musicReducer from "./music-reducer";
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import musicReducer from './music-reducer';
+
 
 
 
@@ -23,42 +26,25 @@ let rootReducer = combineReducers({
     app: appReducer,
     infoPage: infoReducer,
     header: headerReducer,
-    musicPage: musicReducer,
-
+    musicPage: musicReducer
 });
 
 type RootReducerType = typeof rootReducer; //(state: GLOBAL_STATE_TYPE): GLOBAL_STATE_TYPE => state;
 export type AppStateType = ReturnType<RootReducerType>;
 
+//тип для actions
 type PropertyType<T> = T extends {[key: string]: infer U} ? U : never;
 export type InferActionsTypes<A extends {[key: string]: (...arg: Array<any>) => any}> = ReturnType<PropertyType<A>>;
 
+//тип для dispatch 
+export type AppDispatch = ThunkDispatch<AppStateType, unknown, AnyAction>
 
+//useDispatch і useSelector з типами
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
+export const useAppSelector = useSelector.withTypes<AppStateType>()
 
-
-export type ThunkType<P extends {type: string, [key: string]: any}> = ThunkAction<Promise<void>, AppStateType, {}, P>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//тип для thunk 
+export type ThunkType<A extends {type: string, [key: string]: any}> = ThunkAction<void, AppStateType, unknown, A>;
 
 
 

@@ -1,49 +1,99 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import Paginator from '../common/Paginator/Paginator';
 import User from './User';
 import styles from './Users.module.scss'
-import { UserType } from '../../types/types';
-import { FilterInitialType } from '../../redux/users-reducer';
+import { FilterInitialType, follow, requestUsers, unfollow } from '../../redux/users-reducer';
 import UsersForm from './UsersForm';
+import { useAppDispatch, useAppSelector } from '../../redux/redux-store';
+import { getcurrentPage, getFilter, getFollowingInProgress, getPageSize, getTotalUsersCount, getUsers } from '../../redux/users-selectors';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import queryString from 'query-string';
 
 
 
 
-type PropsUsersType = {
-    onPagesChanged: (pageNumber: number) => void,
-    totalUsersCount: number,
-    pageSize: number,
-    currentPage: number,
-    follow: (userId: number) => void,
-    unfollow: (userId: number) => void,
-    users: Array<UserType>
-    followingInProgress: Array<number>
-    isFetching: boolean,
-    onSearchUsers: (filter: FilterInitialType) => void
-}
 
-let Users: FC<PropsUsersType> = (props) => {
+
+type PropsUsersType = {};
+
+export const Users: FC<PropsUsersType> = (props) => {
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const location = useLocation()
+    const totalUsersCount = useAppSelector(getTotalUsersCount);
+    const pageSize = useAppSelector(getPageSize);
+    const filter = useAppSelector(getFilter);
+    const currentPage = useAppSelector(getcurrentPage);
+    const followingInProgress = useAppSelector(getFollowingInProgress)
+    const users = useAppSelector(getUsers)
+
+
+     useEffect(() => {
+        const parse = queryString.parse(location.search);
+        let actualPage = currentPage;
+        let actualFilter = filter;
+
+        if(!!parse.page) actualPage = +parse.page;
+        if(!!parse.term) actualFilter = {...actualFilter, term: parse.term as string};
+        if(!!parse.friend) actualFilter = {...actualFilter, friend: parse.friend === 'true' ? true : false}
+
+        dispatch(requestUsers(pageSize, actualPage, actualFilter));
+     }, []);
+
+
+    type QueryType = {term?: string, friend?:string, page?: string} 
+    useEffect(() => {
+        const query:QueryType = {};
+
+        if(!!filter.term) query.term = filter.term;
+        if(filter.friend !== null) query.friend = String(filter.friend);
+        if(currentPage !== 1) query.page = String(currentPage);
+
+        navigate({
+            pathname: '/users',
+            search: queryString.stringify(query)
+        });
+
+    }, [filter, currentPage]);
+
+
+
+    const onPagesChanged = (pageNumber: number) => {
+
+        dispatch(requestUsers(pageSize, pageNumber, filter))
+    }
+
+    const onSearchUsers = (filter: FilterInitialType) => {
+        dispatch(requestUsers(pageSize, currentPage, filter))
+    }
+
+    const followSucces = (userId: number) => {
+        dispatch(follow(userId))
+    }
+
+    const unfollowSucces = (userId: number) => {
+        dispatch(unfollow(userId))
+    }
 
     return (
         <div className={styles.users}>
-            <UsersForm onSearchUsers={props.onSearchUsers} />
+            <UsersForm onSearchUsers={onSearchUsers} />
             <div className={styles.paginator}>
-                    <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage}
-                        onPagesChanged={props.onPagesChanged}  />
+                    <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage}
+                        onPagesChanged={onPagesChanged}  />
             </div>
             <div className={styles.items}>
                 {
-                    props.users.map(user => {
+                    users.map(user => {
                         return (
-                            <User key={user.id} user={user} follow={props.follow} unfollow={props.unfollow} followingInProgress={props.followingInProgress} />
+                            <User key={user.id} user={user} followSucces={followSucces} unfollowSucces={unfollowSucces} followingInProgress={followingInProgress} />
                         )
                     })
                 }
             </div>
         </div>
-
     )
 };
 
-
-export default Users;
+export const UsersWithRedirect = withAuthRedirect(Users);

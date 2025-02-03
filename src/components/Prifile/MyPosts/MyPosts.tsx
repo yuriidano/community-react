@@ -1,40 +1,29 @@
-import React, { FC, useState } from 'react';
+import { FC } from 'react';
 import styles from './MyPosts.module.scss';
 import Post from './Post/Post';
-import MyPostFeduxForm from './MyPostsForm';
-import { PostType, ProfileType } from '../../../types/types';
+import MyPostForm from './MyPostsForm';
+import { useAppSelector } from '../../../redux/redux-store';
+import { getPosts, getProfileMy } from '../../../redux/profile-selectors';
 
 
-type PropsMyPostsType = {
-    posts: Array<PostType>,
-    profileMy: ProfileType,
-    addPost: (data: string) => void,
-}
+type PropsMyPostsType = {};
 
-
-export type FormDataType = {
-  myPosBody: string
-}
 
 const MyPosts: FC<PropsMyPostsType> = (props) => {
+  const posts = useAppSelector(getPosts);
+  const profileMy = useAppSelector(getProfileMy)
 
-
-  let postElement = [...props.posts].reverse().map(p => {
+  let postElement = [...posts].reverse().map(p => {
     return (
-      <Post profileMy={props.profileMy} message={p.message} likeCounter={p.likeCounter} key={p.id} />
+      <Post profileMy={profileMy} message={p.message} likeCounter={p.likeCounter} key={p.id} />
     )
   });
-
-
-  const addPostForm = (formData: FormDataType) => {
-    props.addPost(formData.myPosBody);
-  }
 
  
   return (
     <div className={styles.myPosts}>
       <div className={styles.newPost}>
-          <MyPostFeduxForm onSubmit={addPostForm} />
+          <MyPostForm />
       </div>
       <div className={styles.posts}>
         {postElement}

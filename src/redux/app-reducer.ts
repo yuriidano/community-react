@@ -1,6 +1,6 @@
 import { ThunkAction } from 'redux-thunk';
 import { authMe } from './auth-reducer';
-import { AppStateType, InferActionsTypes } from './redux-store';
+import { AppStateType, InferActionsTypes, ThunkType } from './redux-store';
 
 
 
@@ -31,9 +31,11 @@ export const actions = {
 
 
 
-type ThunkType = ThunkAction<void, AppStateType, {}, ActionsTypes>
 
-export const appInitialize = (): ThunkType => (dispatch) => {
+
+type ThunkTypeApp = ThunkType<ActionsTypes>;
+
+export const appInitialize = ():ThunkTypeApp => (dispatch) => {
     let promise = dispatch(authMe());
     
     Promise.all([promise])

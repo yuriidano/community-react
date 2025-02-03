@@ -1,5 +1,4 @@
 import reportWebVitals from './reportWebVitals';
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import './css/obnusenie.css';
@@ -11,13 +10,13 @@ import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-    <HashRouter>
+    <BrowserRouter>
         {/* <React.StrictMode> */}
             <Provider store={store}>
                 <App state={store.getState()} />
             </Provider>
         {/* </React.StrictMode> */}
-    </HashRouter>
+    </BrowserRouter>
 );
 
 

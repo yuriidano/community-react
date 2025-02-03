@@ -6,12 +6,12 @@ import { FC } from 'react';
 
 type PropsUserType = {
     user: UserType,
-    follow: (userId: number) => void,
-    unfollow: (userId: number) => void,
+    followSucces: (userId: number) => void,
+    unfollowSucces: (userId: number) => void,
     followingInProgress: Array<number>
 }
 
-let User: FC<PropsUserType> = ({ user, follow, unfollow, followingInProgress }) => {
+let User: FC<PropsUserType> = ({ user, followSucces, unfollowSucces, followingInProgress }) => {
     return (
         <div className={styles.userBody}>
             <div className={styles.user}>
@@ -25,13 +25,13 @@ let User: FC<PropsUserType> = ({ user, follow, unfollow, followingInProgress }) 
                     {
                         user.followed
                             ? <button disabled={followingInProgress.some(id => id == user.id)} onClick={() => {
-                                unfollow(user.id)
+                                unfollowSucces(user.id)
 
                             }} className={styles.button} >Unfollow</button>
 
                             : <button disabled={followingInProgress.some(id => id == user.id)} onClick={() => {
 
-                                follow(user.id);
+                                followSucces(user.id);
 
                             }} className={styles.button} >Follow</button>
 

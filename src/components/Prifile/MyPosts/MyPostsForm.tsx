@@ -1,26 +1,44 @@
-import { InjectedFormProps, reduxForm } from "redux-form"
-import { maxLength, required } from "../../../utils/validators/validators";
-import { createField, ExtractKeysType, Input, Textarea } from "../../common/FormsControls/formsControls";
-import styles from './MyPosts.module.scss'
-import plus from '../../../assets/images/icons/plus.svg'
+
 import userPost from '../../../assets/images/icons/userPost.svg'
+import plus from '../../../assets/images/icons/plus.svg'
+import classNames from 'classnames';
+import styles from './MyPosts.module.scss'
+
+
+
 import { FC } from "react";
-import { FormDataType } from "./MyPosts";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useAppDispatch } from '../../../redux/redux-store';
+import { addPost } from '../../../redux/profile-reducer';
 
-type KeysPostsType = ExtractKeysType<FormDataType>
+
+
+type PropsMyPostFormType = {};
+
+type MyPostFormType = {
+    post: string
+}
 
 
 
-let maxLength200 = maxLength(200)
 
-type PropsFormType = {};
+const MyPostForm:FC<PropsMyPostFormType> = (props) => {
+    const dispatch = useAppDispatch();
 
-const MyPostForm:FC<InjectedFormProps<FormDataType, PropsFormType> & PropsFormType> = (props) => {
+    const {register, handleSubmit, formState: {errors} } = useForm<MyPostFormType>();
+
+    const submit:SubmitHandler<MyPostFormType> = (formData) => {
+        dispatch(addPost(formData.post))
+    }
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit(submit)}>
             <label htmlFor="post" className={styles.body}>
-                <div  className={styles.input}>
-                    {createField<KeysPostsType>(undefined, Input, 'myPosBody', `What's on your mind?`, [required, maxLength200], undefined, 'post')}
+                <div className={styles.input}>
+                    <input {...register('post', { required: 'field is required', maxLength: { value: 200, message: 'max symbols 200' } })}
+                        className={classNames(styles.input)} />
+                    {errors.post &&
+                        <span className={styles.errorSpan} >{errors.post.message}</span>
+                    }
                 </div>
                 <button className={styles.button}>
                     <img src={plus} alt="icon" />
@@ -33,9 +51,4 @@ const MyPostForm:FC<InjectedFormProps<FormDataType, PropsFormType> & PropsFormTy
     )
 };
 
-
-let MyPostFeduxForm = reduxForm<FormDataType, PropsFormType>({form: 'myPost'})(MyPostForm);
-
-
-
-export default MyPostFeduxForm;
+export default MyPostForm;

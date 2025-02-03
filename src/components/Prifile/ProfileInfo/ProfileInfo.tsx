@@ -1,4 +1,3 @@
-
 import styles from './ProfileInfo.module.scss';
 import ProfileStatus from './ProfileStatus';
 import profilePhoto from '../../../assets/images/user.jpg';
@@ -7,15 +6,12 @@ import React, { FC, useState } from 'react';
 import fon from '../../../assets/images/fon.jpeg'
 import camera from '../../../assets/images/icons/camera.svg';
 import { ProfileType } from '../../../types/types';
+import { useAppDispatch, useAppSelector } from '../../../redux/redux-store';
+import { getIsUpdateProgress, getProfile, getStatus } from '../../../redux/profile-selectors';
+import { requestPhoto, updateProfile, updateUserStatus } from '../../../redux/profile-reducer';
 
 type PropsProfileInfoType = {
-  status: string,
-  updateUserStatus: (status: string) => void,
-  profile: ProfileType,
   isOwner: boolean,
-  requestPhoto: (filePhoto: File) => void,
-  updateProfile: (profileData: ProfileType) => void,
-  isUpdateProgress: boolean
 };
 
 
@@ -23,27 +19,36 @@ export type FormDataProfileInfoType = ProfileType;
 
 
 const ProfileInfo:FC<PropsProfileInfoType> = (props) => {
+  const dispatch = useAppDispatch();
+  const status = useAppSelector(getStatus);
+  const profile = useAppSelector(getProfile);
+  const isUpdateProgress = useAppSelector(getIsUpdateProgress);
+
+
+
+  const updateStatus = (status: string) => {
+    dispatch(updateUserStatus(status))
+  }
 
   let [editMode, setEditMode] = useState(false);
 
-  if (!props.profile) {
+  if (!profile) {
     return null
   }
 
   let onPhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
-      props.requestPhoto(e.target.files[0])
+      dispatch(requestPhoto(e.target.files[0]))  
     }
   }
-
+  
   let activateEditMode = () => {
     setEditMode(true);
   }
 
   let onSubmit = (formData: FormDataProfileInfoType) => {
-    debugger
-    props.updateProfile(formData);
-    props.isUpdateProgress && setEditMode(false)
+    isUpdateProgress && setEditMode(false)
+    dispatch(updateProfile(formData))
   }
 
   return (
@@ -53,7 +58,7 @@ const ProfileInfo:FC<PropsProfileInfoType> = (props) => {
           <img src={fon} alt="fon" />
         </div>
           <div className={styles.avatar}>
-            <img src={props.profile.photos.small != null ? props.profile.photos.small : profilePhoto} alt="avatar" />
+            <img src={profile.photos.small != null ? profile.photos.small : profilePhoto} alt="avatar" />
           </div>
           <label className={styles.changeAvatar} htmlFor="changeAvatar">
             <img src={camera} alt="camera" />
@@ -63,8 +68,8 @@ const ProfileInfo:FC<PropsProfileInfoType> = (props) => {
         {props.isOwner && <input className={styles.input} id="changeAvatar" type='file' onChange={onPhotoChange} />}
         <div className={styles.statusBody}>
           {editMode ?
-            <ProfileFormData onSubmit={onSubmit} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} />
-            : <ProfileData isOwner={props.isOwner} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus}
+            <ProfileFormData onSubmit={onSubmit} profile={profile} status={status} updateStatus={updateStatus} />
+            : <ProfileData isOwner={props.isOwner} profile={profile} status={status} updateStatus={updateStatus}
               activateEditMode={activateEditMode} />}
         </div>
       </div>
@@ -76,14 +81,14 @@ const ProfileInfo:FC<PropsProfileInfoType> = (props) => {
 
 type PropsProfileDataType= {
   status: string,
-  updateUserStatus: (status: string) => void,
+  updateStatus: (status: string) => void,
   profile: ProfileType,
   isOwner: boolean,
   activateEditMode: () => void
 
 }
 
-const ProfileData:FC<PropsProfileDataType> = ({ profile, status, updateUserStatus, isOwner, activateEditMode }) => {
+const ProfileData:FC<PropsProfileDataType> = ({ profile, status, updateStatus, isOwner, activateEditMode }) => {
   return (
     <div>
       <div className={styles.top}>
@@ -92,7 +97,7 @@ const ProfileData:FC<PropsProfileDataType> = ({ profile, status, updateUserStatu
             {profile.fullName}
           </div>
           <div className={styles.status}>
-            <ProfileStatus status={status} updateUserStatus={updateUserStatus} />
+            <ProfileStatus status={status} updateStatus={updateStatus} />
           </div>
         </div>
         {
@@ -130,15 +135,15 @@ const ProfileData:FC<PropsProfileDataType> = ({ profile, status, updateUserStatu
 
 type PropsProfileFormDataType = {
   status: string,
-  updateUserStatus: (status: string) => void,
+  updateStatus: (status: string) => void,
   profile: ProfileType,
   onSubmit: (formData: FormDataProfileInfoType) => void
 }
 
-const ProfileFormData:FC<PropsProfileFormDataType> = ({ profile, status, updateUserStatus, onSubmit }) => {
+const ProfileFormData:FC<PropsProfileFormDataType> = ({ profile, status, updateStatus, onSubmit }) => {
   return (
     <>
-      <ProfileDataFormRedux initialValues={profile} onSubmit={onSubmit} profile={profile} status={status} updateUserStatus={updateUserStatus} />
+      <ProfileDataFormRedux initialValues={profile} onSubmit={onSubmit} profile={profile} status={status} updateStatus={updateStatus} />
     </>
   )
 }

@@ -1,29 +1,21 @@
 import { FC } from "react"
-import { connect } from "react-redux";
-import { Navigate } from "react-router-dom"
-import { AppStateType } from "../redux/redux-store";
+import { useAppSelector } from "../redux/redux-store";
+import { Navigate } from "react-router-dom";
 
+type PropsType = {};
 
-type PropsType = {
-    isAuth: boolean
-};
-
-const mapStateToProps = (state: AppStateType) => {
-    return {
-        isAuth: state.auth.isAuth
-    };
-};
-
-const withAuthRedirect = (Element: React.ComponentType<any>) => {
+const withAuthRedirect = (Element: React.ElementType) => {
     const RedirectComponent:FC<PropsType> = (props) => {
-        if(!props.isAuth) return <Navigate to={'/login'} />
+        const isAuth = useAppSelector((state) => state.auth.isAuth);
+        if(!isAuth) return <Navigate to={'/login'} />
+        return (
+            <>
+                <Element {...props} />
+            </>
+        )
+    }
 
-        return <Element {...props} />
-    };
-
-    const ConnectedComponent = connect(mapStateToProps)(RedirectComponent);
-
-    return ConnectedComponent;
+    return RedirectComponent;
 };
 
 

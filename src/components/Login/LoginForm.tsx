@@ -4,7 +4,7 @@ import styles from './Login.module.scss'
 import { required } from "../../utils/validators/validators";
 import { createField, Input } from "../common/FormsControls/formsControls";
 import { FC } from "react";
-import { FormDataType } from "./Login";
+import { FormDataType } from "./LoginPage";
 
 
 type PropsLoginFormType = {

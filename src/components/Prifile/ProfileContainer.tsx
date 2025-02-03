@@ -1,13 +1,13 @@
 import { connect } from "react-redux"
-import Profile from "./Profile"
+
 import  { FC, useEffect } from "react";
-import { addPost, profileMount, requestPhoto, requestProfile, requestUserStatus, updateProfile, updateUserStatus } from "../../redux/profile-reducer";
+import { profileMount, requestProfile, requestUserStatus} from "../../redux/profile-reducer";
 import { useParams } from "react-router-dom";
 import { compose } from "redux";
-import withAuthNavigate from "../../hoc/withAuthNavigate";
-import { getAutoRizedUserId, getIsAuth, getIsUpdateProgress, getPosts, getProfile, getProfileMy, getStatus } from "../../redux/profile-selectors";
+import { getAutoRizedUserId } from "../../redux/profile-selectors";
 import { AppStateType } from "../../redux/redux-store";
-import { PostType, ProfileType } from "../../types/types";
+import Profile from "./Profile";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 
 type ParamsType = {
@@ -15,22 +15,12 @@ type ParamsType = {
 }
 
 type MapStateType = {
-    status: string,
     autoRizedUserId: number,
-    isAuth: boolean,
-    posts: Array<PostType>,
-    profile: ProfileType,
-    isUpdateProgress: boolean,
-    profileMy: ProfileType
 }
 type MapDispatchType = {
     requestProfile: (userId: string) => void,
     requestUserStatus: (userId: string) => void,
     profileMount: (profileMoutn: boolean) => void,
-    requestPhoto: (filePhoto: File) => void,
-    updateProfile: (profileData: ProfileType) => void,
-    updateUserStatus: (status: string) => void,
-    addPost: (data: string) => void,
 }
 type OwnType = {}
 type PropsType = MapStateType & MapDispatchType & OwnType;
@@ -58,26 +48,22 @@ let ProifleContainer: FC<PropsType> = (props) => {
     
     return (
 
-         <Profile {...props} isOwner={!owner} requestPhoto={props.requestPhoto} updateProfile={props.updateProfile} />
+        <>
+            <Profile isOwner={!owner} />
+        </>
     )
 }
 
 let mapStateToProps = (state: AppStateType) => {
 
     return {
-        status: getStatus(state),
         autoRizedUserId: getAutoRizedUserId(state),
-        isAuth: getIsAuth(state),
-        posts: getPosts(state),
-        profile: getProfile(state),
-        isUpdateProgress: getIsUpdateProgress(state),
-        profileMy: getProfileMy(state)
 
     };
 };
 export default compose(
-    connect(mapStateToProps, {requestUserStatus, updateUserStatus, addPost, requestProfile, requestPhoto, updateProfile, profileMount}),
-    withAuthNavigate,
+    connect(mapStateToProps, {requestUserStatus, requestProfile, profileMount}),
+    withAuthRedirect,
 ) (ProifleContainer)
 
  

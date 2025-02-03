@@ -1,8 +1,11 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { FilterInitialType } from "../../redux/users-reducer"
 import { SubmitHandler, useForm } from "react-hook-form";
 import styless from './UsersForm.module.scss'
 import classNames from "classnames";
+import { useAppSelector } from "../../redux/redux-store";
+import { getFilter } from "../../redux/users-selectors";
+
 
 type PropsUsersFormType = {
     onSearchUsers: (filter: FilterInitialType) => void
@@ -15,8 +18,16 @@ type UsersFormType = {
 
 
 const UsersForm: FC<PropsUsersFormType> = (props) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<UsersFormType>();
+    const filter = useAppSelector(getFilter);
 
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<UsersFormType>();
+
+    useEffect(() => {
+        reset({
+            term: filter.term,
+            isFriend: String(filter.friend)
+        })
+    }, [filter])
 
     const submit:SubmitHandler<UsersFormType> = (formData) => {
         const { isFriend, term } = formData;

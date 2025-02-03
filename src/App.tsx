@@ -1,22 +1,29 @@
 import './scss/App.scss';
 import {Navigate, Route, Routes } from 'react-router-dom';
-import UsersContainer from './components/Users/UsersContainer';
-import HeaderContainer from './components/Header/HeaderContainer';
 import { connect } from 'react-redux';
 import { appInitialize } from './redux/app-reducer';
-import React, { FC, lazy, useEffect, useLayoutEffect } from 'react';
+import { FC, lazy, useEffect, useLayoutEffect } from 'react';
 import Preloader from './components/common/Preloader/Preloader';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import withLAzy from './hoc/withLazy';
-import InfoContainer from './components/Info/InfoContainer';
 import { getIsAuth } from './redux/auth-selectors';
 import { getActiveMenu, getInitialize, getProfileMount } from './redux/app-selectors';
 import classNames from 'classnames';
-import SitebarContainer from './components/Navbar/SitebarContainer';
 import NotFound from './components/Not-found/NotFound'
-import MusicContainer from './components/Music/MusicContainer';
 import { AppStateType } from './redux/redux-store';
-import LoginContainer from './components/Login/LoginContainer';
+import { UsersWithRedirect } from './components/Users/Users';
+import { DialogsWithRedirect } from './components/Dialogs/Dialogs';
+import { HeaderWithRedirect } from './components/Header/Header';
+import { InfoWithRedirect } from './components/Info/Info';
+import { LoginPage } from './components/Login/LoginPage';
+import { SitebarWithRedirect } from './components/Navbar/Sitebar';
+import { MusicsRedirect } from './components/Music/Musics';
+
+
+
+
+
+
+
 
 
 
@@ -58,22 +65,22 @@ const App:FC<PropsAppType> = (props) => {
 
   return (
     <div className='wrapper'>
-      <div className={classNames('header', {'headerBurger': props.activeMenu})} ><HeaderContainer /></div>
+      <div className={classNames('header', {'headerBurger': props.activeMenu})} ><HeaderWithRedirect /></div>
       <div className={classNames('app-page', {'app-pageBurger': props.activeMenu, 'app-pageLogin': !props.isAuth})}>
         <div className={classNames({'app-page__containerLogin': !props.isAuth, 'app-page__container': props.isAuth, 'app-page__containerProfile': props.profileMoutn, })} >
-          <div className={classNames('app-page__sitebar', {'_activeSiteBar': props.activeMenu})}><SitebarContainer /></div>
+          <div className={classNames('app-page__sitebar', {'_activeSiteBar': props.activeMenu})}><SitebarWithRedirect /></div>
           <div className='app-page__main'>
             <Routes>
               <Route path='/' element={<Navigate to={'/profile'} />} />
               <Route path='/profile/:userId?/*' element={<ProfileContainerLazy />} />
-              <Route path='/dialogs/*' element={<DialogsContainer />} />
-              <Route path='/users' element={<UsersContainer />} />
-              <Route path='/login' element={<LoginContainer />} />
-              <Route path='/music' element={<MusicContainer />} />
+              <Route path='/dialogs/*' element={<DialogsWithRedirect />} />
+              <Route path='/users' element={<UsersWithRedirect />} />
+              <Route path='/login' element={<LoginPage />} />
+              <Route path='/music' element={<MusicsRedirect />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>
-          <div className={classNames({'app-page__info': !props.profileMoutn, 'app-page__infoProfile': props.profileMoutn})}><InfoContainer /></div>
+          <div className={classNames({'app-page__info': !props.profileMoutn, 'app-page__infoProfile': props.profileMoutn})}><InfoWithRedirect /></div>
         </div>
       </div>
     </div>

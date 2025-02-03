@@ -3,7 +3,7 @@ import styles from './ProfileInfo.module.scss'
 
 type PropsProfileStatusType = {
     status: string,
-    updateUserStatus: (status: string) => void
+    updateStatus: (status: string) => void
 }
 type StateProfileStatusType = {
     editMode: boolean,
@@ -12,7 +12,7 @@ type StateProfileStatusType = {
 
 
 class ProfileStatus extends React.Component<PropsProfileStatusType, StateProfileStatusType> {
-
+    
     state = {
         editMode: false,
         status: this.props.status
@@ -39,7 +39,7 @@ class ProfileStatus extends React.Component<PropsProfileStatusType, StateProfile
         this.setState({
             editMode: false
         })
-        this.props.updateUserStatus(this.state.status)
+        this.props.updateStatus(this.state.status)
     }
 
     onStatusChange =(e: React.ChangeEvent<HTMLInputElement>) => {

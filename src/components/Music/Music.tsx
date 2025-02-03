@@ -1,31 +1,26 @@
 import { FC } from "react";
 import { PhotosType } from "../../types/types"
-import Preloader from "../common/Preloader/Preloader";
 import musicPhoto from '../../assets/images/user.jpg'
-import styles from './Music.module.scss'
-import classNames from "classnames";
+import styless from './Music.module.scss'
+import Preloader from "../common/Preloader/Preloader";
 
-type PropsMusicType = {
-        name: string,
-        id: number,
-        photos: PhotosType,
-        status: string,
-        followed: boolean
+type PropsType = {
+    name: string,
+    id: number,
+    photos: PhotosType,
+    status: string,
+    followed: boolean
 };
 
-const Music:FC<PropsMusicType> = ({photos, name}) => {
-    if(!photos) return <Preloader />
 
+export const Music:FC<PropsType> = ({photos, name}) => {
+    if(!photos) <Preloader />
     return (
         <>
-            <div className={classNames({[styles.avatar]: true})}>
+            <div className={styless.avatar}>
                 <img src={photos.large ?? musicPhoto} alt="avatar" />
             </div>
             <div>{name}</div>
         </>
     )
 };
-
-
-
-export default Music;

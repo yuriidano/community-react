@@ -11,12 +11,12 @@ import { FormDataProfileInfoType } from "./ProfileInfo"
 type PropsProfileDataFormType = {
     profile: ProfileType,
     status: string,
-    updateUserStatus: (status: string) => void,
+    updateStatus: (status: string) => void,
 }
 
 type KeysType = ExtractKeysType<FormDataProfileInfoType>
 
-const ProfileDataForm:FC<InjectedFormProps<FormDataProfileInfoType, PropsProfileDataFormType> & PropsProfileDataFormType> = ({ profile, status, updateUserStatus, handleSubmit, error }) => {
+const ProfileDataForm:FC<InjectedFormProps<FormDataProfileInfoType, PropsProfileDataFormType> & PropsProfileDataFormType> = ({ profile, status, updateStatus, handleSubmit, error }) => {
     return (
         <div className={styles.profileDataForm}>
             <form onSubmit={handleSubmit}>
@@ -29,7 +29,7 @@ const ProfileDataForm:FC<InjectedFormProps<FormDataProfileInfoType, PropsProfile
                             </div>
                         </div>
                         <div className={styles.status}>
-                            <ProfileStatus status={status} updateUserStatus={updateUserStatus} />
+                            <ProfileStatus status={status} updateStatus={updateStatus} />
                         </div>
                     </div>
                     <button className={styles.button}>Save</button>

@@ -1,13 +1,13 @@
-import { ThunkAction } from "redux-thunk"
-import { AppStateType, InferActionsTypes } from "./redux-store"
-import { MusicAPI } from "../api/api"
+import exp from "constants"
+import { musicAPI } from "../api/music-api"
+import { InferActionsTypes, ThunkType } from "./redux-store"
 
 export type PhotosType = {
     small: null | string,
     large: null | string
 }
 
-export type MusicType = {
+type MusicType = {
     name: string,
     id: number,
     photos: PhotosType,
@@ -16,52 +16,70 @@ export type MusicType = {
 }
 
 
+type nulblType<T> = null | T;
+
 const initialState = {
     musicPop: [] as Array<MusicType>,
-    isFachingMusic: false 
+    pageSize: 5,
+    currentPage: 1,
+    filter: {
+        term: '',
+        friend: null as nulblType<boolean>
+    },
+    isFaching: false 
 }
 
 type InitialStateType = typeof initialState;
+export type FilterType = typeof initialState.filter;
 
-const musicReducer = (state = initialState, action: ActionsTypes):InitialStateType => {
+const musicReducer = (state = initialState, action: ActionsType):InitialStateType => { 
     switch(action.type) {
         case "music/SET-MUSIC-POP":
             return {
                 ...state,
-                musicPop: action.musicPop
+                musicPop: [...action.payload.musicPop]
             }
-        case "music/TOGGLE-IS-FACHING-MUSIC":
+        case "music/TOGGLE-IS-FACHING":
             return {
                 ...state,
-                isFachingMusic: action.isFachingMusic
+                ...action.payload
+            }
+        case "music/SET-FILTER":
+            return {
+                ...state,
+                ...action.payload
             }
         default:
             return state
     }
+    
 };
 
 
-
-type ActionsTypes = InferActionsTypes<typeof actions>;
-
+type ActionsType = InferActionsTypes<typeof actions>
 
 const actions = {
-    setMusicPop: (musicPop: Array<MusicType>) => ({type: 'music/SET-MUSIC-POP', musicPop} as const),
-    toggleIsFachingMusic: (isFachingMusic: boolean) => ({type: 'music/TOGGLE-IS-FACHING-MUSIC', isFachingMusic}as const )
+    setMusicPop: (musicPop: Array<MusicType>) => ({type: 'music/SET-MUSIC-POP', payload: {musicPop}} as const),
+    toggleIsFaching: (isFaching: boolean) => ({type: 'music/TOGGLE-IS-FACHING', payload: {isFaching}} as const),
+    setFilter: (filter: FilterType) => ({type: 'music/SET-FILTER', payload: {filter}} as const)
 };
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, {}, ActionsTypes>;
 
-export const requestMusicPop = ():ThunkType => async (dispatch, getState) => {
-    try{
-        dispatch(actions.toggleIsFachingMusic(true))
-        let data = await MusicAPI.getMusicPop();
+
+type ThunkTypeMusic = ThunkType<ActionsType>;
+
+
+export const requestMusic = (pageSize: number, currentPage: number, filter: FilterType):ThunkTypeMusic => async (dispatch) => {
+    try {
+        dispatch(actions.setFilter(filter))
+        dispatch(actions.toggleIsFaching(true));
+        const data = await musicAPI.getMusicPop(pageSize, currentPage, filter.term, filter.friend);
         let { items, totalCount } = data;
-        dispatch(actions.setMusicPop(items))
-        dispatch(actions.toggleIsFachingMusic(false))
-    }catch(error) {
+        dispatch(actions.setMusicPop(items));
+        dispatch(actions.toggleIsFaching(false));
+    } catch(error) {
     }
-}
+};
 
 
 

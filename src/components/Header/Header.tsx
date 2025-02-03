@@ -3,21 +3,27 @@ import styles from './Header.module.scss';
 import logo from '../../assets/images/logo.png'
 import classNames from 'classnames';
 import { FC } from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/redux-store';
+import { toggleActiveMenu } from '../../redux/header-reducer';
+import { logout } from '../../redux/auth-reducer';
+import { getActiveMenu, getIsAuth, getLogin, getUserId } from '../../redux/header-selectors';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 
 
-type PropsHeaderType = {
-    logout: () => void,
-    toggleActiveMenu: () => void,
-    isAuth: boolean,
-    login: string | null,
-    userId: number | null,
-    activeMenu: boolean
-}
+type PropsHeaderType = {};
 
-const Header: FC<PropsHeaderType> = (props) => {
+const HeaderPage: FC<PropsHeaderType> = (props) => {
+    const dispatch = useAppDispatch();
+    const isAuth = useAppSelector(getIsAuth);
+    const login = useAppSelector(getLogin);
+    const activeMenu = useAppSelector(getActiveMenu)
 
     const onChangeActiveMenu = () => {
-        props.toggleActiveMenu()
+        dispatch(toggleActiveMenu())
+    }
+
+    const onLogout = () => {
+        dispatch(logout())
     }
 
     return (
@@ -36,11 +42,11 @@ const Header: FC<PropsHeaderType> = (props) => {
                 </div>
                 <div className={styles.loginBlock}>
                     {
-                        props.isAuth ? <div className={styles.loginBody}><div className={styles.login}>{props.login}</div><button className={styles.button} onClick={props.logout} >logout</button> </div>
+                        isAuth ? <div className={styles.loginBody}><div className={styles.login}>{login}</div><button className={styles.button} onClick={onLogout} >logout</button> </div>
                          : <NavLink className={styles.button} to={'/login'}>Login</NavLink>
                     }
                 </div>
-                <div onClick={() => {onChangeActiveMenu()}} className={classNames(styles.burger, {[styles._active]: props.activeMenu, [styles._noactive]: !props.activeMenu})}>
+                <div onClick={() => {onChangeActiveMenu()}} className={classNames(styles.burger, {[styles._active]: activeMenu, [styles._noactive]: !activeMenu})}>
                     <span></span>
                 </div>
             </div>
@@ -48,5 +54,5 @@ const Header: FC<PropsHeaderType> = (props) => {
     );
 };
 
-export default Header;
+export const HeaderWithRedirect = withAuthRedirect(HeaderPage);
 

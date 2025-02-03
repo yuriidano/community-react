@@ -4,13 +4,12 @@ import styles from './Login.module.scss';
 import logo from '../../assets/images/logo.png'
 import classNames from "classnames";
 import { FC } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/redux-store";
+import { getCaptcha, getIsAuth } from "../../redux/auth-selectors";
+import { login } from "../../redux/auth-reducer";
 
 
-type PropsLoginType = {
-    isAuth: boolean,
-    captcha: string | null,
-    login: (email: string, password: string, rememberMy: boolean, captcha: string) => void
-};
+type PropsLoginType = {};
 
 export type FormDataType = {
     email: string, 
@@ -19,14 +18,18 @@ export type FormDataType = {
     captcha: string
 }
 
-let Login:FC<PropsLoginType> = (props) => {
+export const LoginPage:FC<PropsLoginType> = (props) => {
+    const dispatch = useAppDispatch();
+    const isAuth = useAppSelector(getIsAuth);
+    const captchaState = useAppSelector(getCaptcha)
 
     let sendLogin = (formData: FormDataType) => {
         let {email, password, rememberMy, captcha} = formData;
-        props.login(email, password, rememberMy, captcha);
+        
+        dispatch(login(email, password, rememberMy, captcha))
     }
 
-    if(props.isAuth) return <Navigate to={'/profile'} />
+    if(isAuth) return <Navigate to={'/profile'} />
 
     return (
         <div className={styles.login}>
@@ -38,9 +41,9 @@ let Login:FC<PropsLoginType> = (props) => {
                     <a href="#" className={styles.logoText}>Community React</a>
                 </div>
             </div>
-            <div className={classNames({ [styles.loginContent]: !props.captcha, [styles.loginContentCaptcha]: props.captcha })}>
+            <div className={classNames({ [styles.loginContent]: !captchaState, [styles.loginContentCaptcha]: captchaState })}>
                 <h1 className={styles.title}>Sign in</h1>
-                <LoginReduxForm captcha={props.captcha} onSubmit={sendLogin} />
+                <LoginReduxForm captcha={captchaState} onSubmit={sendLogin} />
                 <div className={styles.testData}>
                     <div className={styles.testDataTitle}>Test data</div>
                     <div className={styles.TestDataEmailBody}>
@@ -59,4 +62,3 @@ let Login:FC<PropsLoginType> = (props) => {
 
 
 
-export default Login;

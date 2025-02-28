@@ -32,7 +32,14 @@ const Paginator: FC<PropsPaginatorType> = ({totalUsersCount, pageSize, currentPa
 
     return (
         <div className={styles.paginator}>
-            <Pagination count={pagesCount}  page={currentPage} onChange={handleChange} />
+            <Pagination count={pagesCount}  page={currentPage} onChange={handleChange} sx={{
+        "& .MuiPaginationItem-root": {
+          color: "#6C757D", // Колір тексту
+        },
+        "& .Mui-selected": {
+          color: "#6C757D", // Колір тексту активного елемента
+        },
+      }} />
             {/* <div className={classNames(styles.buttonPrev, {[styles.buttonPrevActive]: portionPage > 1})}>
                 {
                     <span className={styles.buttonPrevSpan} onClick={() => { setPortionPage(portionPage - 1) }} ></span>
@@ -60,6 +67,6 @@ const Paginator: FC<PropsPaginatorType> = ({totalUsersCount, pageSize, currentPa
 
 
 
-
+//color: #6C757D;
 
 export default Paginator;

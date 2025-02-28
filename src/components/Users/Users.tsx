@@ -7,7 +7,7 @@ import UsersForm from './UsersForm';
 import { useAppDispatch, useAppSelector } from '../../redux/redux-store';
 import { getcurrentPage, getFilter, getFollowingInProgress, getPageSize, getTotalUsersCount, getUsers } from '../../redux/users-selectors';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
 
 

@@ -1,0 +1,120 @@
+
+//=============Chat===============//
+.chat {
+    background-color: #FFFFFF;
+    min-height: 570px;
+    border-radius: 15px;
+   // min-height: 100%;
+   padding: 20px 5px 25px 15px;
+}
+
+
+
+//========messages=============//
+.messages {
+    height: 400px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    padding-left: 40px;
+    padding-right: 15px;
+}
+
+.messages::-webkit-scrollbar {
+    width: 5px;
+    
+  }
+
+  .messages::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  .messages::-webkit-scrollbar-thumb {
+    background: #EFF2F6;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+//===========message===============//
+
+.message {
+    display: flex;
+    column-gap: 10px;
+}
+
+.message.messageOvner {
+    display: inline-flex;
+    flex-direction: row-reverse;
+}
+
+.avatar {
+    flex: 0 1 10%;
+    align-self: flex-end;
+
+    max-width: 35px;
+
+    img {
+        max-width: 100%;
+        border-radius: 50%;
+        border: 1px solid #acb1b8;
+    }
+}
+
+.body {
+    flex: 0 0 90%;
+    background-color: #EFF2F6;
+    border-radius: 15px 15px 15px 0;
+    padding: 10px;
+    min-width: 170px;
+    max-width: 300px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    position: relative;
+    &::before {
+        content: "";
+        position: absolute;
+        transform: rotate(180deg);
+        bottom: 0;
+        left: -9px; 
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 10px 0 0; 
+        border-color: #EFF2F6 transparent transparent transparent; 
+        }
+}
+.body.bodyOvner {
+    border-radius: 15px 15px 0 15px;
+    max-width: 300px;
+    min-width: 70px;
+    flex: 0 0 auto;
+    //min-width: auto;
+  
+}
+.body.bodyOvner::before {
+    left: auto;
+    right: -9px; 
+    transform: rotate(260deg);
+}
+
+.name {
+    font-size: 14px;
+    font-weight: 600;
+    &:not(:last-child) {
+    margin-bottom: 10px;
+    }
+}
+
+.name.nameOvner {
+    display: none;
+}
+
+.messageText {
+    line-height: 150%;
+}
+
+
+.s {
+    font-weight: 300;
+}

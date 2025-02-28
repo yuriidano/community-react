@@ -18,28 +18,34 @@ const Sitebar: FC<PropsType> = (props) => {
   const onActiveMenu = () => {
     dispatch(toggleActiveMenu())
   }
+
+  type NavData = {isActive: boolean};
+
+  const isNavDataActive = () => {
+    return (navData: NavData) => navData.isActive ? styles.active : styles.link
+  }
   return (
     <div className={classNames(styles.sitebar,{ [styles.activeMenu]: activeMenu })}>
       <div className={styles.body}>
         <nav className={styles.menu}>
           <ul className={styles.list}>
             <li className={styles.item} onClick={onActiveMenu}>
-              <NavLink to='/profile' className={navData => navData.isActive ? styles.active : styles.link} >Profile</NavLink>
+              <NavLink to='/profile' className={isNavDataActive()} >Profile</NavLink>
             </li>
             <li className={styles.item} onClick={onActiveMenu}>
-              <NavLink to='/dialogs' className={navData => navData.isActive ? styles.active : styles.link} >Messages</NavLink>
+              <NavLink to='/dialogs' className={isNavDataActive()} >Messages</NavLink>
             </li>
             <li className={styles.item} onClick={onActiveMenu}>
-              <NavLink to='/news' className={navData => navData.isActive ? styles.active : styles.link} >News</NavLink>
+              <NavLink to='/users' className={isNavDataActive()} >Users</NavLink>
             </li>
             <li className={styles.item} onClick={onActiveMenu}>
-              <NavLink to='/users' className={navData => navData.isActive ? styles.active : styles.link} >Users</NavLink>
+              <NavLink to='/chat' className={isNavDataActive()} >Chat</NavLink>
             </li>
             <li className={styles.item} onClick={onActiveMenu}>
-              <NavLink to='/music' className={navData => navData.isActive ? styles.active : styles.link} >Music</NavLink>
+              <NavLink to='/music' className={isNavDataActive()} >Music</NavLink>
             </li>
             <li className={styles.item} onClick={onActiveMenu}>
-              <NavLink to='/settings' className={navData => navData.isActive ? styles.active : styles.link} >Settings</NavLink>
+              <NavLink to='/settings' className={isNavDataActive()} >Settings</NavLink>
             </li>
           </ul>
         </nav>

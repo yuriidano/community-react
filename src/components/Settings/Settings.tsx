@@ -1,10 +1,10 @@
 
 
-const Settings = ({}) => {
-    return (
-        <>
-        </>
-    );
+const Settings = () => {
+    return <></>
 };
+
+
+
 
 export default Settings;

@@ -11,10 +11,7 @@ import infoReducer from "./info-reducer";
 import headerReducer from "./header-reducer";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import musicReducer from './music-reducer';
-
-
-
+import chatReducer from './chat-reducer';
 
 
 let rootReducer = combineReducers({
@@ -26,7 +23,7 @@ let rootReducer = combineReducers({
     app: appReducer,
     infoPage: infoReducer,
     header: headerReducer,
-    musicPage: musicReducer
+    chat: chatReducer
 });
 
 type RootReducerType = typeof rootReducer; //(state: GLOBAL_STATE_TYPE): GLOBAL_STATE_TYPE => state;

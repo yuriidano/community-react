@@ -1,22 +1,17 @@
-import { FC } from "react";
-import { useAppSelector } from "../redux/redux-store";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../redux/redux-store"
 
-type PropsType = {};
 
-const withAuthTest = (Element: React.ComponentType) => {
+export const withAuthTest = (Element: React.ElementType) => {
 
-    const RedirectComponent:FC<PropsType> = (props) => {
-        const isAuth = useAppSelector((state) => state.auth.isAuth);
+    const RedirectComponent = (props: {}) => {
+        const isAuth = useAppSelector(state => state.auth.isAuth);
         const navigate = useNavigate();
-        if(!isAuth) navigate('/login');
+
+        if(!isAuth) return navigate('/login')
 
         return <Element {...props} />
-    }
+    }   
 
     return RedirectComponent;
 };
-
-
-export default withAuthTest;
-

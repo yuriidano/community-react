@@ -16,21 +16,18 @@ import { HeaderWithRedirect } from './components/Header/Header';
 import { InfoWithRedirect } from './components/Info/Info';
 import { LoginPage } from './components/Login/LoginPage';
 import { SitebarWithRedirect } from './components/Navbar/Sitebar';
-import { MusicsRedirect } from './components/Music/Musics';
-
-
-
-
-
-
-
+import Settings from './components/Settings/Settings';
 
 
 
 const ProfileContainer = lazy(() => import('./components/Prifile/ProfileContainer'));
+const ChatPage = lazy(() => import('./pages/chat/ChatPage'));
+
 
 
 const ProfileContainerLazy = withLAzy(ProfileContainer);
+const ChatPageLazy = withLAzy(ChatPage);
+
 
 
 type PropsAppType = {
@@ -41,11 +38,9 @@ type PropsAppType = {
   appInitialize: () => void
 }
 
-type OwnAppPropsType = {};
 
+const App = (props: PropsAppType) => {
 
-
-const App:FC<PropsAppType> = (props) => {
 
 
   const catchAllUnhandledErrors = (e: PromiseRejectionEvent) => { }
@@ -76,7 +71,8 @@ const App:FC<PropsAppType> = (props) => {
               <Route path='/dialogs/*' element={<DialogsWithRedirect />} />
               <Route path='/users' element={<UsersWithRedirect />} />
               <Route path='/login' element={<LoginPage />} />
-              <Route path='/music' element={<MusicsRedirect />} />
+              <Route path='/chat' element={<ChatPageLazy />} />
+              <Route path='/settings' element={<Settings />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>

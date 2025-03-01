@@ -1,0 +1,75 @@
+.form {
+    display:  flex;
+    align-items: center;
+    column-gap: 10px;
+    padding-left: 30px;
+}
+
+.formBody {
+
+}
+
+.messageArea {
+    resize: none;
+    overflow: hidden;
+    box-shadow: 0px 1px 13px -7px rgb(128, 113, 133);
+    min-height: 40px;
+    border-radius: 10px;
+    min-width: 500px;
+    padding:20px 15px 10px 15px;
+    color: #6C757D;
+    display: block;
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        top: -50px;
+        left: -50px;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        z-index: 100;
+    }
+    &::placeholder {
+        color: #6C757D;
+    }
+}
+
+
+.button {
+    width: 40px;
+    height: 40px;
+    background-color: #0E6EFB;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease 0s;
+    @media (any-hover: hover) {
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+ .button.buttonDisabled {
+    background-color: #ced2d8;
+    @media (any-hover: hover) {
+        &:hover {
+            transform: scale(1);
+        }
+    }
+ }
+
+.icon {
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    font-size: 26px;
+    @media (any-hover: hover) {
+        &:hover {
+            
+        }
+      }
+
+}
+

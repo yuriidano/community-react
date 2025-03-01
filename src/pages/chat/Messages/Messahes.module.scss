@@ -1,0 +1,55 @@
+
+.messages {
+    height: 400px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    padding-left: 20px;
+    padding-right: 70px;
+    &:not(:last-child) {
+    margin-bottom: 30px;
+    }
+}
+
+.bottomBody {
+    position: absolute;
+    right: 25px;
+    bottom: 28%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: 0px 1px 13px -7px rgb(98, 89, 102);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    @media (any-hover: hover) {
+        &:hover {
+           background-color: rgb(243, 241, 244);
+        }
+    }
+}
+
+.bottomBody.bottomBodyHiden {
+    visibility: hidden;
+}
+
+.arrowBottom {
+    position: absolute;
+    right: 50%;
+    bottom: 50%;
+    transform: translate(50%, 50%);
+}
+
+.messages::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .messages::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  .messages::-webkit-scrollbar-thumb {
+    background: #EFF2F6;
+    border-radius: 10px;
+    cursor: pointer;
+  }

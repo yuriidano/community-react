@@ -40,7 +40,7 @@ export const Messages = () => {
 
   return (
     <div className={stylles.messages} ref={containerRef} onScroll={scrollHandler} >
-      <div onClick={bottomHandler} className={classNames(stylles.bottomBody, {[stylles.bottomBodyHiden]: isScrollActive})}>
+      <div onClick={bottomHandler} className={classNames(stylles.bottomBody, { [stylles.bottomBodyHiden]: isScrollActive })}>
         <ArrowDownwardIcon className={stylles.arrowBottom} />
       </div>
       {

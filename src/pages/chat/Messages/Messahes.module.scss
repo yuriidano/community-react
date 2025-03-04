@@ -1,6 +1,6 @@
 
 .messages {
-    height: 400px;
+    height: 600px;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -8,14 +8,17 @@
     padding-left: 20px;
     padding-right: 70px;
     &:not(:last-child) {
-    margin-bottom: 30px;
+        margin-bottom: 50px;
+    }
+    @media (max-width: 767px){
+        padding-right: 20px;
     }
 }
 
 .bottomBody {
     position: absolute;
     right: 25px;
-    bottom: 28%;
+    bottom: 150px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -26,6 +29,9 @@
         &:hover {
            background-color: rgb(243, 241, 244);
         }
+    }
+    @media (max-width: 767px){
+        bottom: 150px;
     }
 }
 

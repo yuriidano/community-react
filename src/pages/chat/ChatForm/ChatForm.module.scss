@@ -1,22 +1,27 @@
 .form {
-    display:  flex;
+    display: flex;
     align-items: center;
     column-gap: 10px;
     padding-left: 30px;
+    @media (max-width: 440px){
+        padding-left: 15px;
+    }
+    padding-left: 10px;
 }
 
 .formBody {
-
+    flex: 0 1 70%;
+    display: flex;
 }
 
 .messageArea {
+    flex: 1 1 auto;
     resize: none;
     overflow: hidden;
     box-shadow: 0px 1px 13px -7px rgb(128, 113, 133);
     min-height: 40px;
     border-radius: 10px;
-    min-width: 500px;
-    padding:20px 15px 10px 15px;
+    padding:24px 15px 10px 15px;
     color: #6C757D;
     display: block;
     position: relative;
@@ -50,6 +55,9 @@
             transform: scale(1.1);
         }
     }
+    @media (max-width: 767px){
+          
+    }
 }
 
  .button.buttonDisabled {
@@ -65,11 +73,5 @@
     background-color: transparent;
     color: rgb(255, 255, 255);
     font-size: 26px;
-    @media (any-hover: hover) {
-        &:hover {
-            
-        }
-      }
-
 }
 

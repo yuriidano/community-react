@@ -10,9 +10,8 @@
 }
 
 .avatar {
-    flex: 0 1 10%;
+    flex: 0 0 40px;
     align-self: flex-end;
-
     max-width: 35px;
 
     img {
@@ -44,12 +43,24 @@
         border-width: 10px 10px 0 0; 
         border-color: #EFF2F6 transparent transparent transparent; 
     }
+    @media (max-width: 600px){
+        min-width: 100px;
+        max-width: 210px;
+    }
+    @media (max-width: 370px){
+        max-width: 210px;
+    }
 }
 .body.bodyOvner {
     border-radius: 15px 15px 0 15px;
     max-width: 300px;
     min-width: 70px;
     flex: 0 0 auto;
+    @media (max-width: 600px){
+        max-width: 210px;
+    }
+
+    
   
 }
 .body.bodyOvner::before {

@@ -23,7 +23,7 @@ let rootReducer = combineReducers({
     app: appReducer,
     infoPage: infoReducer,
     header: headerReducer,
-    chat: chatReducer
+    chat: chatReducer,
 });
 
 type RootReducerType = typeof rootReducer; //(state: GLOBAL_STATE_TYPE): GLOBAL_STATE_TYPE => state;

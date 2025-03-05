@@ -2,8 +2,6 @@ import preloader from '../../../assets/images/loader.gif';
 
 
 
-
-
 let Preloader = () => {
     return (
         <div style={{maxWidth: '30px'}} >

@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { ProfileType } from '../../../../types/types';
 import styles from './Post.module.scss';
 
@@ -9,7 +8,7 @@ type PropsPostType = {
   likeCounter: number
 }
 
-const Post: FC<PropsPostType> = (props) => {
+const Post = (props: PropsPostType) => {
   if(!props.profileMy.photos) return null
 
   return (

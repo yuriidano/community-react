@@ -2,7 +2,7 @@ import styles from './info.module.scss';
 import fon from '../../assets/images/fon.jpeg'
 import UserPhoto from '../../assets/images/user.jpg';
 import classNames from 'classnames';
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import Preloader from '../common/Preloader/Preloader';
 import { useAppDispatch, useAppSelector } from '../../redux/redux-store';
 import { getProfile, getUserId } from '../../redux/info-selectors';
@@ -11,9 +11,7 @@ import withAuthRedirect from '../../hoc/withAuthRedirect';
 
 
 
-type PropsInfoType = {};
-
-const Info: FC<PropsInfoType> = (props) => {
+const Info = () => {
     const dispatch = useAppDispatch();
     const profile = useAppSelector(getProfile);
     const userId = useAppSelector(getUserId) 

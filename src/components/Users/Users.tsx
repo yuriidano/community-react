@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import Paginator from '../common/Paginator/Paginator';
 import User from './User';
 import styles from './Users.module.scss'
@@ -12,12 +12,7 @@ import queryString from 'query-string';
 
 
 
-
-
-
-type PropsUsersType = {};
-
-export const Users: FC<PropsUsersType> = (props) => {
+export const Users = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const location = useLocation()

@@ -1,17 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Sitebar.module.scss'
 import classNames from 'classnames';
-import { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/redux-store';
 import { getActiveMenu } from '../../redux/sitebar-selectors';
 import { toggleActiveMenu } from '../../redux/header-reducer';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 
 
-
-type PropsType = {};
-
-const Sitebar: FC<PropsType> = (props) => {
+const Sitebar = () => {
   const dispatch = useAppDispatch();
   const activeMenu = useAppSelector(getActiveMenu);
 

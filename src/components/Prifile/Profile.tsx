@@ -1,19 +1,43 @@
-import { FC } from 'react';
+import { useParams } from 'react-router-dom';
 import MyPosts from './MyPosts/MyPosts';
 import s from './Profile.module.scss';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
+import { useEffect } from 'react';
+import { profileMount, requestProfile, requestUserStatus } from '../../redux/profile-reducer';
+import { useAppDispatch, useAppSelector } from '../../redux/redux-store';
+import { getAutoRizedUserId } from '../../redux/profile-selectors';
 
-type PropsProfileType = {
-  isOwner: boolean
+
+type ParamsType = {
+  userId?: string 
 }
 
+ const Profile = () => {
+    const disatch = useAppDispatch();
+    const autoRizedUserId = useAppSelector(getAutoRizedUserId)
 
- const Profile: FC<PropsProfileType> = (props) => {
+        let {userId} = useParams<ParamsType>();
+        let owner = userId;
+        if(!userId && autoRizedUserId !== null) {
+            userId = String(autoRizedUserId); 
+        };
+    
+    
+        useEffect(() => {
+          disatch(requestProfile(Number(userId)));
+          disatch(requestUserStatus(Number(userId)));
+          disatch(profileMount(true));
+    
+            return () => {
+                profileMount(false);
+            }
+        }, [userId])
+
 
 
   return (
     <div className={s.profile}>
-      <ProfileInfo isOwner={props.isOwner} />
+      <ProfileInfo isOwner={!owner} />
       <MyPosts />
     </div>
   );

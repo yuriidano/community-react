@@ -2,7 +2,7 @@ import styles from './ProfileInfo.module.scss';
 import ProfileStatus from './ProfileStatus';
 import profilePhoto from '../../../assets/images/user.jpg';
 import ProfileDataFormRedux from './ProfileDadaForm';
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import fon from '../../../assets/images/fon.jpeg'
 import camera from '../../../assets/images/icons/camera.svg';
 import { ProfileType } from '../../../types/types';
@@ -14,11 +14,10 @@ type PropsProfileInfoType = {
   isOwner: boolean,
 };
 
-
 export type FormDataProfileInfoType = ProfileType;
 
 
-const ProfileInfo:FC<PropsProfileInfoType> = (props) => {
+const ProfileInfo = (props: PropsProfileInfoType) => {
   const dispatch = useAppDispatch();
   const status = useAppSelector(getStatus);
   const profile = useAppSelector(getProfile);
@@ -88,7 +87,7 @@ type PropsProfileDataType= {
 
 }
 
-const ProfileData:FC<PropsProfileDataType> = ({ profile, status, updateStatus, isOwner, activateEditMode }) => {
+const ProfileData = ({ profile, status, updateStatus, isOwner, activateEditMode }: PropsProfileDataType) => {
   return (
     <div>
       <div className={styles.top}>
@@ -140,7 +139,7 @@ type PropsProfileFormDataType = {
   onSubmit: (formData: FormDataProfileInfoType) => void
 }
 
-const ProfileFormData:FC<PropsProfileFormDataType> = ({ profile, status, updateStatus, onSubmit }) => {
+const ProfileFormData = ({ profile, status, updateStatus, onSubmit }: PropsProfileFormDataType) => {
   return (
     <>
       <ProfileDataFormRedux initialValues={profile} onSubmit={onSubmit} profile={profile} status={status} updateStatus={updateStatus} />
@@ -150,12 +149,12 @@ const ProfileFormData:FC<PropsProfileFormDataType> = ({ profile, status, updateS
 
 
 
-type ContactsTupe = {
+type ContactsType = {
   contactTitle: string,
   contactValue: string | null
 }
 
-const Contacts:FC<ContactsTupe> = ({contactTitle, contactValue}) => {
+const Contacts = ({contactTitle, contactValue}: ContactsType) => {
   return (
     <div>
       <span>{contactTitle}</span>: {contactValue}

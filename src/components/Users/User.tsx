@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import styles from './Users.module.scss';
 import userPhotos from '../../assets/images/user.jpg';
 import { UserType } from '../../types/types';
-import { FC } from 'react';
 
 type PropsUserType = {
     user: UserType,
@@ -11,7 +10,7 @@ type PropsUserType = {
     followingInProgress: Array<number>
 }
 
-let User: FC<PropsUserType> = ({ user, followSucces, unfollowSucces, followingInProgress }) => {
+let User = ({ user, followSucces, unfollowSucces, followingInProgress }: PropsUserType) => {
     return (
         <div className={styles.userBody}>
             <div className={styles.user}>
@@ -34,9 +33,7 @@ let User: FC<PropsUserType> = ({ user, followSucces, unfollowSucces, followingIn
                                 followSucces(user.id);
 
                             }} className={styles.button} >Follow</button>
-
                     }
-
                 </div>
             </div>
         </div>

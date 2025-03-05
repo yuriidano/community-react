@@ -3,13 +3,10 @@ import LoginReduxForm from "./LoginForm";
 import styles from './Login.module.scss';
 import logo from '../../assets/images/logo.png'
 import classNames from "classnames";
-import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/redux-store";
 import { getCaptcha, getIsAuth } from "../../redux/auth-selectors";
 import { login } from "../../redux/auth-reducer";
 
-
-type PropsLoginType = {};
 
 export type FormDataType = {
     email: string, 
@@ -18,7 +15,7 @@ export type FormDataType = {
     captcha: string
 }
 
-export const LoginPage:FC<PropsLoginType> = (props) => {
+export const LoginPage = () => {
     const dispatch = useAppDispatch();
     const isAuth = useAppSelector(getIsAuth);
     const captchaState = useAppSelector(getCaptcha)

@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { useEffect } from "react";
 import { FilterInitialType } from "../../redux/users-reducer"
 import { SubmitHandler, useForm } from "react-hook-form";
 import styless from './UsersForm.module.scss'
@@ -17,7 +17,7 @@ type UsersFormType = {
 };
 
 
-const UsersForm: FC<PropsUsersFormType> = (props) => {
+const UsersForm = (props: PropsUsersFormType) => {
     const filter = useAppSelector(getFilter);
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm<UsersFormType>();

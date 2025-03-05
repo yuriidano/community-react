@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import s from './../Dialogs.module.scss';
-import { FC } from 'react';
+import stylles from './../Dialogs.module.scss';
 
 type PropsType = {
     name: string,
@@ -8,14 +7,14 @@ type PropsType = {
     icon: string,
 }
 
-const DialogItem: FC<PropsType> = (props) => {
+const DialogItem = (props: PropsType) => {
     const path = '/dialogs/' + props.id;
     return (
-        <div className={s.dialog}>
-            <NavLink to={path} className={s.icon}>
+        <div className={stylles.dialog}>
+            <NavLink to={path} className={stylles.icon}>
                 <img src={props.icon} alt="icon" />
             </NavLink>
-            <NavLink to={path} className={s.name}>{props.name}</NavLink>
+            <NavLink to={path} className={stylles.name}>{props.name}</NavLink>
         </div>
     );
 };

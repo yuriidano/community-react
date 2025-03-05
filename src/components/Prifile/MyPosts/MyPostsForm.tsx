@@ -1,28 +1,18 @@
-
 import userPost from '../../../assets/images/icons/userPost.svg'
 import plus from '../../../assets/images/icons/plus.svg'
 import classNames from 'classnames';
 import styles from './MyPosts.module.scss'
-
-
-
 import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from '../../../redux/redux-store';
 import { addPost } from '../../../redux/profile-reducer';
 
 
-
-type PropsMyPostFormType = {};
-
 type MyPostFormType = {
     post: string
 }
 
-
-
-
-const MyPostForm:FC<PropsMyPostFormType> = (props) => {
+const MyPostForm = () => {
     const dispatch = useAppDispatch();
 
     const {register, handleSubmit, formState: {errors} } = useForm<MyPostFormType>();

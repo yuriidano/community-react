@@ -2,17 +2,15 @@ import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/images/logo.png'
 import classNames from 'classnames';
-import { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/redux-store';
 import { toggleActiveMenu } from '../../redux/header-reducer';
 import { logout } from '../../redux/auth-reducer';
-import { getActiveMenu, getIsAuth, getLogin, getUserId } from '../../redux/header-selectors';
+import { getActiveMenu, getIsAuth, getLogin } from '../../redux/header-selectors';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 
 
-type PropsHeaderType = {};
 
-const HeaderPage: FC<PropsHeaderType> = (props) => {
+const HeaderPage = () => {
     const dispatch = useAppDispatch();
     const isAuth = useAppSelector(getIsAuth);
     const login = useAppSelector(getLogin);

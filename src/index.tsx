@@ -4,7 +4,7 @@ import './index.css';
 import './css/obnusenie.css';
 import App from './App';
 import store from './redux/redux-store';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 
@@ -18,13 +18,6 @@ root.render(
         {/* </React.StrictMode> */}
     </BrowserRouter>
 );
-
-
-
-
-
-
-
 
 
 

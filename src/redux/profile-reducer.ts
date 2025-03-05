@@ -80,9 +80,6 @@ export const actions = {
 }
 
 
-
-
-
 type ThunkTypeProfile = ThunkType<ActionsTypes>;
 
 export const requestUserStatus = (userId: number):ThunkTypeProfile => async (dispatch) => {

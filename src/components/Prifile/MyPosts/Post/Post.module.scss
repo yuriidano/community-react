@@ -1,11 +1,8 @@
-
-
 .post {
   display: flex;
   align-items: flex-start;
   column-gap: 20px;
 }
-
 
 .avatar {
   max-width: 35px;
@@ -19,7 +16,6 @@
     display: none;
   }
 }
-
 
 .body {
   flex: 1 1 auto;

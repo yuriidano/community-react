@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import styles from './MyPosts.module.scss';
 import Post from './Post/Post';
 import MyPostForm from './MyPostsForm';
@@ -6,10 +5,8 @@ import { useAppSelector } from '../../../redux/redux-store';
 import { getPosts, getProfileMy } from '../../../redux/profile-selectors';
 
 
-type PropsMyPostsType = {};
 
-
-const MyPosts: FC<PropsMyPostsType> = (props) => {
+const MyPosts = () => {
   const posts = useAppSelector(getPosts);
   const profileMy = useAppSelector(getProfileMy)
 

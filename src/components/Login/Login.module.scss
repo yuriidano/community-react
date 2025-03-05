@@ -1,6 +1,3 @@
-.login {
-   
-}
 
 .loginContent {
     max-width: 350px;
@@ -92,10 +89,6 @@
 }
 
 
-
-
-
-
 .loginEmail {
     &:not(:last-child) {
         margin-bottom: 30px;
@@ -140,12 +133,6 @@
     margin-bottom: 50px;
     }
 }
-
-.loginRemember {
-
-}
-
-
 
 .loginButtonBody {
     display: flex;
@@ -236,7 +223,6 @@
 .TestDataEmaiTitle {
     font-weight: bold;
 }
-.TestDataEmai {}
 
 .TestDataPasswordBody {
     display: flex;

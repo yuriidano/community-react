@@ -17,15 +17,11 @@ import { InfoWithRedirect } from './components/Info/Info';
 import { LoginPage } from './components/Login/LoginPage';
 import { SitebarWithRedirect } from './components/Navbar/Sitebar';
 import Settings from './components/Settings/Settings';
+import Profile from './components/Prifile/Profile';
 
 
 
-const ProfileContainer = lazy(() => import('./components/Prifile/ProfileContainer'));
 const ChatPage = lazy(() => import('./pages/chat/ChatPage'));
-
-
-
-const ProfileContainerLazy = withLAzy(ProfileContainer);
 const ChatPageLazy = withLAzy(ChatPage);
 
 
@@ -67,7 +63,7 @@ const App = (props: PropsAppType) => {
           <div className='app-page__main'>
             <Routes>
               <Route path='/' element={<Navigate to={'/profile'} />} />
-              <Route path='/profile/:userId?/*' element={<ProfileContainerLazy />} />
+              <Route path='/profile/:userId?/*' element={<Profile />} />
               <Route path='/dialogs/*' element={<DialogsWithRedirect />} />
               <Route path='/users' element={<UsersWithRedirect />} />
               <Route path='/login' element={<LoginPage />} />

@@ -21,6 +21,7 @@ import Profile from './components/Prifile/Profile';
 
 
 
+
 const ChatPage = lazy(() => import('./pages/chat/ChatPage'));
 const ChatPageLazy = withLAzy(ChatPage);
 

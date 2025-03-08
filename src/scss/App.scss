@@ -8,8 +8,8 @@ body {
     color: #6C757D;
     background-color: #EFF2F6;
     position: relative;
-    @media (max-width: 767px){
-      & ._activeSiteBar {
+    & ._activeSiteBar {
+      @media (max-width: 767px){
         &::before {
           content: '';
           position: fixed;
@@ -20,8 +20,8 @@ body {
           background-color: #EFF2F6;
           z-index: 10;
         }
-      } 
-    }
+      }
+    } 
   }
   
   #root {
@@ -110,6 +110,7 @@ body {
     &__containerLogin {
       min-height: 100%;
       flex: 1 1 auto;
+      grid-template-columns: 1fr;
     } 
 
     &__main {

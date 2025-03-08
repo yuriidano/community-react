@@ -6,25 +6,20 @@ import classNames from "classnames";
 import { useAppDispatch, useAppSelector } from "../../redux/redux-store";
 import { getCaptcha, getIsAuth } from "../../redux/auth-selectors";
 import { login } from "../../redux/auth-reducer";
+import LoginForm from "./LoginForm";
 
 
-export type FormDataType = {
-    email: string, 
-    password: string, 
-    rememberMy: boolean, 
-    captcha: string
-}
 
 export const LoginPage = () => {
-    const dispatch = useAppDispatch();
+   // const dispatch = useAppDispatch();
     const isAuth = useAppSelector(getIsAuth);
     const captchaState = useAppSelector(getCaptcha)
 
-    let sendLogin = (formData: FormDataType) => {
-        let {email, password, rememberMy, captcha} = formData;
+    // let sendLogin = (formData: FormDataType) => {
+    //     let {email, password, rememberMy, captcha} = formData;
         
-        dispatch(login(email, password, rememberMy, captcha))
-    }
+    //     dispatch(login(email, password, rememberMy, captcha))
+    // }
 
     if(isAuth) return <Navigate to={'/profile'} />
 
@@ -40,7 +35,7 @@ export const LoginPage = () => {
             </div>
             <div className={classNames({ [styles.loginContent]: !captchaState, [styles.loginContentCaptcha]: captchaState })}>
                 <h1 className={styles.title}>Sign in</h1>
-                <LoginReduxForm captcha={captchaState} onSubmit={sendLogin} />
+                <LoginForm captcha={captchaState}  />
                 <div className={styles.testData}>
                     <div className={styles.testDataTitle}>Test data</div>
                     <div className={styles.TestDataEmailBody}>

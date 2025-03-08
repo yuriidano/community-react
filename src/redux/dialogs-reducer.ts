@@ -1,53 +1,61 @@
-import { ThunkAction } from "redux-thunk";
-import { AppStateType, InferActionsTypes, ThunkType } from "./redux-store";
+import { dialogsAPI } from "../api/dialogs-api";
+import { InferActionsTypes, ThunkType } from "./redux-store";
 
-
-type dialogsItemType = {
+type DialogType = {
     id: number,
-    name: string,
-    url: string
-}
-type messageItemType = {
-    id: number,
-    message: string
-}
-
-type InitialStateType = {
-    dialods: Array<dialogsItemType>,
-    messages: Array<messageItemType>
+    userName: string,
+    hasNewMessages: boolean,
+    lastDialogActivityDate: string,
+    lastUserActivityDate: string,
+    newMessagesCount: number,
+    photos: {small: string, large: string}
 }
 
+type MessageType = {
+    addedAt: string,
+    body: string,
+    id: string,
+    recipientId: number,
+    senderId: number,
+    senderName: string,
+    translatedBody: null | string,
+    viewed: boolean
+}
 
-let initialState: InitialStateType = {
-    dialods: [
-        { id: 1, name: 'Yura', url: 'https://mighty.tools/mockmind-api/content/human/72.jpg' },
-        { id: 2, name: 'Ira', url: 'https://mighty.tools/mockmind-api/content/human/78.jpg' },
-        { id: 3, name: 'Ola', url: 'https://mighty.tools/mockmind-api/content/human/55.jpg' },
-        { id: 4, name: 'Dasha', url: 'https://mighty.tools/mockmind-api/content/human/9.jpg' },
-        { id: 5, name: 'Kata', url: 'https://mighty.tools/mockmind-api/content/human/26.jpg' },
-        { id: 6, name: 'Valera', url: 'https://mighty.tools/mockmind-api/content/human/37.jpg' },
-    ],
-    messages: [
-        { id: 1, message: 'Hi' },
-        { id: 2, message: 'How is you' },
-        { id: 3, message: 'Yo' },
-    ] 
+let initialState = {
+    dialods: [] as DialogType[],
+    messages: [] as MessageType[],
+    currentDialogId: null as null | number
 };
 
+type initialStateType = typeof initialState;
 
-const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
-
+const dialogsReducer = (state = initialState, action: ActionsTypes):initialStateType => {
     switch (action.type) {
-        case 'dialogs/SEND_MESSAGE': 
-            let newMessage = {id: 4, message: action.data}
-        return {
-            ...state,
-            messages: [...state.messages, newMessage],
-        };
-        case 'dialogs/DELETE_MESAGE':
+        case "dialogs/ALL-RECIVED":
             return {
                 ...state,
-                messages: state.messages.filter(m => m.id != action.userId)
+                dialods: [...action.payload.dialogs]
+            }
+        case "dialogs/MESSAGES-RECIVED":
+            return {
+                ...state,
+                messages: action.payload.messages
+            }
+        case "dialogs/DELETE-MESSAGE":
+            return {
+                ...state,
+                messages: [...state.messages.filter(message => message.id !== action.payload.messageId)]
+            }
+        case "dialogs/CURRENT-DIALOG-RECIVED":
+            return {
+                ...state,
+                currentDialogId: action.payload.id
+            }
+        case "dialogs/SEND-MESSAGE":
+            return {
+                ...state,
+                messages: [...state.messages, action.payload.message]
             }
         default:
             return state; 
@@ -57,17 +65,53 @@ const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStat
 type ActionsTypes = InferActionsTypes<typeof actions>;
 
 export const actions = {
-    newMessage: (data: string) => ({ type: 'dialogs/SEND_MESSAGE', data } as const),
-    deleteMessage: (userId: number) => ({ type: 'dialogs/DELETE_MESAGE', userId } as const)
+    allDialogsRecived: (dialogs: DialogType[]) => ({type: 'dialogs/ALL-RECIVED', payload: {dialogs}} as const),
+    messagesRecived: (messages: MessageType[]) => ({type: 'dialogs/MESSAGES-RECIVED', payload: {messages}} as const),
+    deleteMessage: (messageId: string) => ({type: 'dialogs/DELETE-MESSAGE', payload: {messageId}} as const),
+    currentDialogIdRecived: (id: number) => ({type: 'dialogs/CURRENT-DIALOG-RECIVED', payload: {id}} as const),
+    sendMessage: (message: MessageType) => ({type: 'dialogs/SEND-MESSAGE', payload: {message}} as const)
 }
 
 
 
 type ThunkTypeDialogs = ThunkType<ActionsTypes>;
 
-export const sendMessage = (data: string):ThunkTypeDialogs => (dispatch) => {
-    dispatch(actions.newMessage(data))
+export const requestDialogs = ():ThunkTypeDialogs => async (dispatch) => {
+    try{
+        let data = await dialogsAPI.getAllDialogs();
+        dispatch(actions.allDialogsRecived(data))
+    }catch(error) {
+    }
 };
+
+
+export const requestMessages = (userId: number):ThunkTypeDialogs => async (dispatch) => {
+    try{
+        let data = await dialogsAPI.getListMessagesWithFriend(userId);
+        let {items} = data;
+        dispatch(actions.messagesRecived(items))
+        dispatch(actions.currentDialogIdRecived(userId))
+    }catch(error) {
+    }
+};
+
+export const deleteMessage = (messageId: string):ThunkTypeDialogs => async (dispatch) => {
+    try{
+        let data = await dialogsAPI.deleteMessage(messageId);
+        dispatch(actions.deleteMessage(messageId))
+    }catch(error) {
+    }
+};
+
+export const sendMessage = (userId: number, body: string,):ThunkTypeDialogs => async (dispatch) => {
+    try{
+        let data = await dialogsAPI.postMessageFriend(userId, body);
+
+        dispatch(actions.sendMessage(data.data.message))
+    }catch(error) {
+    }
+};
+
 
 
 

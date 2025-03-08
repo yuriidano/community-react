@@ -1,51 +1,84 @@
-import { InjectedFormProps, reduxForm } from "redux-form"
+import { useEffect } from 'react';
+import { clearGlobalError, login } from '../../redux/auth-reducer';
+import { useAppDispatch, useAppSelector } from '../../redux/redux-store';
 import styles from './Login.module.scss'
-
-import { required } from "../../utils/validators/validators";
-import { createField, Input } from "../common/FormsControls/formsControls";
-import { FC } from "react";
-import { FormDataType } from "./LoginPage";
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 
-type PropsLoginFormType = {
+
+type PropsFormType = {
     captcha: string | null,
-};
+}
 
-type KeysNamesType = Extract<keyof FormDataType, string>
+export type FormDataType = {
+    email: string, 
+    password: string, 
+    rememberMy: boolean, 
+    captcha: string | null
+}
 
-let LoginForm:FC<InjectedFormProps<FormDataType, PropsLoginFormType> &PropsLoginFormType> = (props) => {
+
+
+let LoginForm = (props: PropsFormType) => {
+    const dispatch = useAppDispatch();
+    const clobalError = useAppSelector(state => state.auth.globalError);
+    const isAuth = useAppSelector(state => state.auth.isAuth)
+    const { register, handleSubmit, setError, formState: {errors}} = useForm<FormDataType>();
+
+
+    useEffect(() => {
+        if(clobalError) {
+            setError('root', {type: 'validate', message: clobalError});
+            dispatch(clearGlobalError())
+        }
+
+    }, [clobalError, isAuth])
+
+    const submit:SubmitHandler<FormDataType> = (formData) => {
+        let {email, password, rememberMy, captcha} = formData;
+        let captchaForm = captcha === undefined ? null : captcha
+
+        dispatch(login(email, password, rememberMy, captchaForm))
+    }
+    
     return (
-        <form onSubmit={props.handleSubmit} >
+        <form onSubmit={handleSubmit(submit)} >
             <div className={styles.loginEmail}>
-                {createField<KeysNamesType>(undefined, Input, "email", "email...", [required], undefined, undefined)}
+                <input {...register('email', {required: 'email required'})} placeholder='email...' />
+                {errors.email &&
+                    <span className={styles.eror}>{errors.email.message}</span>
+                }
             </div>
 
             <div className={styles.loginPassword}>
-                {createField<KeysNamesType>(undefined, Input, "password", "password...", [required], 'password', undefined)}
+                <input {...register('password', {required: 'password required'})} type='password' placeholder='password...' />
+                {errors.password &&
+                    <span className={styles.eror}>{errors.password.message}</span>
+                }
             </div>
 
             <div className={styles.loginFormBody}>
-                <div className={styles.loginRemember}>{createField<KeysNamesType>(10, Input, "rememberMy", undefined, [], 'checkbox', undefined)}</div>
+            <input type='checkbox' {...register('rememberMy')} />
                 <span className={styles.loginRemember}>remember my</span>
             </div>
 
 
             {props.captcha &&
-                <div>
+                <div className={styles.captchaBody}>
                     <div className={styles.captchaFoto}>
                         <img  src={props.captcha} alt="" />
                     </div>
-                    <div  className={styles.captcha}>
-                        {createField<KeysNamesType>(10, Input, "captcha", "captcha...", [required], undefined, undefined)}
+                    <div className={styles.captcha}>
+                        <input  {...register('captcha', { required: 'captcha required' })} placeholder='captcha...' />
+                        {errors.captcha &&
+                            <span className={styles.eror}>{errors.captcha.message}</span>
+                        }
                     </div>
                 </div>
             }
-
-            <div className={styles.someFormError}>
-                {props.error &&
-                    <div >{props.error}</div>
-                }
-            </div>
+            {errors.root &&
+                <span className={styles.globalError}>{errors.root.message}</span>
+            }
             <div className={styles.loginButtonBody}>
                 <button className={styles.loginButton}>login</button>
             </div>
@@ -53,6 +86,6 @@ let LoginForm:FC<InjectedFormProps<FormDataType, PropsLoginFormType> &PropsLogin
     )
 };
 
-const LoginReduxForm = reduxForm<FormDataType, PropsLoginFormType>({form: 'login'})(LoginForm);
 
-export default LoginReduxForm;
+
+export default LoginForm;

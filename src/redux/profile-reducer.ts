@@ -57,6 +57,7 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
                 isUpdateProgress: true
             }
         case 'profile/TOGGLE_PROFILE_MOUNT':
+  
             return {
                 ...state,
                 ...action.payload
@@ -130,6 +131,7 @@ export const updateProfile = (profileData: ProfileType):ThunkTypeProfile => asyn
 }
 
 export const profileMount = (profileMoutn: boolean):ThunkTypeProfile => (dispatch) => {
+    debugger
     dispatch(actions.toggleProfilemount(profileMoutn));
 };
 

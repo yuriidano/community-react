@@ -1,6 +1,6 @@
 
 .dialogs {
-    padding: 20px 15px 25px 15px;
+    padding: 25px 15px 25px 5px;
     display: grid;
     grid-template-columns: minmax(auto, 170px) minmax(auto, 800px);
     column-gap: 15px;
@@ -19,7 +19,9 @@
 .dialogsItems {
     display: flex;
     flex-direction: column;
-    row-gap: 60px;
+    align-items: center;
+    row-gap: 40px;
+    padding-right: 5px;
     border-right: 1px solid rgba(195, 183, 183, 0.521);
     @media (max-width: 992px){
         row-gap: 40px;  
@@ -30,34 +32,8 @@
 }
 
 
-.dialog {
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
-    @media (max-width: 420px){
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        row-gap: 10px;
-    }
-}
 
-.icon {
-    overflow: hidden;
-    flex: 0 0 50px;
-    max-width: 50px;
-    max-height: 50px;
-    border-radius: 50%;
 
-    img {
-        max-width: 100%;
-    }
-}
-
-.name {
-    font-weight: 600;
-    color: #6C757D;
-}
 
 .body {
     &:not(:last-child) {
@@ -83,51 +59,11 @@
     }
 }
 
-.message {
-    background-color: #EFF2F6;
-    border-radius: 25px;
-    padding: 5px 10px;
-}
 
-
-.areaBody {
+.messagesItems {
+    height: 600px;
     &:not(:last-child) {
-        margin-bottom: 15px;
+    margin-bottom: 20px;
     }
 }
 
-.area {
-    min-height: 70px;
-    background-color: RGB(240, 242, 245);
-    padding: 10px;
-    resize: none;
-    border-radius: 10px;
-    min-width: 300px;
-    @media (max-width: 550px){
-        min-width: 200px;
-    }
-    @media (max-width: 350px){
-        min-width: 150px;
-    }
-
-}
-
-.button {
-    background-color: #0E6EFB;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 35px;
-    border-radius: 10px;
-   min-width: 100px;
-    color: #FFFFFF;
-    font-weight: 500;
-    font-size: 16px;
-    transition: all 0.3s ease 0s;
-
-    @media (any-hover: hover) {
-        &:hover {
-            background-color: #0051ca;
-        }
-      }
-}

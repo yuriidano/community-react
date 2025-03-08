@@ -24,12 +24,13 @@ type ParamsType = {
     
     
         useEffect(() => {
+         if(userId) {
           disatch(requestProfile(Number(userId)));
           disatch(requestUserStatus(Number(userId)));
+         }
           disatch(profileMount(true));
-    
             return () => {
-                profileMount(false);
+              disatch(profileMount(false));
             }
         }, [userId])
 

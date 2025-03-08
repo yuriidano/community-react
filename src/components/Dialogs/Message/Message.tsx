@@ -1,11 +1,31 @@
-import s from './../Dialogs.module.scss';
+import stylles from  './Message.module.scss';
+import CheckIcon from '@mui/icons-material/Check';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
+import { LongMenu } from './MenuMessage/MenuMessage';
+
 
 type PropsType = {
-    message: string
+    addedAt: string,
+    body: string,
+    id: string,
+    recipientId: number,
+    senderId: number,
+    senderName: string,
+    translatedBody: null | string,
+    viewed: boolean
 }
 
-const Message = ({message}: PropsType) => {
-    return  <div className={s.message}>{message}</div>
+const Message = ({body, viewed, addedAt, id}: PropsType) => {
+    return (
+        <div>
+            <LongMenu id={id} />
+            <div>{body}</div>
+            <div className={stylles.body}>
+            <div>{addedAt}</div>
+                <div>{viewed ? <DoneAllIcon className={stylles.mark} /> : <CheckIcon className={stylles.mark} />}</div>
+            </div>
+        </div>
+    )
 };
 
 

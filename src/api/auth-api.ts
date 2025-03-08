@@ -2,9 +2,6 @@ import { AxiosResponse } from "axios"
 import { instance, ResponseType, ResultCodeEnum } from "./api"
 
 
-
-
-//++++++++++++++++++++++++++++++++
 type DataLoginType = {
     userId: number
 }
@@ -26,8 +23,10 @@ type CaptchaType = {
 
 export let authApi = {
     authMe() {
-        return instance.get<ResponseType<ResultCodeEnum, DataAuthType>>('auth/me')
-        .then((response) => response.data)
+        return (
+            instance.get<ResponseType<ResultCodeEnum, DataAuthType>>('auth/me')
+                .then((response) => response.data)
+        )
     },
 
     login(email: string, password: string, rememberMe: boolean, captcha: null | string = null) {

@@ -1,0 +1,21 @@
+
+.dialog {
+   
+}
+
+.avatar {
+    max-width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    img {
+        max-width: 100%;
+    }
+    &:not(:last-child) {
+    margin-bottom: 10px;
+    }
+}
+
+.name {
+    cursor: pointer;
+}

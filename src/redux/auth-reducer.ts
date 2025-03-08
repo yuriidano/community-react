@@ -11,7 +11,8 @@ let initialState = {
     email: null as null | string,
     login: null as null | string,
     isAuth: false,
-    captcha: null as null | string
+    captcha: null as null | string,
+    globalError: null as null | string
 };
 
 type InitialStateType = typeof initialState;
@@ -28,6 +29,11 @@ const authReducer = (state = initialState, action: ActionsTypes): InitialStateTy
                 ...state,
                 ...action.payload,
             }
+        case "auth/SET-CLOBAL-ERROR":
+            return {
+                ...state,
+                globalError: action.payload.clobalError
+            }
         default:
             return state;
     };
@@ -38,9 +44,8 @@ type ActionsTypes = InferActionsTypes<typeof actions>;
 const actions = {
     setUserAuth: (userId: number | null, email: string | null, login: string | null, boollian: boolean) =>
         ({ type: 'auth/SET_USER_AUTH', payload: { userId, email, login, isAuth: boollian } } as const),
-
     setCaptcha: (captcha: string | null) => ({ type: 'auth/SET_CAPTCHA', payload: { captcha } } as const),
-    stopSubmit: (form: string, errors: any) => stopSubmit(form, errors)
+    setGlobalError: (clobalError: string | null) => ({type: 'auth/SET-CLOBAL-ERROR', payload: {clobalError}} as const),
 }
 
 
@@ -57,7 +62,7 @@ export const authMe = ():ThunkTypeAuth => async (dispatch) => {
     }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean, captcha: string):ThunkTypeAuth => async (dispatch) => {
+export const login = (email: string, password: string, rememberMe: boolean, captcha: string | null):ThunkTypeAuth => async (dispatch) => {
     let data = await authApi.login(email, password, rememberMe, captcha);
     if (data.resultCode === ResultCodeEnum.Succes) {
         dispatch(authMe());
@@ -67,13 +72,12 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
             dispatch(requestCaptcha())
         } else {
             let message = data.messages.length > 0 ? data.messages[0] : 'some error';
-            dispatch(stopSubmit('login', { _error: message }))
+           dispatch(actions.setGlobalError(message))
         }
     }
 }
 
 export const logout = (): ThunkTypeAuth => async (dispatch) => {
-    debugger
     let data = await authApi.logout()
     if (data.resultCode === ResultCodeEnum.Succes) {
         dispatch(actions.setUserAuth(null, null, null, false));
@@ -83,6 +87,12 @@ export const logout = (): ThunkTypeAuth => async (dispatch) => {
 export const requestCaptcha = (): ThunkTypeAuth => async (dispatch) => {
     let data = await authApi.captcha();
     dispatch(actions.setCaptcha(data.url))
+}
+
+
+export const clearGlobalError = ():ThunkTypeAuth => (dispatch) => {
+    debugger
+    dispatch(actions.setGlobalError(null))
 }
 
 export default authReducer;

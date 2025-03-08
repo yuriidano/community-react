@@ -1,41 +1,50 @@
 import styles from './Dialogs.module.scss';
-import DialogItem from './DialogItem/DialogItem';
-import Message from './Message/Message';
-import DialogsReduxForm from './DialogsForm';
 import { useAppDispatch, useAppSelector } from '../../redux/redux-store';
-import { sendMessage } from '../../redux/dialogs-reducer';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
+import { useEffect } from 'react';
+import { requestDialogs } from '../../redux/dialogs-reducer';
+import { Dialog } from './Dialog/Dialog';
+import Message from './Message/Message';
+import { DialogsForm } from './DialogsForm/DialogsForm';
 
 
-export type FormDataType = {
-    message: string 
-}
+
 
 const DialogsPage = () => { 
     const dispatch = useAppDispatch();
-    const dialods = useAppSelector((state) => state.dialogsPage.dialods);
-    const messages = useAppSelector((state) => state.dialogsPage.messages);
+    const dialogs = useAppSelector(state => state.dialogsPage.dialods);
+    const messages = useAppSelector(state => state.dialogsPage.messages);
+    const currentDialogId = useAppSelector(state => state.dialogsPage.currentDialogId)
     
-    let dialogsElement = dialods.map( d => <DialogItem name={d.name} id={d.id} icon={d.url} key={d.id} />); 
+   
+    useEffect(() => {
+        dispatch(requestDialogs())
+    }, [])
 
 
-    let submit = (formData: FormDataType) => {
-        dispatch(sendMessage(formData.message))
-    };
 
 
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogsItems}>
-                {dialogsElement}
+                {
+                    dialogs.map(d => <Dialog {...d} />)
+                }
             </div>
             <div className={styles.body}>
                 <div className={styles.messages}>
-                    {messages.map((m) => <span className={styles.message}><Message message={m.message} key={m.id} /></span>)}
+                    <div className={styles.messagesItems}>
+                        {
+                            messages.map(m => <Message {...m} />)
+                        }
+                    </div>
+                    <div>
+                        { currentDialogId &&
+                            <DialogsForm />
+                        }
+                    </div>
                 </div>
-                <div className={styles.formElements}>
-                    <DialogsReduxForm onSubmit={submit} />
-                </div>
+
             </div>
         </div>
     );

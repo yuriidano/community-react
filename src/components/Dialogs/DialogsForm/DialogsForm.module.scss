@@ -2,11 +2,13 @@
     display: flex;
     align-items: center;
     column-gap: 10px;
-    padding-left: 30px;
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     @media (max-width: 440px){
         padding-left: 15px;
     }
-    padding-left: 10px;
+
 }
 
 .formBody {
@@ -25,7 +27,7 @@
     color: #6C757D;
     display: block;
     position: relative;
-    min-width: 300px;
+
     &::before {
         content: '';
         position: absolute;
@@ -33,7 +35,7 @@
         left: -50px;
         width: 100px;
         height: 100px;
-        background-color: red;
+        background-color: #6C757D;
         z-index: 100;
     }
     &::placeholder {

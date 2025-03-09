@@ -8,9 +8,10 @@ import { deleteMessage } from '../../../../redux/dialogs-reducer';
 
 const options = [
   'Delete',
+  'Do not delete'
 ];
 
-const ITEM_HEIGHT = 48;
+const ITEM_HEIGHT = 28;
 
 export  function LongMenu({id}: {id: string}) {
   const dispatch = useAppDispatch();
@@ -20,10 +21,12 @@ export  function LongMenu({id}: {id: string}) {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    dispatch(deleteMessage(id))
-    
     setAnchorEl(null);
   };
+
+  const onClose = () => {
+    dispatch(deleteMessage(id))
+  }
 
   return (
     <div>
@@ -55,7 +58,7 @@ export  function LongMenu({id}: {id: string}) {
         }}
       >
         {options.map((option) => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+          <MenuItem key={option} selected={option === 'Pyxis'}  onClick={() => option === 'Delete' ? (onClose(), handleClose()) : handleClose()}>
             {option}
           </MenuItem>
         ))}

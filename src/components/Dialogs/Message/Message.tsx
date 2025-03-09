@@ -15,13 +15,16 @@ type PropsType = {
     viewed: boolean
 }
 
-const Message = ({body, viewed, addedAt, id}: PropsType) => {
+const Message = ({body, viewed, addedAt, id, senderName}: PropsType) => {
     return (
-        <div>
-            <LongMenu id={id} />
-            <div>{body}</div>
+        <div className={stylles.message}>
             <div className={stylles.body}>
-            <div>{addedAt}</div>
+                <div className={stylles.name}>{senderName}</div>
+                <div className={stylles.addedAt}>{addedAt}</div>
+            </div>
+            <div className={stylles.content}>
+                <div className={stylles.messageText}>{body}</div>
+                <div className={stylles.menu}><LongMenu id={id} /></div>
                 <div>{viewed ? <DoneAllIcon className={stylles.mark} /> : <CheckIcon className={stylles.mark} />}</div>
             </div>
         </div>

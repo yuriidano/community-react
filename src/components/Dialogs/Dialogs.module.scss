@@ -1,8 +1,8 @@
 
 .dialogs {
-    padding: 25px 15px 25px 5px;
+    padding: 25px 20px 25px 5px;
     display: grid;
-    grid-template-columns: minmax(auto, 170px) minmax(auto, 800px);
+    grid-template-columns: 25% 75%;
     column-gap: 15px;
     background-color: #FFFFFF;
     border-radius: 15px;
@@ -19,10 +19,10 @@
 .dialogsItems {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    row-gap: 40px;
+    align-items: flex-start;
     padding-right: 5px;
-    border-right: 1px solid rgba(195, 183, 183, 0.521);
+    padding-left: 2px;
+    border-right: 3px solid  #EFF2F6;
     @media (max-width: 992px){
         row-gap: 40px;  
     }
@@ -31,6 +31,17 @@
     }
 }
 
+
+.dialogsItem {
+    width: 100%;
+    &:not(:last-child) {
+        border-bottom: 2px #e1e6ed solid;
+    }
+}
+
+.dialogsItemActive {
+    background: #EFF2F6;
+}
 
 
 
@@ -45,9 +56,7 @@
 }
 
 .messages {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+
     row-gap: 30px;
     &:not(:last-child) {
         margin-bottom: 140px;
@@ -60,10 +69,79 @@
 }
 
 
+
+
 .messagesItems {
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
     height: 600px;
-    &:not(:last-child) {
-    margin-bottom: 20px;
+    overflow: auto;
+    padding-right: 70px;
+    @media (max-width: 767px){
+        padding-right: 20px;
     }
+    margin-bottom: 30px;
+
+}
+
+
+.messagesItems::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .messagesItems::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  .messagesItems::-webkit-scrollbar-thumb {
+    background: #EFF2F6;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+.form {
+    position: relative;
+    display: block;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 95%;
+        height: 3px;
+        background-color: #EFF2F6;
+    }
+    .arrowBottom {
+        position: absolute;
+        right: 50%;
+        bottom: 50%;
+        transform: translate(50%, 50%);
+    }
+}
+
+
+.bottomBody {
+    position: absolute;
+    right: 25px;
+    bottom: 150px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: 0px 1px 13px -7px rgb(98, 89, 102);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    @media (any-hover: hover) {
+        &:hover {
+           background-color: rgb(243, 241, 244);
+        }
+    }
+    @media (max-width: 767px){
+        bottom: 150px;
+    }
+}
+
+.bottomBody.bottomBodyHiden {
+    visibility: hidden;
 }
 

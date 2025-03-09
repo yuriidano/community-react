@@ -32,6 +32,8 @@ export const DialogsForm = () => {
         } else {
           setButtonIsDisabled(true)
         }
+        element.style.height = "auto"; // Скидаємо висоту
+        element.style.height = element.scrollHeight + "px"; // Встановлюємо нову висоту
       }
 
     return (

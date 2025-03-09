@@ -1,21 +1,33 @@
 
 .dialog {
+   width: 100%;
+   padding: 7px;
+   display: flex;
+   align-items: flex-start;
+   column-gap: 10px;
+   cursor: pointer;
+   transition: all 0.3s ease 0s;
+   @media (any-hover: hover) {
+    &:hover {
+        background: #e3e6ea;
+    }
+}
    
 }
 
 .avatar {
-    max-width: 50px;
+    max-width: 45px;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
     img {
         max-width: 100%;
     }
-    &:not(:last-child) {
-    margin-bottom: 10px;
-    }
+
 }
 
 .name {
     cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
 }

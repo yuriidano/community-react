@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Paginator from '../common/Paginator/Paginator';
 import User from './User';
 import styles from './Users.module.scss'
@@ -9,6 +9,8 @@ import { getcurrentPage, getFilter, getFollowingInProgress, getPageSize, getTota
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 import { useLocation, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
+import { Popap } from './Popap/Popap';
+import classNames from 'classnames';
 
 
 
@@ -23,6 +25,7 @@ export const Users = () => {
     const followingInProgress = useAppSelector(getFollowingInProgress)
     const users = useAppSelector(getUsers)
 
+    const [isActivePopap, setIsActivePopap] = useState(false);
 
      useEffect(() => {
         const parse = queryString.parse(location.search);
@@ -82,10 +85,12 @@ export const Users = () => {
                 {
                     users.map(user => {
                         return (
-                            <User key={user.id} user={user} followSucces={followSucces} unfollowSucces={unfollowSucces} followingInProgress={followingInProgress} />
+                            <User key={user.id} user={user} followSucces={followSucces} unfollowSucces={unfollowSucces} followingInProgress={followingInProgress} 
+                             openPopap={(isActivePopap: boolean) => setIsActivePopap(isActivePopap)} />
                         )
                     })
                 }
+                <div className={classNames(styles.PopapMessage, {[styles.PopapMessageActive]: isActivePopap})}><Popap closePopap={(isActivePopap: boolean) => setIsActivePopap(isActivePopap)} /></div>
             </div>
         </div>
     )

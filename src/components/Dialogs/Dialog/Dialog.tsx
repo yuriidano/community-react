@@ -1,7 +1,6 @@
 import userPhoto from '../../../assets/images/user.jpg'
 import { requestMessages } from '../../../redux/dialogs-reducer'
 import { useAppDispatch } from '../../../redux/redux-store'
-import { DialogsForm } from '../DialogsForm/DialogsForm'
 import stylles from './Dialog.module.scss'
 
 type PropsType = {
@@ -24,11 +23,12 @@ export const Dialog = (props: PropsType) => {
 
 
     return (
-        <div className={stylles.dialog}>
-            <div onClick={() => onMessagesHandler(props.id)} className={stylles.avatar}>
+        <div onClick={() => onMessagesHandler(props.id)} className={stylles.dialog}>
+            <div className={stylles.avatar}>
                 <img src={props.photos.small ?? userPhoto} alt="avatar" />
             </div>
-            <div onClick={() => onMessagesHandler(props.id)} className={stylles.name}>{props.userName}</div>
+            <div className={stylles.name}>{props.userName}</div>
+    
         </div>
     )
 }

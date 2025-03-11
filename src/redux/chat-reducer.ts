@@ -78,6 +78,7 @@ export const startMessagesListining = ():ThunkMusicType => async (dispatch) => {
 
 export const stopMessagesListining = ():ThunkMusicType => async (dispatch) => {
     chatAPI.stop();
+    chatAPI.unSubscribe('messages-recived', newMessageHandlerCriator(dispatch))
 };
 
 export const sendMessage = (message: string):ThunkMusicType => async (dispatch) => {

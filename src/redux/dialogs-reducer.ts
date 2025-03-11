@@ -1,4 +1,5 @@
 import { dialogsAPI } from "../api/dialogs-api";
+import { ProfileType } from "../types/types";
 import { InferActionsTypes, ThunkType } from "./redux-store";
 
 type DialogType = {
@@ -25,7 +26,8 @@ type MessageType = {
 let initialState = {
     dialods: [] as DialogType[],
     messages: [] as MessageType[],
-    currentDialogId: null as null | number
+    currentDialogId: null as null | number,
+    userProfile: null as ProfileType | null
 };
 
 type initialStateType = typeof initialState;
@@ -57,6 +59,11 @@ const dialogsReducer = (state = initialState, action: ActionsTypes):initialState
                 ...state,
                 messages: [...state.messages, action.payload.message]
             }
+        case "dialogs/USER-PROFILE-RECIVED":
+            return {
+                ...state,
+                userProfile: action.payload.userProfile 
+            }
         default:
             return state; 
     }
@@ -69,7 +76,8 @@ export const actions = {
     messagesRecived: (messages: MessageType[]) => ({type: 'dialogs/MESSAGES-RECIVED', payload: {messages}} as const),
     deleteMessage: (messageId: string) => ({type: 'dialogs/DELETE-MESSAGE', payload: {messageId}} as const),
     currentDialogIdRecived: (id: number) => ({type: 'dialogs/CURRENT-DIALOG-RECIVED', payload: {id}} as const),
-    sendMessage: (message: MessageType) => ({type: 'dialogs/SEND-MESSAGE', payload: {message}} as const)
+    sendMessage: (message: MessageType) => ({type: 'dialogs/SEND-MESSAGE', payload: {message}} as const),
+    userProfileRecived: (userProfile: ProfileType) => ({type: 'dialogs/USER-PROFILE-RECIVED', payload: {userProfile}} as const),
 }
 
 
@@ -103,11 +111,19 @@ export const deleteMessage = (messageId: string):ThunkTypeDialogs => async (disp
     }
 };
 
-export const sendMessage = (userId: number, body: string,):ThunkTypeDialogs => async (dispatch) => {
+export const sendMessage = (userId: number, body: string):ThunkTypeDialogs => async (dispatch) => {
     try{
         let data = await dialogsAPI.postMessageFriend(userId, body);
 
         dispatch(actions.sendMessage(data.data.message))
+    }catch(error) {
+    }
+};
+
+export const requestUserProfile = (userId: number):ThunkTypeDialogs => async (dispatch) => {
+    try{
+        let profile = await dialogsAPI.getProfile(userId);
+        dispatch(actions.userProfileRecived(profile))
     }catch(error) {
     }
 };

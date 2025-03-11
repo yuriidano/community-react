@@ -3,6 +3,8 @@ import styles from './Users.module.scss';
 import userPhotos from '../../assets/images/user.jpg';
 import { UserType } from '../../types/types';
 import classNames from 'classnames';
+import { useAppDispatch } from '../../redux/redux-store';
+import { requestUserProfile } from '../../redux/dialogs-reducer';
 
 type PropsUserType = {
     user: UserType,
@@ -13,6 +15,11 @@ type PropsUserType = {
 }
 
 let User = ({ user, followSucces, unfollowSucces, followingInProgress, openPopap }: PropsUserType) => {
+    const dispatch = useAppDispatch();
+    const clickHandler = () => {
+        dispatch(requestUserProfile(user.id))
+        openPopap(true);
+    }
     return (
         <div className={styles.userBody}>
             <div className={styles.user}>
@@ -22,7 +29,7 @@ let User = ({ user, followSucces, unfollowSucces, followingInProgress, openPopap
                     </NavLink>
                 </div>
                 <div className={styles.name}>{user.name}</div>
-                <button onClick={() => openPopap(true)} className={classNames(styles.button, styles.buttonMessage)}>Message</button>
+                <button onClick={clickHandler} className={classNames(styles.button, styles.buttonMessage)}>Message</button>
                 <div>
                     {
                         user.followed

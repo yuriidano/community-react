@@ -131,7 +131,6 @@ export const updateProfile = (profileData: ProfileType):ThunkTypeProfile => asyn
 }
 
 export const profileMount = (profileMoutn: boolean):ThunkTypeProfile => (dispatch) => {
-    debugger
     dispatch(actions.toggleProfilemount(profileMoutn));
 };
 

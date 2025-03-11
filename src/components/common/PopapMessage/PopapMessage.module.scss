@@ -1,6 +1,6 @@
-.MessagePopup {
-    position: fixed;
-    top: 25%;
+.messagePopup {
+    position: absolute;
+    top: 19%;
     left: 43%;
     width: 400px;
     height: 500px;
@@ -10,7 +10,7 @@
     z-index: 10;
 }
 
-.MessagePopupTop {
+.messagePopupTop {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,12 +28,12 @@
     }
 }
 
-.MessagePopupTitle {
+.messagePopupTitle {
     font-size: 16px;
     font-weight: bold;
 }
 
-.MessagePopupCloseIcon {
+.messagePopupCloseIcon {
     font-size: 16px;
     font-weight: bold;
     width: 30px;
@@ -49,4 +49,42 @@
             background-color: #EFF2F6;
         }
       }
+
+}
+
+.messagePopupInfo {
+    padding: 10px;
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        left: 2.5%;
+        bottom: 0;
+        height: 1px;
+        width: 95%;
+        background-color: rgb(213, 215, 226);
+    }
+}
+
+.messagePopupAvatar {
+    max-width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+        max-width: 100%;
+    }
+    &:not(:last-child) {
+    margin-bottom: 5px;
+    }
+}
+
+.messagePopupName {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.messagePopupMessage {
+    padding: 10px;
+    height: 100%;
 }

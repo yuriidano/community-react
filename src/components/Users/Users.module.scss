@@ -86,11 +86,11 @@ span {
 .PopapMessage {
     visibility: hidden;
     opacity: 0;
-    transition: all 0.3s ease 0.2s;
+    transition: all 0.3s ease 0s;
 }
 
 .PopapMessageActive {
-    transition: all 0.3s ease 0.2s;
+    transition: all 0.3s ease 0s;
     visibility: visible;
     opacity: 1;
 }

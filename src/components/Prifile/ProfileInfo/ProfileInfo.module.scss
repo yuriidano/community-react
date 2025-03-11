@@ -173,7 +173,7 @@
   grid-template-columns: 1fr 140px;
   justify-content: space-between;
   &:not(:last-child) {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   @media (max-width: 992px){
     grid-template-columns: 1fr 100px;
@@ -186,7 +186,7 @@
     grid-template-columns: 1fr;
     row-gap: 10px;
     &:not(:last-child) {
-      margin-bottom: 25px;
+      margin-bottom: 15px;
     }
   }
 }
@@ -345,3 +345,57 @@
 }
 
 
+
+.buttonMessage {
+  background-color: #0E6EFB;
+  display: flex;
+  width: 135px;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+  min-height: 35px;
+  border-radius: 10px;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.3s ease 0s;
+  &:not(:last-child) {
+  margin-bottom: 15px;
+  }
+
+
+@media (max-width: 992px){
+  width: 100px;
+  min-height: 30px;
+}
+@media (max-width: 400px){
+  font-size: 14px;
+  width: 80px;
+  border-radius: 5px;
+  min-height: 25px;
+}
+
+  @media (any-hover: hover) {
+      &:hover {
+          background-color: #0051ca;
+      }
+    }
+}
+
+
+
+
+
+//////popapMessage
+
+.PopapMessage {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease 0s;
+}
+
+.PopapMessageActive {
+  transition: all 0.3s ease 0s;
+  visibility: visible;
+  opacity: 1;
+}

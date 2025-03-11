@@ -9,8 +9,8 @@ import { getcurrentPage, getFilter, getFollowingInProgress, getPageSize, getTota
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 import { useLocation, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
-import { Popap } from './Popap/Popap';
 import classNames from 'classnames';
+import { PopapMessage } from '../common/PopapMessage/PopapMessage';
 
 
 
@@ -23,7 +23,8 @@ export const Users = () => {
     const filter = useAppSelector(getFilter);
     const currentPage = useAppSelector(getcurrentPage);
     const followingInProgress = useAppSelector(getFollowingInProgress)
-    const users = useAppSelector(getUsers)
+    const users = useAppSelector(getUsers);
+    const userProfile = useAppSelector(state => state.dialogsPage.userProfile)
 
     const [isActivePopap, setIsActivePopap] = useState(false);
 
@@ -73,6 +74,19 @@ export const Users = () => {
     const unfollowSucces = (userId: number) => {
         dispatch(unfollow(userId))
     }
+    //реєстрація нового користувача
+    // const regis = (Name: string, Email: string, Password: string, AcceptOffer: boolean) => {
+    //     axios.post(`https://social-network.samuraijs.com/Auth/Auth/TryRegister`, {JoinModel: {Name, Email, Password, AcceptOffer}}, {
+    //         withCredentials: true,
+    //         headers: {
+    //             'API-KEY': 'df7dab77-f6e8-4bf9-b5ec-611106eb801d'
+    //         }
+    //     })
+    //     .then(res => {
+
+    //     })
+    // }
+
 
     return (
         <div className={styles.users}>
@@ -90,8 +104,9 @@ export const Users = () => {
                         )
                     })
                 }
-                <div className={classNames(styles.PopapMessage, {[styles.PopapMessageActive]: isActivePopap})}><Popap closePopap={(isActivePopap: boolean) => setIsActivePopap(isActivePopap)} /></div>
+                <div className={classNames(styles.PopapMessage, {[styles.PopapMessageActive]: isActivePopap})}><PopapMessage topValue={'15%'} leftValue={'43%'} userProfile={userProfile} closePopap={(isActivePopap: boolean) => setIsActivePopap(isActivePopap)} /></div>
             </div>
+            {/* <button onClick={() => {regis('PigidaSosnivk', '39.24@ukr.net', 'Yurad1988plmo', true)}}>send</button> */}
         </div>
     )
 };

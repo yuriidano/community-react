@@ -12,8 +12,8 @@ type MessageType = {
   
   
   export const Message = React.memo(({message, photo, userName, userId}: MessageType) => {
+
     let ovner = useAppSelector((state) => state.auth.userId);
-    console.log(ovner);
     return (
       <div className={classNames(stylles.message, {[stylles.messageOvner]: ovner === userId})}>
         <div className={stylles.avatar}>

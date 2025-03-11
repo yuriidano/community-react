@@ -3,7 +3,7 @@ import stylles from './Messahes.module.scss'
 import classNames from "classnames";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { useAppDispatch, useAppSelector } from "../../../redux/redux-store";
-import { startMessagesListining } from "../../../redux/chat-reducer";
+import { startMessagesListining, stopMessagesListining } from "../../../redux/chat-reducer";
 import { Message } from "./Message/Message";
 
 
@@ -28,7 +28,11 @@ export const Messages = () => {
   }
   
   useEffect(() => {
-    dispatch(startMessagesListining())
+    dispatch(startMessagesListining());
+
+    return () => {
+      dispatch(stopMessagesListining());
+  };
   }, []);
 
 
@@ -44,7 +48,7 @@ export const Messages = () => {
         <ArrowDownwardIcon className={stylles.arrowBottom} />
       </div>
       {
-        messages.map(m => <Message {...m} />)
+        messages.map(m => <Message key={m.id} {...m} />)
       }
     </div>
   )

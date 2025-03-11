@@ -1,3 +1,4 @@
+import { ProfileType } from "../types/types"
 import { instance } from "./api"
 
 
@@ -82,5 +83,11 @@ export const dialogsAPI = {
             instance.delete<ResponseMessageFriendType>(`dialogs/messages/${messageId}`)
                 .then(response => response.data)
         )
-    }
+    },
+    getProfile(userId: number) {
+        return (
+            instance.get<ProfileType>(`profile/${userId}`)
+                .then(response => response.data)
+        )
+    },
 }

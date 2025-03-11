@@ -9,6 +9,8 @@ import { ProfileType } from '../../../types/types';
 import { useAppDispatch, useAppSelector } from '../../../redux/redux-store';
 import { getIsUpdateProgress, getProfile, getStatus } from '../../../redux/profile-selectors';
 import { requestPhoto, updateProfile, updateUserStatus } from '../../../redux/profile-reducer';
+import { PopapMessage } from '../../common/PopapMessage/PopapMessage';
+import classNames from 'classnames';
 
 type PropsProfileInfoType = {
   isOwner: boolean,
@@ -22,7 +24,6 @@ const ProfileInfo = (props: PropsProfileInfoType) => {
   const status = useAppSelector(getStatus);
   const profile = useAppSelector(getProfile);
   const isUpdateProgress = useAppSelector(getIsUpdateProgress);
-
 
 
   const updateStatus = (status: string) => {
@@ -49,6 +50,7 @@ const ProfileInfo = (props: PropsProfileInfoType) => {
     isUpdateProgress && setEditMode(false)
     dispatch(updateProfile(formData))
   }
+
 
   return (
     <div className={styles.profileInfo}>
@@ -88,6 +90,10 @@ type PropsProfileDataType= {
 }
 
 const ProfileData = ({ profile, status, updateStatus, isOwner, activateEditMode }: PropsProfileDataType) => {
+  const [isActivePopap, setIsActivePopap] = useState(false);
+  const clickHandler = () => {
+    setIsActivePopap(true)
+  }
   return (
     <div>
       <div className={styles.top}>
@@ -103,6 +109,14 @@ const ProfileData = ({ profile, status, updateStatus, isOwner, activateEditMode 
           isOwner && <button className={styles.button} onClick={activateEditMode} >Edit mode</button>
         }
       </div>
+      {!isOwner &&
+        <>
+          <button onClick={clickHandler} className={styles.buttonMessage}>Message</button>
+          <div className={classNames(styles.PopapMessage, { [styles.PopapMessageActive]: isActivePopap })}>
+            <PopapMessage topValue={'15.4%'} leftValue={'56.6%'} userProfile={profile} closePopap={(isActivePopap: boolean) => setIsActivePopap(isActivePopap)} />
+          </div>
+        </>
+      }
       <div className={styles.LookingForAJob}>
         <span >LookingForAJob:</span>  {profile.lookingForAJob ? 'yes' : 'no'}
       </div>

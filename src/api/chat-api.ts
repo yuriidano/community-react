@@ -11,14 +11,12 @@ type subscriberMessagesType = (messages: MessageType[]) => void;
 type subscriberStatusType = (status: StatusType) => void;
 
 let wss: WebSocket;
-let subscribers = {
-    'messages-recived': [] as subscriberMessagesType[],
-    'status-changed': [] as subscriberStatusType[]
-};
+let messageSubscribers: subscriberMessagesType[] = [];
+let statusSubscribers: subscriberStatusType[] = [];
 
 const messageHandler = (e: MessageEvent) => {
     const newMessage = JSON.parse(e.data);
-    subscribers["messages-recived"].forEach(s => s(newMessage))
+    messageSubscribers.forEach(s => s(newMessage))
 };
 
 const closeHandler = () => {
@@ -37,8 +35,8 @@ const cleanUp = () => {
     wss?.removeEventListener('message', messageHandler);
     wss?.removeEventListener('message', messageHandler);
 }
-function statusChange(status: StatusType)  {
-    subscribers["status-changed"].forEach(s => s(status))
+function statusChange(status: StatusType) {
+    statusSubscribers.forEach(s => s(status));
 }
 
 
@@ -60,15 +58,24 @@ export const chatAPI = {
         cleanUp();
     },
     subscribe(eventName: EventsNamesType, callback: subscriberMessagesType | subscriberStatusType) {
-        (subscribers[eventName] as (subscriberMessagesType | subscriberStatusType)[]).push(callback);
-
-        return (eventName: EventsNamesType, callback: subscriberMessagesType | subscriberStatusType) => {
-            subscribers[eventName].filter(s => s !== callback)
+        if (eventName === "messages-recived") {
+            messageSubscribers.push(callback as subscriberMessagesType);
+            return () => messageSubscribers = messageSubscribers.filter(sub => sub !== callback);
+        } else {
+            statusSubscribers.push(callback as subscriberStatusType);
+            return () => statusSubscribers = statusSubscribers.filter(sub => sub !== callback);
         }
     },
     unSubscribe(eventName: EventsNamesType, callback: subscriberMessagesType | subscriberStatusType) {
-        subscribers[eventName].filter(s => s !== callback)
+        if (eventName === "messages-recived") {
+            messageSubscribers = messageSubscribers.filter(sub => sub !== callback);
+        } else {
+            statusSubscribers = statusSubscribers.filter(sub => sub !== callback);
+        }
     },
+
+
+    
     sendMessage(message: string) {
         wss?.send(message)
     }

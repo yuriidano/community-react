@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/community-react/static/css/main.ca593df6.css",
-    "main.js": "/community-react/static/js/main.67d1e1c6.js",
-    "static/css/92.02d5d285.chunk.css": "/community-react/static/css/92.02d5d285.chunk.css",
+    "main.css": "/community-react/static/css/main.c81a4383.css",
+    "main.js": "/community-react/static/js/main.c395059d.js",
+    "static/css/92.2777e24c.chunk.css": "/community-react/static/css/92.2777e24c.chunk.css",
     "static/js/92.dfa5f96a.chunk.js": "/community-react/static/js/92.dfa5f96a.chunk.js",
     "static/js/787.c801d560.chunk.js": "/community-react/static/js/787.c801d560.chunk.js",
     "static/media/loader.gif": "/community-react/static/media/loader.0b4073dc48fdd78e7b31.gif",
@@ -22,14 +22,14 @@
     "static/media/profile.svg": "/community-react/static/media/profile.e739a021055e8da1f150.svg",
     "static/media/userPost.svg": "/community-react/static/media/userPost.208ec46e8e9313ceb7fb416af7feb965.svg",
     "static/media/message.svg": "/community-react/static/media/message.9e9848a9df950072fdcc.svg",
-    "main.ca593df6.css.map": "/community-react/static/css/main.ca593df6.css.map",
-    "main.67d1e1c6.js.map": "/community-react/static/js/main.67d1e1c6.js.map",
-    "92.02d5d285.chunk.css.map": "/community-react/static/css/92.02d5d285.chunk.css.map",
+    "main.c81a4383.css.map": "/community-react/static/css/main.c81a4383.css.map",
+    "main.c395059d.js.map": "/community-react/static/js/main.c395059d.js.map",
+    "92.2777e24c.chunk.css.map": "/community-react/static/css/92.2777e24c.chunk.css.map",
     "92.dfa5f96a.chunk.js.map": "/community-react/static/js/92.dfa5f96a.chunk.js.map",
     "787.c801d560.chunk.js.map": "/community-react/static/js/787.c801d560.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ca593df6.css",
-    "static/js/main.67d1e1c6.js"
+    "static/css/main.c81a4383.css",
+    "static/js/main.c395059d.js"
   ]
 }

@@ -30,6 +30,9 @@
     font-size: 16px;
     line-height: 130%;
     color: #6C757D;
+    @media (max-width: 992px){
+        height: 170px;
+    }
 }
 
 .messageArea::-webkit-scrollbar {
@@ -75,7 +78,10 @@ cursor: pointer;
         &:hover {
             background-color: #0051ca;
         }
-      }
+    }
+    @media (max-width: 460px){
+        min-height: 25px;
+    }
 }
 
 .buttonDisabled {

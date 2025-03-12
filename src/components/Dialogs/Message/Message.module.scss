@@ -1,42 +1,44 @@
 .message {
+    display: flex;
+}
+
+.messageOvner {
+    justify-content: flex-end;
+}
+
+.info {
     min-width: 170px;
     max-width: 300px;
-    display: inline-block;
-
     @media (max-width: 600px){
         min-width: 100px;
         max-width: 210px;
     }
-    @media (max-width: 370px){
-        max-width: 210px;
-    }
 }
 
-.messageOvner {
-    border-radius: 15px;
-    max-width: 300px;
-    min-width: 70px;
-    flex: 0 0 auto;
-    @media (max-width: 600px){
-        max-width: 210px;
-    }
-}
+ .infoOvner {
+     border-radius: 15px;
+     max-width: 300px;
+     min-width: 170px;
+     flex: 0 0 auto;
+    
+     @media (max-width: 600px){
+         max-width: 210px;
+     }
+ }
 
-
-
-// // .message.messageOvner {
-//     border-radius: 15px 15px 0 15px;
-//     max-width: 300px;
-//     min-width: 70px;
-//     flex: 0 0 auto;
-//     @media (max-width: 600px){
-//         max-width: 210px;
-//     }
-// // }
 
 .body {
+    padding-left: 5px;
     display: flex;
     column-gap: 20px;
+}
+
+.bodyOvner {
+    justify-content: flex-end;
+    padding-right: 5px;
+    &:not(:last-child) {
+    margin-bottom: 10px;
+    }
 }
 
 
@@ -46,6 +48,10 @@
     &:not(:last-child) {
     margin-bottom: 10px;
     }
+}
+
+.nameOvner {
+    display: none;
 }
 
 .addedAt {
@@ -62,10 +68,14 @@
     align-items: flex-end;
     background-color: #EFF2F6;
     border-radius: 10px;
-    padding: 10px;
-    padding-bottom: 5px;
+    padding: 15px 15px 10px 15px;
     min-height: 70px;
     position: relative;
+
+}
+
+.contentOvner {
+    padding-right: 35px;
 }
 
 
@@ -107,4 +117,10 @@
 
 .mark {
     align-self: flex-end; 
+    display: none;
+}
+
+
+.markOvner {
+    display: none;
 }

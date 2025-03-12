@@ -9,10 +9,14 @@
     min-height: 100%;
     @media (max-width: 767px){
         grid-template-columns: minmax(140px, 170px) minmax(auto, 800px);
+
     }
     @media (max-width: 420px){
-        display: flex;
-        justify-content: space-between;
+
+    }
+    @media (max-width: 500px){
+        grid-template-columns: 1fr;
+        row-gap: 20px;
     }
 }
 
@@ -23,20 +27,51 @@
     padding-right: 5px;
     padding-left: 2px;
     border-right: 3px solid  #EFF2F6;
+    overflow-x: auto;
+    max-height: 720px;
     @media (max-width: 992px){
-        row-gap: 40px;  
+        row-gap: 0px;  
     }
     @media (max-width: 420px){
         flex: 0 1 30%;
     }
+    @media (max-width: 500px){
+        max-height: 250px;
+    }
 }
+
+
+.dialogsItems::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .messadialogsItemsges::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  .dialogsItems::-webkit-scrollbar-thumb {
+    background: #EFF2F6;
+    border-radius: 10px;
+    cursor: pointer;
+  }
 
 
 .dialogsItem {
     width: 100%;
+    border-bottom: 2px #e1e6ed solid;
+@media (min-width: 500px){
     &:not(:last-child) {
         border-bottom: 2px #e1e6ed solid;
     }
+}
+    @media (min-width: 500px){
+         padding-top: 10px;
+         padding-bottom: 10px; 
+    }
+    @media (min-width: 1200px){
+        padding-top: 0px;
+        padding-bottom: 0px; 
+   }
 }
 
 .dialogsItemActive {
@@ -78,8 +113,8 @@
     height: 600px;
     overflow: auto;
     padding-right: 70px;
-    @media (max-width: 767px){
-        padding-right: 20px;
+    @media (max-width: 992px){
+        padding-right: 15px;
     }
     margin-bottom: 30px;
 
@@ -136,8 +171,19 @@
            background-color: rgb(243, 241, 244);
         }
     }
-    @media (max-width: 767px){
-        bottom: 150px;
+    @media (max-width: 992px){
+        bottom: 60px;
+        right: 15px;
+    }
+    @media (max-width: 590px){
+        bottom: 105px;
+        right: 0px;
+    }
+    @media (max-width: 500px){
+        bottom: 55px;
+    }
+    @media (max-width: 370px){
+        bottom: 105px;
     }
 }
 

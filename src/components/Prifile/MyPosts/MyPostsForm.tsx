@@ -15,10 +15,13 @@ type MyPostFormType = {
 const MyPostForm = () => {
     const dispatch = useAppDispatch();
 
-    const {register, handleSubmit, formState: {errors} } = useForm<MyPostFormType>();
+    const {register, handleSubmit, reset, formState: {errors} } = useForm<MyPostFormType>();
 
     const submit:SubmitHandler<MyPostFormType> = (formData) => {
-        dispatch(addPost(formData.post))
+        dispatch(addPost(formData.post));
+        reset({
+            post: ''
+        })
     }
     return (
         <form onSubmit={handleSubmit(submit)}>

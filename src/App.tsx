@@ -73,7 +73,7 @@ const App = (props: PropsAppType) => {
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>
-          <div className={classNames({'app-page__info': !props.profileMoutn, 'app-page__infoProfile': props.profileMoutn})}><InfoWithRedirect /></div>
+          { <div className={classNames({'app-page__info': !props.profileMoutn, 'app-page__infoProfile': props.profileMoutn})}><InfoWithRedirect /></div>}
         </div>
       </div>
     </div>

@@ -69,9 +69,11 @@ const DialogsPage = () => {
             </div>
             <div className={styles.body}>
                 <div className={styles.messages}  >
-                    <div ref={containerRef} onScroll={scrollHandler} className={styles.messagesItems}>
+                <div className={styles.messagesItemsBody}>
+                <div ref={containerRef} onScroll={scrollHandler} className={styles.messagesItems}>
                         {messages.map(m => <Message {...m} />)}
                     </div>
+                </div>
                     <div className={styles.form}>
                         { currentDialogId &&
                             <DialogsForm />

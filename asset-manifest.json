@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/community-react/static/css/main.a5bd6a58.css",
-    "main.js": "/community-react/static/js/main.89e00e4f.js",
-    "static/css/92.59779538.chunk.css": "/community-react/static/css/92.59779538.chunk.css",
+    "main.js": "/community-react/static/js/main.9ffa1ae3.js",
+    "static/css/92.a7722e3a.chunk.css": "/community-react/static/css/92.a7722e3a.chunk.css",
     "static/js/92.072fac2d.chunk.js": "/community-react/static/js/92.072fac2d.chunk.js",
     "static/js/787.c801d560.chunk.js": "/community-react/static/js/787.c801d560.chunk.js",
     "static/media/loader.gif": "/community-react/static/media/loader.0b4073dc48fdd78e7b31.gif",
@@ -23,13 +23,13 @@
     "static/media/userPost.svg": "/community-react/static/media/userPost.208ec46e8e9313ceb7fb416af7feb965.svg",
     "static/media/message.svg": "/community-react/static/media/message.9e9848a9df950072fdcc.svg",
     "main.a5bd6a58.css.map": "/community-react/static/css/main.a5bd6a58.css.map",
-    "main.89e00e4f.js.map": "/community-react/static/js/main.89e00e4f.js.map",
-    "92.59779538.chunk.css.map": "/community-react/static/css/92.59779538.chunk.css.map",
+    "main.9ffa1ae3.js.map": "/community-react/static/js/main.9ffa1ae3.js.map",
+    "92.a7722e3a.chunk.css.map": "/community-react/static/css/92.a7722e3a.chunk.css.map",
     "92.072fac2d.chunk.js.map": "/community-react/static/js/92.072fac2d.chunk.js.map",
     "787.c801d560.chunk.js.map": "/community-react/static/js/787.c801d560.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a5bd6a58.css",
-    "static/js/main.89e00e4f.js"
+    "static/js/main.9ffa1ae3.js"
   ]
 }

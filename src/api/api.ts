@@ -6,13 +6,13 @@ export enum ResultCodeEnum {
     Error = 1
 };
 
-
+const key = localStorage.getItem('key');
 
 export const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
     headers: {
-        'API-KEY': 'df7dab77-f6e8-4bf9-b5ec-611106eb801d'
+        'API-KEY': key
     }
 });
 

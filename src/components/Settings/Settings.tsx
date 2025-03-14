@@ -2,7 +2,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 
 const Settings = () => {
-    return <></>
+    return (
+        <>
+            <FormKey />
+        </>
+    )
 };
 
 
@@ -11,15 +15,17 @@ type formType = {
 }
 
 const FormKey = () => {
-    const {register, handleSubmit} = useForm<formType>()
+    const {register, handleSubmit, reset} = useForm<formType>()
 
     const submit:SubmitHandler<formType> = (data) => {
-
+        localStorage.setItem('key', data.key);
+        reset({key: ''})
     }
 
     return (
         <form onSubmit={handleSubmit(submit)}>
             <input {...register('key')} />
+            <button>send</button>
         </form>
     )
 }

@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import stylles from './Message.module.scss'
 import { useAppSelector } from "../../../../redux/redux-store";
+import userPhoto from '../../../../assets/images/user.jpg'
 
 type MessageType = {
     message: string,
@@ -17,7 +18,7 @@ type MessageType = {
     return (
       <div className={classNames(stylles.message, {[stylles.messageOvner]: ovner === userId})}>
         <div className={stylles.avatar}>
-          <img src={photo} alt="avatar" />
+          <img src={photo ?? userPhoto} alt="avatar" />
         </div>
         <div className={classNames(stylles.body, {[stylles.bodyOvner]: ovner === userId})}>
         <div className={classNames(stylles.name, {[stylles.nameOvner]: ovner === userId})}>{userName}</div>

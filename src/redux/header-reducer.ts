@@ -3,7 +3,7 @@ import { AppStateType, InferActionsTypes, ThunkType } from "./redux-store";
 
 
 const initialState = {
-    activeMenu: true
+    activeMenu: false
 }
 
 type InitialStateType = typeof initialState;

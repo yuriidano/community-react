@@ -29,15 +29,18 @@ const Message = ({body, viewed, addedAt, id, senderName, senderId}: PropsType) =
         <div className={classNames(stylles.message, {[stylles.messageOvner]: ovner === senderId})}>
             <div className={classNames(stylles.info, {[stylles.infoOvner]: ovner === senderId})}>
             <div className={classNames(stylles.body, {[stylles.bodyOvner]: ovner === senderId})}>
-                <div className={classNames(stylles.name, {[stylles.nameOvner]: ovner === senderId})}>{senderName}</div>
-                <div className={stylles.addedAt}>{newDate}</div>
-            </div>
-            <div className={classNames(stylles.content, {[stylles.contentOvner]: ovner === senderId})}>
-                <div className={stylles.messageText}>{body}</div>
-                <div className={stylles.menu}><LongMenu id={id} /></div>
-                <div>{viewed ? <DoneAllIcon className={classNames({[stylles.markOvner]: ovner === senderId})} /> : 
-                <CheckIcon className={classNames(stylles.mark, {[stylles.markOvner]: ovner === senderId})} />}</div>
-            </div>
+                    <div className={classNames(stylles.name, { [stylles.nameOvner]: ovner === senderId })}>{senderName}</div>
+                    <div className={stylles.addedAt}>{newDate}</div>
+                </div>
+                <div className={classNames(stylles.content, { [stylles.contentOvner]: ovner === senderId })}>
+                    <div className={stylles.messageText}>{body}</div>
+                    <div className={stylles.menu}><LongMenu id={id} /></div>
+                    {viewed ?
+                        <div className={classNames({ [stylles.markOvner]: ovner === senderId })}><DoneAllIcon /></div>
+                        :
+                        <div className={classNames(stylles.mark, { [stylles.markOvner]: ovner === senderId })}><CheckIcon /></div>
+                    }
+                </div>
             </div>
         </div>
     )

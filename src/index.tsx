@@ -4,19 +4,19 @@ import './index.css';
 import './css/obnusenie.css';
 import App from './App';
 import store from './redux/redux-store';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-    <BrowserRouter>
+    <HashRouter>
         {/* <React.StrictMode> */}
             <Provider store={store}>
                 <App state={store.getState()} />
             </Provider>
         {/* </React.StrictMode> */}
-    </BrowserRouter>
+    </HashRouter>
 );
 
 

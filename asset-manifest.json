@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/community-react/static/css/main.a5bd6a58.css",
-    "main.js": "/community-react/static/js/main.1db37fac.js",
+    "main.js": "/community-react/static/js/main.141c7fb7.js",
     "static/css/92.59779538.chunk.css": "/community-react/static/css/92.59779538.chunk.css",
     "static/js/92.bbe4d2e4.chunk.js": "/community-react/static/js/92.bbe4d2e4.chunk.js",
     "static/js/787.c801d560.chunk.js": "/community-react/static/js/787.c801d560.chunk.js",
@@ -23,13 +23,13 @@
     "static/media/userPost.svg": "/community-react/static/media/userPost.208ec46e8e9313ceb7fb416af7feb965.svg",
     "static/media/message.svg": "/community-react/static/media/message.9e9848a9df950072fdcc.svg",
     "main.a5bd6a58.css.map": "/community-react/static/css/main.a5bd6a58.css.map",
-    "main.1db37fac.js.map": "/community-react/static/js/main.1db37fac.js.map",
+    "main.141c7fb7.js.map": "/community-react/static/js/main.141c7fb7.js.map",
     "92.59779538.chunk.css.map": "/community-react/static/css/92.59779538.chunk.css.map",
     "92.bbe4d2e4.chunk.js.map": "/community-react/static/js/92.bbe4d2e4.chunk.js.map",
     "787.c801d560.chunk.js.map": "/community-react/static/js/787.c801d560.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a5bd6a58.css",
-    "static/js/main.1db37fac.js"
+    "static/js/main.141c7fb7.js"
   ]
 }

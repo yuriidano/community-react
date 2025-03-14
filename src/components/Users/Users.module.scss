@@ -7,7 +7,12 @@
 
 .paginator {
     &:not(:last-child) {
-        margin-bottom: 15px;
+        margin-bottom: 35px;
+    }
+    @media (max-width: 767px){
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 
 .messages {
-    height: 600px;
+    max-height: 660px;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -10,15 +10,27 @@
     &:not(:last-child) {
         margin-bottom: 50px;
     }
+    @media (max-width: 992px){
+        max-height: 690px;
+    }
+    @media (max-width: 420px){
+        max-height: 660px;
+    }
     @media (max-width: 767px){
         padding-right: 20px;
+    }
+    @media (max-width: 391px){
+        max-height: 600px;
+    }
+    @media (max-width: 376px){
+        max-height: 430px;
     }
 }
 
 .bottomBody {
     position: absolute;
     right: 25px;
-    bottom: 150px;
+    bottom: 130px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -31,7 +43,12 @@
         }
     }
     @media (max-width: 767px){
-        bottom: 100px;
+        bottom: 60px;
+        right: 10px;
+    }
+    @media (max-width: 400px){
+        bottom: 60px;
+        right: 10px;
     }
 }
 
@@ -49,11 +66,9 @@
 .messages::-webkit-scrollbar {
     width: 5px;
   }
-
   .messages::-webkit-scrollbar-track {
     border-radius: 10px;
   }
-
   .messages::-webkit-scrollbar-thumb {
     background: #EFF2F6;
     border-radius: 10px;

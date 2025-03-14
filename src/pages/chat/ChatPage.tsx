@@ -13,8 +13,10 @@ const Chat = () => {
 
   return (
     <div className={stylles.chat}>
-      <Messages />
-      <ChatForm />
+      <div className={stylles.messages}>
+          <div><Messages /></div>
+      </div>
+      <div className={stylles.chatForm}><ChatForm /></div>
     </div>
   )
 }

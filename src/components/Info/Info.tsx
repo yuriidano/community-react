@@ -53,9 +53,6 @@ const Info = () => {
                     <li className={styles.newsItem}>Browser update: An update to the popular iOS browser lets you search by image and text.</li>
                     <li className={styles.newsItem}>New species of marine mollusk: Scientists have discovered a new transparent species of marine mollusk in deep-sea areas.</li>
                     <li className={styles.newsItem}>The focus of business is people, efficiency and easy fixing of agreements</li>
-                    <li className={styles.newsItem}>From hype to practice: the realities of artificial intelligence regulation</li>
-                    <li className={styles.newsItem}>It is necessary to draw attention to intangible cultural heritage through digital technologies</li>
-                    <li className={styles.newsItem}>Most IT companies in Ukraine are ready to hire workers without experience</li>
                     <li className={styles.newsItem}>How to organize accounting in the IT sector</li>
                     <li className={styles.newsItem}>Everything will be IT. The most demanded professions.</li>
                 </ul>

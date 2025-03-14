@@ -3,10 +3,14 @@
     align-items: center;
     column-gap: 10px;
     padding-left: 30px;
+    padding-left: 10px;
+    padding-top: 20px;
+    @media (max-width: 767px){
+        padding-top: 0px;
+    }
     @media (max-width: 440px){
         padding-left: 15px;
     }
-    padding-left: 10px;
 }
 
 .formBody {

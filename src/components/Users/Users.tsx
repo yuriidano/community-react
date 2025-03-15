@@ -74,20 +74,13 @@ export const Users = () => {
     const unfollowSucces = (userId: number) => {
         dispatch(unfollow(userId))
     }
-    //реєстрація нового користувача
-    // const regis = (Name: string, Email: string, Password: string, AcceptOffer: boolean) => {
-    //     axios.post(`https://social-network.samuraijs.com/Auth/Auth/TryRegister`, {JoinModel: {Name, Email, Password, AcceptOffer}}, {
-    //         withCredentials: true,
-    //         headers: {
-    //             'API-KEY': 'df7dab77-f6e8-4bf9-b5ec-611106eb801d'
-    //         }
-    //     })
-    //     .then(res => {
-
-    //     })
-    // }
-
-
+    // export const instance = axios.create({
+//     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+//     withCredentials: true,
+//     headers: {
+//         'API-KEY': 'df7dab77-f6e8-4bf9-b5ec-611106eb801d'
+//     }
+// });
 
     return (
         <div className={styles.users}>

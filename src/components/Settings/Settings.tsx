@@ -1,34 +1,18 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-
+import stylles from './Settinds.module.scss'
+import { SettingsForm } from "./SettingsForm/SettingsForm";
 
 const Settings = () => {
     return (
-        <>
-            <FormKey />
-        </>
+        <div className={stylles.settings}>
+            <h3 className={stylles.lable}>Key</h3>
+            <div className={stylles.key}><SettingsForm /></div>
+        </div>
     )
 };
 
 
-type formType = {
-    key: string
-}
 
-const FormKey = () => {
-    const {register, handleSubmit, reset} = useForm<formType>()
-
-    const submit:SubmitHandler<formType> = (data) => {
-        localStorage.setItem('key', data.key);
-        reset({key: ''})
-    }
-
-    return (
-        <form onSubmit={handleSubmit(submit)}>
-            <input {...register('key')} />
-            <button>send</button>
-        </form>
-    )
-}
 
 
 export default Settings;

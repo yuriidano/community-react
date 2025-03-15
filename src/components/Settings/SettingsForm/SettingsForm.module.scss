@@ -1,0 +1,107 @@
+.form {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    position: relative;
+}
+
+.input {
+    padding: 10px;
+    min-width: 300px;
+    min-height: 40px;
+    border: 1px #e1e6ed solid;
+    border-radius: 5px;
+    @media (max-width: 1200px){
+        min-height: 35px;
+    }
+    @media (max-width: 480px){
+        min-height: 35px;
+        min-width: 200px;
+    }
+    @media (max-width: 370px){
+        min-height: 35px;
+        min-width: 150px;
+    }
+}
+
+.button {
+    background-color: #0E6EFB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    border-radius: 5px;
+    min-width: 100px;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease 0s;
+    @media (max-width: 1200px){
+        min-height: 35px;
+        min-width: 80px;
+    }
+
+    @media (any-hover: hover) {
+        &:hover {
+            background-color: #0051ca;
+        }
+      }
+}
+
+
+.button.buttonDisabled {
+    background-color: #ced2d8;
+    @media (any-hover: hover) {
+        &:hover {
+            transform: scale(1);
+        }
+    }
+ }
+
+.popap {
+    width: 150px;
+    height: 100px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0px 1px 13px -7px rgb(128, 113, 133);
+    position: absolute;
+    top: -30px;
+    left: 10%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s ease 0s;
+}
+
+.openPopap {
+    transition: all 0.2s ease 0s;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+.messagePopupCloseIcon {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease 0s;
+    @media (any-hover: hover) {
+        &:hover {
+            background-color: #EFF2F6;
+        }
+    }
+}

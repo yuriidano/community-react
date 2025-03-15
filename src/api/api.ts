@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 
 export enum ResultCodeEnum {
@@ -6,23 +7,15 @@ export enum ResultCodeEnum {
     Error = 1
 };
 
-// const key = localStorage.getItem('key');
+const apiKey = localStorage.getItem('key') || 'df7dab77-f6e8-4bf9-b5ec-611106eb801d';
 
-// export const instance = axios.create({
-//     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-//     withCredentials: true,
-//     headers: {
-//         'API-KEY': key
-//     }
-// });
-
-export const instance = axios.create({
-    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    withCredentials: true,
-    headers: {
-        'API-KEY': 'df7dab77-f6e8-4bf9-b5ec-611106eb801d'
-    }
-});
+ export const instance = axios.create({
+     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+     withCredentials: true,
+     headers: {
+         'API-KEY': apiKey
+     }
+ });
 
 
 export type ResponseType<RC = ResultCodeEnum, D = {}> = {

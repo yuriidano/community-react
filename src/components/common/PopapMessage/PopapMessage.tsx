@@ -14,7 +14,6 @@ type PropsType = {
 }
 
 export const PopapMessage = ({closePopap, userProfile, topValue, leftValue}: PropsType) => {
-   //style={{top: topValue, left: leftValue}}
 
     return (
         <div>

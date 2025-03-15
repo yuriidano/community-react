@@ -20,7 +20,9 @@ type CaptchaType = {
     url: string
 }
 
+type RegiserTipe = {
 
+}
 export let authApi = {
     authMe() {
         return (
@@ -46,5 +48,25 @@ export let authApi = {
             instance.get('security/get-captcha-url')
                 .then((response: AxiosResponse<CaptchaType>) => response.data)
         )
+    },
+    register(Name: string, Email: string, Password: string, AcceptOffer: boolean) {
+        return (
+            instance.post<RegiserTipe>(`Auth/Auth/TryRegister`, {JoinModel: {Name, Email, Password, AcceptOffer}})
+        )
     }
+
 };
+
+
+    //реєстрація нового користувача
+    // const regis = (Name: string, Email: string, Password: string, AcceptOffer: boolean) => {
+    //     axios.post(`https://social-network.samuraijs.com/Auth/Auth/TryRegister`, {JoinModel: {Name, Email, Password, AcceptOffer}}, {
+    //         withCredentials: true,
+    //         headers: {
+    //             'API-KEY': 'df7dab77-f6e8-4bf9-b5ec-611106eb801d'
+    //         }
+    //     })
+    //     .then(res => {
+
+    //     })
+    // }

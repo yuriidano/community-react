@@ -8,6 +8,7 @@ body {
     font-family: 'Arial';
     color: #6C757D;
     background-color: #EFF2F6;
+    overflow-y: scroll;
     position: relative;
     & ._activeSiteBar {
       @media (max-width: 767px){

@@ -7,7 +7,7 @@ import { startMessagesListining, stopMessagesListining } from "../../../redux/ch
 import { Message } from "./Message/Message";
 
 
-export const Messages = () => {
+export const Messages = React.memo(() => {
   const dispatch = useAppDispatch();
   const messages = useAppSelector(state => state.chat.messages);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -52,6 +52,6 @@ export const Messages = () => {
       }
     </div>
   )
-};
+})
 
 

@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
 import classNames from 'classnames';
 import { PopapMessage } from '../common/PopapMessage/PopapMessage';
+import axios from 'axios';
 
 
 
@@ -74,13 +75,9 @@ export const Users = () => {
     const unfollowSucces = (userId: number) => {
         dispatch(unfollow(userId))
     }
-    // export const instance = axios.create({
-//     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-//     withCredentials: true,
-//     headers: {
-//         'API-KEY': 'df7dab77-f6e8-4bf9-b5ec-611106eb801d'
-//     }
-// });
+
+
+
 
     return (
         <div className={styles.users}>
@@ -100,7 +97,6 @@ export const Users = () => {
                 }
                 <div className={classNames(styles.PopapMessage, {[styles.PopapMessageActive]: isActivePopap})}><PopapMessage topValue={'15%'} leftValue={'43%'} userProfile={userProfile} closePopap={(isActivePopap: boolean) => setIsActivePopap(isActivePopap)} /></div>
             </div>
-            {/* <button onClick={() => {regis('PigidaSosnivk', '39.24@ukr.net', 'Yurad1988plmo', true)}}>send</button> */}
         </div>
     )
 };

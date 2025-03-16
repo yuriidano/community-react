@@ -1,4 +1,3 @@
-import { SubmitHandler, useForm } from "react-hook-form";
 import stylles from './Settinds.module.scss'
 import { SettingsForm } from "./SettingsForm/SettingsForm";
 

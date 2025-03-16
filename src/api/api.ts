@@ -18,6 +18,12 @@ const apiKey = localStorage.getItem('key') || 'df7dab77-f6e8-4bf9-b5ec-611106eb8
  });
 
 
+ export const instanceRegister = axios.create({
+    baseURL: 'https://social-network.samuraijs.com/',
+    withCredentials: true,
+});
+
+
 export type ResponseType<RC = ResultCodeEnum, D = {}> = {
     resultCode: RC
     messages: string[],

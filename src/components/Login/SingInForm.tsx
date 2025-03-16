@@ -19,10 +19,10 @@ export type FormDataType = {
 
 
 
-let LoginForm = (props: PropsFormType) => {
+export const SingInForm = (props: PropsFormType) => {
     const dispatch = useAppDispatch();
     const clobalError = useAppSelector(state => state.auth.globalError);
-    const isAuth = useAppSelector(state => state.auth.isAuth)
+    const isAuth = useAppSelector(state => state.auth.isAuth);
     const { register, handleSubmit, setError, formState: {errors}} = useForm<FormDataType>();
 
 
@@ -80,12 +80,10 @@ let LoginForm = (props: PropsFormType) => {
                 <span className={styles.globalError}>{errors.root.message}</span>
             }
             <div className={styles.loginButtonBody}>
-                <button className={styles.loginButton}>login</button>
+                <button className={styles.loginButton}>Sing in</button>
             </div>
         </form>
     )
 };
 
 
-
-export default LoginForm;

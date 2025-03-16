@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios"
-import { instance, ResponseType, ResultCodeEnum } from "./api"
+import { instance, instanceRegister, ResponseType, ResultCodeEnum } from "./api"
 
 
 type DataLoginType = {
@@ -20,9 +20,28 @@ type CaptchaType = {
     url: string
 }
 
-type RegiserTipe = {
-
+type RegiserType = {
+    Response: [
+        { 
+            k: string, //"1" 
+            v: boolean   //true - все ок   //false - не ок
+        },
+        { //цей обєкт приходить коли помилка
+            k: string, //"3"    
+            v: [
+                {
+                    message: string //"Sorry, this Login is already in use"
+                }
+            ]
+        }
+    ],
+    Extra: {
+        email?: "39.24121@ukr.net", //ці ключі зявляються коли все ок
+        password?: "Yurad1988plmo" //ці ключі зявляються коли все ок
+    },
+    ShowSuccessSlideBox: boolean
 }
+
 export let authApi = {
     authMe() {
         return (
@@ -51,7 +70,8 @@ export let authApi = {
     },
     register(Name: string, Email: string, Password: string, AcceptOffer: boolean) {
         return (
-            instance.post<RegiserTipe>(`Auth/Auth/TryRegister`, {JoinModel: {Name, Email, Password, AcceptOffer}})
+            instanceRegister.post<RegiserType>(`Auth/Auth/TryRegister`, {JoinModel: {Name, Email, Password, AcceptOffer}})
+                .then(response => response.data)
         )
     }
 

@@ -1,7 +1,5 @@
-import { stopSubmit } from "redux-form";
 import { ResultCodeEnum } from "../api/api";
-import { ThunkAction } from "redux-thunk";
-import { AppStateType, InferActionsTypes, ThunkType } from "./redux-store";
+import { InferActionsTypes, ThunkType } from "./redux-store";
 import { authApi, ResultCodeForCaptcha } from "../api/auth-api";
 
 
@@ -12,7 +10,9 @@ let initialState = {
     login: null as null | string,
     isAuth: false,
     captcha: null as null | string,
-    globalError: null as null | string
+    globalError: null as null | string,
+    globalErrorSingUp: null as null | string,
+    registrationAccept: false
 };
 
 type InitialStateType = typeof initialState;
@@ -34,6 +34,16 @@ const authReducer = (state = initialState, action: ActionsTypes): InitialStateTy
                 ...state,
                 globalError: action.payload.clobalError
             }
+        case "auth/SET-CLOBAL-ERROR-SING-UP":
+            return {
+                ...state,
+                globalErrorSingUp: action.payload.globalErrorSingUp
+            }
+        case "auth/TOGGLE-REGISTRATION-ACCEPT":
+            return {
+                ...state,
+                registrationAccept: action.payload.registrationAccept
+            }
         default:
             return state;
     };
@@ -46,6 +56,8 @@ const actions = {
         ({ type: 'auth/SET_USER_AUTH', payload: { userId, email, login, isAuth: boollian } } as const),
     setCaptcha: (captcha: string | null) => ({ type: 'auth/SET_CAPTCHA', payload: { captcha } } as const),
     setGlobalError: (clobalError: string | null) => ({type: 'auth/SET-CLOBAL-ERROR', payload: {clobalError}} as const),
+    setglobalErrorSingUp: (globalErrorSingUp: string | null) => ({type: 'auth/SET-CLOBAL-ERROR-SING-UP', payload: {globalErrorSingUp}} as const),
+    toggleRegistrationAccept: (registrationAccept: boolean) => ({type: 'auth/TOGGLE-REGISTRATION-ACCEPT', payload: {registrationAccept}} as const)
 }
 
 
@@ -91,8 +103,23 @@ export const requestCaptcha = (): ThunkTypeAuth => async (dispatch) => {
 
 
 export const clearGlobalError = ():ThunkTypeAuth => (dispatch) => {
-    debugger
     dispatch(actions.setGlobalError(null))
+}
+
+
+export const registration = (name: string, email: string, password: string):ThunkTypeAuth => async (dispatch) => {
+    try{
+        let data = await authApi.register(name, email, password, true)
+        let { Response } = data;
+        if(Response[0].v === true) {
+            dispatch(actions.toggleRegistrationAccept(true))
+        }
+        if(Response.length > 1 && Response[1]?.v?.[0]?.message){
+            dispatch(actions.setglobalErrorSingUp(Response[1].v[0].message));
+        }
+    }catch(error) {
+        console.log(error);
+    }
 }
 
 export default authReducer;

@@ -25,6 +25,19 @@ body {
       }
     } 
   }
+
+  
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-track {
+  background: #bbbec2;
+}
+body::-webkit-scrollbar-thumb {
+  background: #989ca0;
+  border-radius: 10px;
+  cursor: pointer;
+}
   
   #root {
     height: 100%;
@@ -114,6 +127,7 @@ body {
       min-height: 100%;
       flex: 1 1 auto;
       grid-template-columns: 1fr;
+      padding: 0 25px;
     } 
 
     &__main {///////////////////////////////////////////////////////////

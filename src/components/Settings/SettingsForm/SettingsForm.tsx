@@ -37,7 +37,8 @@ export const SettingsForm = () => {
             >Save</button>
             <div className={classNames(stylles.popap, {[stylles.openPopap]: openPopap})}>
                 <p>The key is saved.</p>
-                <div onClick={() => setOpenPopap(false)} className={stylles.messagePopupCloseIcon}><CloseIcon /></div>
+                {/* <div onClick={() => setOpenPopap(false)} className={stylles.messagePopupCloseIcon}><CloseIcon /></div> */}
+                <button className={stylles.messagePopupClose} onClick={() => setOpenPopap(false)}>Ok</button>
             </div>
         </form>
     )

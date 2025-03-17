@@ -7,8 +7,6 @@ export enum ResultCodeEnum {
 };
 
 
-
-
 let apiKey = localStorage.getItem('key') || 'df7dab77-f6e8-4bf9-b5ec-611106eb801d';
 
 

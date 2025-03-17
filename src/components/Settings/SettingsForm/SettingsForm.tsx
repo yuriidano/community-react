@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import stylles from './SettingsForm.module.scss'
 import { useState } from "react"
 import classNames from "classnames"
-import CloseIcon from '@mui/icons-material/Close';
+
 
 type formType = {
     key: string
@@ -15,9 +15,13 @@ export const SettingsForm = () => {
 
 
     const submit:SubmitHandler<formType> = (data) => {
-        localStorage.setItem('key', data.key);
-        reset({key: ''});
-        setTimeout(() => {setButtonIsDisabled(true)}, 30)
+        if(data.key !== '') {
+            localStorage.setItem('key', data.key);
+        }
+        setTimeout(() => {setButtonIsDisabled(true)}, 30);
+        reset({
+            key: ''
+        })
     }
 
 

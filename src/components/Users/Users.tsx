@@ -101,4 +101,5 @@ export const Users = () => {
     )
 };
 
+
 export const UsersWithRedirect = withAuthRedirect(Users);

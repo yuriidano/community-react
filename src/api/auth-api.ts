@@ -77,16 +77,3 @@ export let authApi = {
 
 };
 
-
-    //реєстрація нового користувача
-    // const regis = (Name: string, Email: string, Password: string, AcceptOffer: boolean) => {
-    //     axios.post(`https://social-network.samuraijs.com/Auth/Auth/TryRegister`, {JoinModel: {Name, Email, Password, AcceptOffer}}, {
-    //         withCredentials: true,
-    //         headers: {
-    //             'API-KEY': 'df7dab77-f6e8-4bf9-b5ec-611106eb801d'
-    //         }
-    //     })
-    //     .then(res => {
-
-    //     })
-    // }

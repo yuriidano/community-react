@@ -18,6 +18,7 @@ import { LoginPage } from './components/Login/LoginPage';
 import { SitebarWithRedirect } from './components/Navbar/Sitebar';
 import Settings from './components/Settings/Settings';
 import Profile from './components/Prifile/Profile';
+import FollowedUsers from './components/FollowedUsers/FollowedUsers';
 
 
 
@@ -67,6 +68,7 @@ const App = (props: PropsAppType) => {
               <Route path='/profile/:userId?/*' element={<Profile />} />
               <Route path='/dialogs/*' element={<DialogsWithRedirect />} />
               <Route path='/users' element={<UsersWithRedirect />} />
+              <Route path='/followedUsers' element={<FollowedUsers />} />
               <Route path='/login' element={<LoginPage />} />
               <Route path='/chat' element={<ChatPageLazy />} />
               <Route path='/settings' element={<Settings />} />

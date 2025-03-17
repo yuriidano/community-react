@@ -35,10 +35,10 @@ const Sitebar = () => {
               <NavLink to='/users' className={isNavDataActive()} >Users</NavLink>
             </li>
             <li className={styles.item} onClick={onActiveMenu}>
-              <NavLink to='/chat' className={isNavDataActive()} >Chat</NavLink>
+              <NavLink to='/followedUsers' className={isNavDataActive()} >Followed Users</NavLink>
             </li>
             <li className={styles.item} onClick={onActiveMenu}>
-              <NavLink to='/music' className={isNavDataActive()} >Music</NavLink>
+              <NavLink to='/chat' className={isNavDataActive()} >Chat</NavLink>
             </li>
             <li className={styles.item} onClick={onActiveMenu}>
               <NavLink to='/settings' className={isNavDataActive()} >Settings</NavLink>

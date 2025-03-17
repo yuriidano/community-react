@@ -12,6 +12,7 @@ import headerReducer from "./header-reducer";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import chatReducer from './chat-reducer';
+import usersFollowedReducer from './followed-reducer';
 
 
 let rootReducer = combineReducers({
@@ -24,6 +25,7 @@ let rootReducer = combineReducers({
     infoPage: infoReducer,
     header: headerReducer,
     chat: chatReducer,
+    usersFollowedPage: usersFollowedReducer
 });
 
 type RootReducerType = typeof rootReducer; //(state: GLOBAL_STATE_TYPE): GLOBAL_STATE_TYPE => state;

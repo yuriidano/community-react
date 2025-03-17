@@ -32,6 +32,11 @@ const chatReducer = (state = initialState, action: actionsType):InitialStateType
                 ...state,
                 status: action.payload.status
             }
+        case 'chat/RESET-MESSEGES':
+            return {
+                ...state,
+                messages: action.payload.messages
+            }
         default:
             return state
     }
@@ -42,6 +47,7 @@ type actionsType = InferActionsTypes<typeof actions>
 const actions = {
     messagesRecived: (messages: MessageType[]) => ({type: 'chat/MESSAGES-RECIVED', payload: {messages}} as const),
     statusChanged: (status: StatusType) => ({type: 'chat/STATUS-CHANGED', payload: {status}} as const),
+    resetMesseges: (messages: []) => ({type: 'chat/RESET-MESSEGES', payload: {messages}} as const)
 };
 
 
@@ -77,8 +83,11 @@ export const startMessagesListining = ():ThunkMusicType => async (dispatch) => {
 };
 
 export const stopMessagesListining = ():ThunkMusicType => async (dispatch) => {
+//+ 
     chatAPI.stop();
     chatAPI.unSubscribe('messages-recived', newMessageHandlerCriator(dispatch))
+    chatAPI.unSubscribe('status-changed', newMessageHandlerCriator(dispatch));
+    dispatch(actions.resetMesseges([]))
 };
 
 export const sendMessage = (message: string):ThunkMusicType => async (dispatch) => {

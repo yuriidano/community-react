@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import Preloader from '../common/Preloader/Preloader';
 import { useAppDispatch, useAppSelector } from '../../redux/redux-store';
 import { getProfile, getUserId } from '../../redux/info-selectors';
-import { requestProfileInfo } from '../../redux/info-reducer';
+import { requestNews, requestProfileInfo } from '../../redux/info-reducer';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 
 
@@ -15,11 +15,15 @@ const Info = () => {
     const dispatch = useAppDispatch();
     const profile = useAppSelector(getProfile);
     const userId = useAppSelector(getUserId) 
-
+    const news = useAppSelector(state => state.infoPage.news)
 
     useEffect(() => {
         dispatch(requestProfileInfo(userId ?? 0));
     },[]);
+
+    useEffect(() => {
+        dispatch(requestNews())
+    }, [])
 
     if(!profile.photos) return <Preloader />;
 
@@ -49,12 +53,9 @@ const Info = () => {
             <div className={styles.newsBody}>
                 <div className={styles.newstitle}>The most popular news</div>
                 <ul className={styles.newsList}>
-                    <li className={styles.newsItem}>Launch of a new service: A well-known online store launches a new service with goods at affordable prices.</li>
-                    <li className={styles.newsItem}>Browser update: An update to the popular iOS browser lets you search by image and text.</li>
-                    <li className={styles.newsItem}>New species of marine mollusk: Scientists have discovered a new transparent species of marine mollusk in deep-sea areas.</li>
-                    <li className={styles.newsItem}>The focus of business is people, efficiency and easy fixing of agreements</li>
-                    <li className={styles.newsItem}>How to organize accounting in the IT sector</li>
-                    <li className={styles.newsItem}>Everything will be IT. The most demanded professions.</li>
+                    {
+                        news.map(n => <li><a target='_blank' href={n.url}>{n.description}</a></li>)
+                    }
                 </ul>
             </div>
         </div>

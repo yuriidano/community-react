@@ -3,9 +3,16 @@ import { AppStateType, InferActionsTypes, ThunkType } from "./redux-store";
 import { infoApi } from "../api/info-api";
 import { ProfileType } from "../types/types";
 
+type NewsItemType = {
+    source: {id: string, name: string},
+    description: string,
+    url: string,
+}
+
 
 let initialState = {
     profileInfo: {} as ProfileType,
+    news: [] as NewsItemType[]
 };
 
 type InitialStateType = typeof initialState;
@@ -17,6 +24,11 @@ const infoReducer = (state = initialState, action: ActionsTypes): InitialStateTy
                 ...state,
                 profileInfo: {...action.newProfile}
             }
+        case "info/NEWS-RECIVED":
+            return {
+                ...state,
+                news: action.payload.news
+            }
         default:
             return state;
     };
@@ -25,18 +37,26 @@ const infoReducer = (state = initialState, action: ActionsTypes): InitialStateTy
 type ActionsTypes = InferActionsTypes<typeof actions>;
 
 const actions = {
-    setProfileInfo: (newProfile: ProfileType) => ({type: 'info/SET_PROFILE_INFO', newProfile}as const)
+    setProfileInfo: (newProfile: ProfileType) => ({type: 'info/SET_PROFILE_INFO', newProfile} as const),
+    newsRecived: (news: NewsItemType[]) => ({type: 'info/NEWS-RECIVED', payload: {news}} as const)
 }
 
 
 type ThunkTypeInfo = ThunkType<ActionsTypes>;
 
-export const requestProfileInfo = (userId: number):ThunkTypeInfo => async (dispatch) => {
+export const requestProfileInfo = (userId: number): ThunkTypeInfo => async (dispatch) => {
     try {
         let data = await infoApi.getProfileInfo(userId);
         dispatch(actions.setProfileInfo(data))
-    } catch(error) {
+    } catch (error) {
+    }
+}
 
+export const requestNews = (): ThunkTypeInfo => async (dispatch) => {
+    try {
+        let data = await infoApi.getNews();
+        dispatch(actions.newsRecived(data.articles))
+    } catch (error) {
     }
 }
 

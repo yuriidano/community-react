@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 
 
 export enum ResultCodeEnum {
@@ -10,8 +9,8 @@ export enum ResultCodeEnum {
 
 
 
-let apiKey = localStorage.getItem('key')
-console.log(apiKey);
+let apiKey = localStorage.getItem('key') || 'df7dab77-f6e8-4bf9-b5ec-611106eb801d';
+
 
  export const instance = axios.create({
      baseURL: 'https://social-network.samuraijs.com/api/1.0/',

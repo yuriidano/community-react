@@ -1,5 +1,5 @@
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
-import { Action, AnyAction, applyMiddleware, combineReducers, compose, legacy_createStore } from "redux";
+import { AnyAction, applyMiddleware, combineReducers, compose, legacy_createStore } from "redux";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
@@ -12,7 +12,7 @@ import headerReducer from "./header-reducer";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import chatReducer from './chat-reducer';
-import usersFollowedReducer from './followed-reducer';
+import folowedUsersReducer from './followed-reducer';
 
 
 let rootReducer = combineReducers({
@@ -25,7 +25,7 @@ let rootReducer = combineReducers({
     infoPage: infoReducer,
     header: headerReducer,
     chat: chatReducer,
-    usersFollowedPage: usersFollowedReducer
+    usersFollowedPage: folowedUsersReducer
 });
 
 type RootReducerType = typeof rootReducer; //(state: GLOBAL_STATE_TYPE): GLOBAL_STATE_TYPE => state;

@@ -11,7 +11,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
 import classNames from 'classnames';
 import { PopapMessage } from '../common/PopapMessage/PopapMessage';
-import axios from 'axios';
+
 
 
 
@@ -33,13 +33,11 @@ export const Users = () => {
         const parse = queryString.parse(location.search);
         let actualPage = currentPage;
         let actualFilter = filter;
-
         if(!!parse.page) actualPage = +parse.page;
         if(!!parse.term) actualFilter = {...actualFilter, term: parse.term as string};
         if(!!parse.friend) actualFilter = {...actualFilter, friend: parse.friend === 'true' ? true : false}
-
         dispatch(requestUsers(pageSize, actualPage, actualFilter));
-     }, []);
+     }, [pageSize]);
 
 
     type QueryType = {term?: string, friend?:string, page?: string} 

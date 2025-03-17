@@ -1,5 +1,5 @@
 .users {
-    padding: 20px 15px 5px 15px;
+    padding: 15px 8px 15px 15px;
     background-color: #FFFFFF;
     border-radius: 15px;
     min-height: 100%;
@@ -13,27 +13,47 @@
             margin-bottom: 10px;
         }
     }
-    @media (max-width: 767px){
-        &:not(:last-child) {
-            margin-bottom: 10px;
-        }
-    }
 }
 
 .items {
     padding-top: 10px;
-    max-width: 150px;
+    max-height: 660px;
+    overflow: auto;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-wrap: wrap;
     row-gap: 25px;
-    padding-left: 20px;
-    
+    padding-right: 20px;
+    @media (max-width: 400px){
+        max-height: 570px;
+    }
+    @media (max-width: 380px){
+        max-height: 380px;
+    }
+}
+.items::-webkit-scrollbar {
+    width: 5px;
+}
+.items::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+.items::-webkit-scrollbar-thumb {
+    background: #EFF2F6;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .userBody {
+    flex: 0 1 33.333%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    @media (max-width: 500px){
+        flex: 0 1 50%;
+    }
+    @media (max-width: 400px){
+        flex: 0 1 100%;
+    }
 }
 
 

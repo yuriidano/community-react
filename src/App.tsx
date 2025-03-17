@@ -23,6 +23,7 @@ import FollowedUsers from './components/FollowedUsers/FollowedUsers';
 
 
 
+
 const ChatPage = lazy(() => import('./pages/chat/ChatPage'));
 const ChatPageLazy = withLAzy(ChatPage);
 
@@ -68,8 +69,8 @@ const App = (props: PropsAppType) => {
               <Route path='/profile/:userId?/*' element={<Profile />} />
               <Route path='/dialogs/*' element={<DialogsWithRedirect />} />
               <Route path='/users' element={<UsersWithRedirect />} />
-              <Route path='/followedUsers' element={<FollowedUsers />} />
               <Route path='/login' element={<LoginPage />} />
+              <Route path='/followedUsers' element={<FollowedUsers />} />
               <Route path='/chat' element={<ChatPageLazy />} />
               <Route path='/settings' element={<Settings />} />
               <Route path='*' element={<NotFound />} />

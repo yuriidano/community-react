@@ -25,10 +25,10 @@
     row-gap: 25px;
     padding-right: 20px;
     @media (max-width: 430px){
-        max-height: 500px;
+        max-height: 470px;
     }
     @media (max-width: 380px){
-        max-height: 280px;
+        max-height: 250px;
     }
 }
 .items::-webkit-scrollbar {

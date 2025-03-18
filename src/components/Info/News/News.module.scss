@@ -1,0 +1,15 @@
+
+.item {
+    text-indent: 10px;
+}
+.link {
+    line-height: 120%;
+    color: inherit;
+    transition: all 0.3s ease 0s;
+    @media (any-hover: hover) {
+        &:hover {
+            color: #394249;
+        }
+    }
+
+}

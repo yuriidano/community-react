@@ -13,7 +13,7 @@ type ResponseNewsType = {
     articles: NewsItemType[]
 }
 
-const KEY = 'ad985db44b02452cbe2ac344683e2f29'
+const KEY = 'ac5239de20328ba4dffeece6e28144ec'
 
 export const infoApi = {
     getProfileInfo(userId: number) {
@@ -24,7 +24,7 @@ export const infoApi = {
     },
     getNews() {
         return (
-            axios.get<ResponseNewsType>(`https://newsapi.org/v2/everything?pageSize=15&q=it&apiKey=${KEY}`)
+            axios.get<ResponseNewsType>(`https://gnews.io/api/v4/search?q=example&lang=en&country=us&max=10&apikey=${KEY}`)
                 .then(response => response.data)
         )
     }

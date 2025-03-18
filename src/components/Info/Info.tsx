@@ -8,6 +8,8 @@ import { useAppDispatch, useAppSelector } from '../../redux/redux-store';
 import { getProfile, getUserId } from '../../redux/info-selectors';
 import { requestNews, requestProfileInfo } from '../../redux/info-reducer';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
+import News from '../News/News';
+import { NewsItem } from './News/News';
 
 
 
@@ -16,14 +18,29 @@ const Info = () => {
     const profile = useAppSelector(getProfile);
     const userId = useAppSelector(getUserId) 
     const news = useAppSelector(state => state.infoPage.news)
+ 
 
     useEffect(() => {
         dispatch(requestProfileInfo(userId ?? 0));
     },[]);
 
     useEffect(() => {
-        dispatch(requestNews())
-    }, [])
+        let isMonted = true;
+
+        const fech = () => {
+            if(isMonted === true) {
+                dispatch(requestNews());
+                setTimeout(() => {
+                    fech();
+                }, 1800000)
+            }
+        }
+
+        fech();
+        return () => {
+            isMonted = false;
+        }
+    }, []);
 
     if(!profile.photos) return <Preloader />;
 
@@ -52,11 +69,11 @@ const Info = () => {
             </div>
             <div className={styles.newsBody}>
                 <div className={styles.newstitle}>The most popular news</div>
-                <ul className={styles.newsList}>
+                <div className={styles.newsItems}>
                     {
-                        news.map(n => <li><a target='_blank' href={n.url}>{n.description}</a></li>)
+                        news.map(n => <NewsItem key={n.id} {...n} />)
                     }
-                </ul>
+                </div>
             </div>
         </div>
     )

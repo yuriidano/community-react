@@ -2,11 +2,13 @@ import { ThunkAction } from "redux-thunk";
 import { AppStateType, InferActionsTypes, ThunkType } from "./redux-store";
 import { infoApi } from "../api/info-api";
 import { ProfileType } from "../types/types";
+import { v1 } from "uuid";
 
 type NewsItemType = {
     source: {id: string, name: string},
     description: string,
     url: string,
+    id?: string
 }
 
 
@@ -27,7 +29,7 @@ const infoReducer = (state = initialState, action: ActionsTypes): InitialStateTy
         case "info/NEWS-RECIVED":
             return {
                 ...state,
-                news: action.payload.news
+                news: [...action.payload.news.map(n => ({...n, id: v1()}))]
             }
         default:
             return state;

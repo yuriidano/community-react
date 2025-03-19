@@ -1,15 +1,21 @@
 
+.loginContainer {
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    @media (max-width: 380px){
+          padding-top: 50px;
+    }
+}
+
 .loginContent {
-    max-width: 350px;
+    max-width: 390px;
     max-height: 450px;
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
     border-radius: 15px;
-    padding: 25px 25px 15px 25px;
+    padding: 25px 25px 45px 25px;
     background-color: rgb(255, 255, 255);
     -webkit-box-shadow: 0px 1px 13px -7px rgba(128, 113, 133, 1);
     -moz-box-shadow: 0px 1px 13px -7px rgba(128, 113, 133, 1);
@@ -23,16 +29,10 @@
 
 .loginContentCaptcha {
     max-width: 350px;
-    max-height: 550px;
-    position: absolute;
+    max-height: 590px;
     z-index: 100;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);
     border-radius: 15px;
-    padding: 25px 25px 15px 25px;
+    padding: 25px 25px 45px 25px;
     background-color: rgb(255, 255, 255);
     -webkit-box-shadow: 0px 1px 13px -7px rgba(128, 113, 133, 1);
     -moz-box-shadow: 0px 1px 13px -7px rgba(128, 113, 133, 1);
@@ -79,8 +79,6 @@
         }
     }
 }
-
-
 
 .body {
     margin-top: 25px;
@@ -178,6 +176,22 @@
     }
 }
 
+.singInFormTop {
+    flex: 1 1 auto;
+    position: relative;
+}
+
+
+.singInForm {
+    min-height: 83%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 70px;
+}
+
+.loginContentCaptcha .singInForm {
+    row-gap: 30px;
+}
 
 .loginEmail {
     &:not(:last-child) {
@@ -219,13 +233,26 @@
 
 .loginFormBody {
     display: flex;
+    justify-content: space-between;
     align-self: center;
     column-gap: 3px;
     &:not(:last-child) {
-        margin-bottom: 100px;
+        margin-bottom:25px;
     }
 
 }
+
+.rememberBody {
+    flex: 0 1 70%;
+    display: flex;
+    align-items: flex-start;
+    column-gap: 5px;
+}
+
+.inputRemember {
+    transform: translate(0, 1px);
+}
+
 
 .loginButtonBody {
     display: flex;
@@ -254,9 +281,8 @@
       }
 }
 
-
 .captchaBody {
-    margin-top: 100px;
+   margin-bottom: 0px;
 }
 
 .captchaFoto {
@@ -277,25 +303,16 @@
     border-radius: 5px;
     display: flex;
     align-items: center;
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
     @media (max-width: 380px){
         min-width: 232px;
     }
-    margin-bottom: 10px;
 }
 
-
-
-
 .testData {
-    position: absolute;
-    top: 53%;
-    left: 45%;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    @media (max-width: 380px){
-        top: 48.8%;
-     }
+    flex: 0 1 30%;
 }
 
 .testDataTitle {
@@ -339,20 +356,20 @@
 .globalError {
     color: red;
     position: absolute;
-    top: 17%;
-    left: 7%;
+    top: 52%;
+    left: 0%;
     width: 250px;
     height: 20px;
     @media (max-width: 380px){
-        left: 9%;
+        top: 50%;
     }
 }
-
 
 .singUpForm {
     display: flex;
     flex-direction: column;
-    min-height: 75%;
+    row-gap: 84px;
+    min-height: 83%;
 
 }
 
@@ -370,9 +387,6 @@
     width: 250px;
     height: 20px;
 }
-
-
-//Yurad1988
 
 .popap {
     word-wrap: break-word;

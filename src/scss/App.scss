@@ -108,7 +108,7 @@ body::-webkit-scrollbar-thumb {
       @media (max-width: 767px){
         grid-template-columns: 1fr;
       }
-    }/////////////////////////////////////////////////////////////////
+    }
 
     &__containerProfile {
       display: grid;
@@ -127,10 +127,9 @@ body::-webkit-scrollbar-thumb {
       min-height: 100%;
       flex: 1 1 auto;
       grid-template-columns: 1fr;
-      padding: 0 25px;
     } 
 
-    &__main {///////////////////////////////////////////////////////////
+    &__main {
       min-height: 100%;
     }
 

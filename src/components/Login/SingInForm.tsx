@@ -40,47 +40,62 @@ export const SingInForm = (props: PropsFormType) => {
 
         dispatch(login(email, password, rememberMy, captchaForm))
     }
-    
+
     return (
-        <form onSubmit={handleSubmit(submit)} >
-            <div className={styles.loginEmail}>
-                <input {...register('email', {required: 'email required'})} placeholder='email...' />
-                {errors.email &&
-                    <span className={styles.eror}>{errors.email.message}</span>
-                }
-            </div>
-
-            <div className={styles.loginPassword}>
-                <input {...register('password', {required: 'password required'})} type='password' placeholder='password...' />
-                {errors.password &&
-                    <span className={styles.eror}>{errors.password.message}</span>
-                }
-            </div>
-
-            <div className={styles.loginFormBody}>
-            <input type='checkbox' {...register('rememberMy')} />
-                <span className={styles.loginRemember}>remember my</span>
-            </div>
-
-
-            {props.captcha &&
-                <div className={styles.captchaBody}>
-                    <div className={styles.captchaFoto}>
-                        <img  src={props.captcha} alt="" />
+        <form className={styles.singInForm} onSubmit={handleSubmit(submit)} >
+            <div className={styles.singInFormTop}>
+                <div className={styles.loginEmail}>
+                    <input {...register('email', { required: 'email required' })} placeholder='email...' />
+                    {errors.email &&
+                        <span className={styles.eror}>{errors.email.message}</span>
+                    }
+                </div>
+                <div className={styles.loginPassword}>
+                    <input {...register('password', { required: 'password required' })} type='password' placeholder='password...' />
+                    {errors.password &&
+                        <span className={styles.eror}>{errors.password.message}</span>
+                    }
+                </div>
+                <div className={styles.loginFormBody}>
+                    <div className={styles.rememberBody}>
+                        <input className={styles.inputRemember} type='checkbox' {...register('rememberMy')} />
+                        <span className={styles.loginRemember}>remember my</span>
                     </div>
+                    <div className={styles.testData}>
+                        <div className={styles.testDataTitle}>Test data</div>
+                        <div className={styles.TestDataEmailBody}>
+                            <div className={styles.TestDataEmaiTitle}>Email:</div>
+                            <div className={styles.TestDataEmai}>free@samuraijs.com</div>
+                        </div>
+                        <div className={styles.TestDataPasswordBody}>
+                            <div className={styles.TestDataPasswordTitle}>Password:</div>
+                            <div className={styles.TestDataPassword}>free</div>
+                        </div>
+                    </div>
+                </div>
+                {props.captcha &&
+                    <div className={styles.captchaBody}>
+                        <div className={styles.captchaFoto}>
+                            <img src={props.captcha} alt="captcha" />
+                        </div>
+                    </div>
+                }
+                {errors.root &&
+                    <span className={styles.globalError}>{errors.root.message}</span>
+                }
+            </div>
+            <div className={styles.singInFormBottom}>
+                {props.captcha &&
                     <div className={styles.captcha}>
                         <input  {...register('captcha', { required: 'captcha required' })} placeholder='captcha...' />
                         {errors.captcha &&
                             <span className={styles.eror}>{errors.captcha.message}</span>
                         }
                     </div>
+                }
+                <div className={styles.loginButtonBody}>
+                    <button className={styles.loginButton}>Sing in</button>
                 </div>
-            }
-            {errors.root &&
-                <span className={styles.globalError}>{errors.root.message}</span>
-            }
-            <div className={styles.loginButtonBody}>
-                <button className={styles.loginButton}>Sing in</button>
             </div>
         </form>
     )

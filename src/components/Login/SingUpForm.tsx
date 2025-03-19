@@ -44,14 +44,12 @@ export const SingUpForm = () => {
                     <span className={styles.eror}>{errors.password.message}</span>
                 }
             </div>
-
             <div className={styles.loginEmail}>
                 <input {...register('email', {required: 'email required'})} placeholder='your email...' />
                 {errors.email &&
                     <span className={styles.eror}>{errors.email.message}</span>
                 }
             </div>
-
             <div className={styles.loginPassword}>
                 <input {...register('password', { required: 'password required' })} type='password' placeholder='your password...' />
                 {errors.password &&
@@ -59,7 +57,6 @@ export const SingUpForm = () => {
                 }
             </div>
             </div>
-
             <div className={styles.singUpBottom}>
                 {errors.root &&
                     <span className={styles.globalErrorSingUp}>{errors.root.message}</span>

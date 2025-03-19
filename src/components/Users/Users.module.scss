@@ -23,7 +23,6 @@
     align-items: center;
     flex-wrap: wrap;
     row-gap: 25px;
-    padding-right: 20px;
     @media (max-width: 430px){
         max-height: 470px;
     }
@@ -44,7 +43,6 @@
 }
 
 .userBody {
-    padding-left: 35px;
     flex: 0 1 100%;
     display: flex;
     align-items: center;
@@ -52,8 +50,8 @@
 
 }
 
-
 .user {
+    flex: 0 1 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -101,13 +99,11 @@
     }
 }
 
-
 span {
     margin-right: 5px;
     cursor: pointer;
     
 }
-
 
 .PopapMessage {
     visibility: hidden;

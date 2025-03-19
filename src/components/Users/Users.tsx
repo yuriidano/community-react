@@ -75,12 +75,6 @@ export const Users = () => {
         dispatch(unfollow(userId))
     }
 
-    const fech = () => {
-        axios.post(`https://social-network.samuraijs.com/Auth/Account/RegenerateApiKey`, {
-            withAuthRedirect: true
-        })
-            .then(res => res.data)
-    }
 
 
     return (
@@ -99,7 +93,6 @@ export const Users = () => {
                         )
                     })
                 }
-                <button onClick={() => fech()}>send</button>
                 <div className={classNames(styles.PopapMessage, {[styles.PopapMessageActive]: isActivePopap})}><PopapMessage topValue={'15%'} leftValue={'43%'} userProfile={userProfile} closePopap={(isActivePopap: boolean) => setIsActivePopap(isActivePopap)} /></div>
             </div>
         </div>

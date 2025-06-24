@@ -9,10 +9,10 @@ import { reducer as formReducer } from 'redux-form'
 import appReducer from "./app-reducer";
 import infoReducer from "./info-reducer";
 import headerReducer from "./header-reducer";
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import chatReducer from './chat-reducer';
 import folowedUsersReducer from './followed-reducer';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+
 
 
 let rootReducer = combineReducers({
@@ -28,8 +28,11 @@ let rootReducer = combineReducers({
     usersFollowedPage: folowedUsersReducer
 });
 
-type RootReducerType = typeof rootReducer; //(state: GLOBAL_STATE_TYPE): GLOBAL_STATE_TYPE => state;
-export type AppStateType = ReturnType<RootReducerType>;
+export type AppStateType = ReturnType<typeof store.getState>
+//export type AppDispatch = typeof store.dispatch
+
+// type RootReducerType = typeof rootReducer; //(state: GLOBAL_STATE_TYPE): GLOBAL_STATE_TYPE => state;
+// export type AppStateType = ReturnType<RootReducerType>;
 
 //тип для actions
 type PropertyType<T> = T extends {[key: string]: infer U} ? U : never;
@@ -39,8 +42,10 @@ export type InferActionsTypes<A extends {[key: string]: (...arg: Array<any>) => 
 export type AppDispatch = ThunkDispatch<AppStateType, unknown, AnyAction>
 
 //useDispatch і useSelector з типами
-export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
-export const useAppSelector = useSelector.withTypes<AppStateType>()
+export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppSelector: TypedUseSelectorHook<AppStateType> = useSelector
+
+
 
 //тип для thunk 
 export type ThunkType<A extends {type: string, [key: string]: any}> = ThunkAction<void, AppStateType, unknown, A>;

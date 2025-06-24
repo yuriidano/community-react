@@ -1,6 +1,3 @@
-import { ThunkAction } from "redux-thunk"
-import { AppStateType } from "../redux/redux-store"
-
 export type PhotosType = {
     small: string | null,
     large: string | null
@@ -32,7 +29,6 @@ export type ProfileType = {
 export type PostType = {
     id: number,
     message: string,
-    likeCounter: number
 }
 
 

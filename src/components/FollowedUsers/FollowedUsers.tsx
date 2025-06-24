@@ -71,12 +71,10 @@ export const FollowedUsers = () => {
     }
 
 
-
-
     return (
         <div className={styles.users}>
             <FollowedUsersForm onSearchUsers={onSearchUsers} />
-            {followedUsers.length > 1 &&
+            {totalUsersCount > pageSize &&
                 <div className={styles.paginator}>
                     <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage}
                         onPagesChanged={onPagesChanged} />

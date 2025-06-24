@@ -2,6 +2,10 @@
   display: flex;
   align-items: flex-start;
   column-gap: 20px;
+  @media (max-width: 580px){
+    column-gap: 0px;
+  }
+
 }
 
 .avatar {
@@ -19,43 +23,78 @@
 
 .body {
   flex: 1 1 auto;
-}
-
-.text {
+  font-size: 18px;
+  line-height: 130%;
+  text-align: justify;
   min-height: 40px;
-  min-width: 700px;
+  min-width: 500px;
+  max-width: 500px;
   background-color: #EFF2F6;
   border-radius: 10px;
   display: inline-flex;
   align-items: center;
-  padding-left: 10px;
-  &:not(:last-child) {
-    margin-bottom: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 15px;
+  padding-left: 20px;
+  position: relative;
+
+  @media(max-width: 992px) {
+     min-width: 350px;
   }
+  @media (max-width: 610px){
+    min-width: 300px;
+  }
+  @media (max-width: 580px){
+    min-width: 400px;
+    max-width: 400px;
+  }
+    @media (max-width: 470px){
+    min-width: 340px;
+    max-width: 340px;
+  }
+  @media (max-width: 410px){
+    min-width: 263px;
+    max-width: 263px;
+  }
+
+}
+
+.text {
+  word-wrap: break-word;     // для підтримки старих браузерів
+  overflow-wrap: break-word; // для сучасних браузерів
+  white-space: normal; 
+  padding-right: 31px;
+
+
   @media (max-width: 1200px){
-    min-width: 535px;
+    min-width: 435px;
   }
   @media (max-width: 992px){
     min-height: 35px;
     min-width: 350px;
   }
-  @media (max-width: 550px){
-    min-width: 250px;
+    @media (max-width: 610px){
+    min-width: 300px;
   }
-  @media (max-width: 380px){
-    min-width: 200px;
+  @media (max-width: 580px){
+    max-width: 380px;
+  }
+  @media (max-width: 470px){
+    max-width: 300px;
+    min-width: 300px;
+  }
+  @media (max-width: 410px){
+    min-width: 225px;
+    max-width: 225px;
   }
 }
 
-.likeBody {
-  display: flex;
-  align-items: center;
-  column-gap: 4px;
-}
-
-.like {
-  font-size: 14px;
-  background-color: #ffffff;
+.menu {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translate(0, -50%);
 }
 
 

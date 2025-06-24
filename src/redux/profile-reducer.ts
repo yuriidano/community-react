@@ -3,13 +3,11 @@ import { ResultCodeEnum } from "../api/api";
 import { PhotosType, PostType, ProfileType } from "../types/types";
 import { InferActionsTypes, ThunkType } from "./redux-store";
 import { profileApi } from "../api/profile-api";
+import { postsAPI } from "../api/posts-api";
 
 
 let initialState = {
-    posts: [
-        { id: 1, message: 'Hello world', likeCounter: 10 },
-        { id: 2, message: 'My name is Yura', likeCounter: 2 },
-    ] as Array<PostType>,
+    posts: [] as Array<PostType>,
     status: '',
     profile: null as ProfileType | null,
     isUpdateProgress: false,
@@ -22,16 +20,32 @@ type InitialStateType = typeof initialState;
 const profileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case 'profile/ADD_POST':
-            let newPost = {
-                id: 3,
-                message: action.data,
-                likeCounter: 0,
-            };
             return {
                 ...state,
-                posts: [...state.posts, newPost],
+                posts: [...state.posts, action.payload.data],
             };
-        case 'profile/DELETE_MESSAGE':
+        case 'profile/GET_POSTS':
+            return {
+                ...state,
+                posts: [...action.payload.data]
+            }
+        case 'profile/DELETE_POSTS': 
+            return {
+                ...state,
+                posts: state.posts.filter(post => post.id !== action.payload.data.id)
+            }
+        case 'profile/UPDATE_POST':
+            return {
+                ...state,
+                posts: state.posts.map(post => {
+                    if (post.id === action.payload.data.id) {
+                        return { ...post, message: action.payload.data.message}
+                    }
+                    return post;
+                })
+            }
+
+        case 'profile/DELETE_MESSAGE':  
             return {
                 ...state,
                 posts: state.posts.filter(p => p.id !== action.userId)
@@ -57,7 +71,6 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
                 isUpdateProgress: true
             }
         case 'profile/TOGGLE_PROFILE_MOUNT':
-  
             return {
                 ...state,
                 ...action.payload
@@ -71,8 +84,11 @@ type ActionsTypes = InferActionsTypes<typeof actions>;
 
 
 export const actions = {
-    addPost: (data: string) => ({ type: 'profile/ADD_POST', data } as const),
-    setUserStatus: (status: string) => ({ type: 'profile/SET_USER_STATUS', data: { status: status } } as const),
+    addPost: (data: PostType) => ({ type: 'profile/ADD_POST', payload: { data } } as const),
+    getPosts: (data: PostType[]) => ({ type: 'profile/GET_POSTS', payload: { data } } as const),
+    deletePost: (data: PostType) => ({ type: 'profile/DELETE_POSTS', payload: { data } } as const),
+    updatePost: (data: PostType) => ({ type: 'profile/UPDATE_POST', payload: { data } } as const),
+    setUserStatus: (status: string) => ({ type: 'profile/SET_USER_STATUS', data: { status } } as const),
     deleteMessage: (userId: number) => ({ type: 'profile/DELETE_MESSAGE', userId } as const),
     setProfile: (newProfile: ProfileType) => ({ type: 'profile/SET_PROFILE', newProfile } as const),
     setPhoto: (newPhotos: PhotosType) => ({ type: 'profile/SET_PHOTO', newPhotos } as const),
@@ -134,9 +150,40 @@ export const profileMount = (profileMoutn: boolean):ThunkTypeProfile => (dispatc
     dispatch(actions.toggleProfilemount(profileMoutn));
 };
 
-export const addPost = (data: string):ThunkTypeProfile => (dispatch) => {
-    dispatch(actions.addPost(data))
-}       
+export const fetchPosts = ():ThunkTypeProfile => async (dispatch) => {
+    const res = await postsAPI.getPosts();
+    dispatch(actions.getPosts(res))
+}      
+
+export const addPost = (data: string):ThunkTypeProfile => async (dispatch) => {
+    try {
+        const newPost = { message: data }
+        const res = await postsAPI.addPost(newPost);
+        dispatch(actions.addPost(res))
+    } catch (error) {
+        alert(error);
+    }
+}     
+
+export const deletePost = (id: number):ThunkTypeProfile => async (dispatch) => {
+    try {
+        const res = await postsAPI.deletePost(id);
+        dispatch(actions.deletePost(res))
+    } catch (error) {
+        alert(error);
+    }
+}   
+
+export const updatePost = (post: PostType):ThunkTypeProfile => async (dispatch) => {
+    try {
+        const res = await postsAPI.updatepost(post);
+        dispatch(actions.updatePost(res))
+    } catch (error) {
+        alert(error);
+    }
+}   
+
+ 
 
 
 

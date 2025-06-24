@@ -39,7 +39,9 @@ type ParamsType = {
   return (
     <div className={s.profile}>
       <ProfileInfo isOwner={!owner} />
-      <MyPosts />
+      {!owner &&
+        <MyPosts />
+      }
     </div>
   );
 };

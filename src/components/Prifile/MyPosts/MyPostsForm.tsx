@@ -2,11 +2,9 @@ import userPost from '../../../assets/images/icons/userPost.svg'
 import plus from '../../../assets/images/icons/plus.svg'
 import classNames from 'classnames';
 import styles from './MyPosts.module.scss'
-import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from '../../../redux/redux-store';
 import { addPost } from '../../../redux/profile-reducer';
-
 
 type MyPostFormType = {
     post: string
@@ -26,7 +24,7 @@ const MyPostForm = () => {
     return (
         <form onSubmit={handleSubmit(submit)}>
             <label htmlFor="post" className={styles.body}>
-                <div className={styles.input}>
+                <div className={styles.inputBody}>
                     <input {...register('post', { required: 'field is required', maxLength: { value: 200, message: 'max symbols 200' } })}
                         className={classNames(styles.input)} />
                     {errors.post &&

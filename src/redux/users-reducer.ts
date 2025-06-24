@@ -9,7 +9,7 @@ type NulbleType<T> = null | T;
 let initialState = {
     users: [] as Array<UserType>,
     totalUsersCount: 20,
-    pageSize: 10,
+    pageSize: 30,
     currentPage: 1,
     isFetching: false,
     followingInProgress: [] as Array<number>,
@@ -59,7 +59,7 @@ let usersReducer = (state = initialState, action: ActionsTypes): InitialStateTyp
         case 'users/TOGGLE_FOLLOWING_IN_PROGRESS':
             return {
                 ...state,
-                followingInProgress: action.isFetching ? [...state.followingInProgress, action.id] : [...state.followingInProgress.filter(id => id != action.id)]
+                followingInProgress: action.isFetching ? [...state.followingInProgress, action.id] : [...state.followingInProgress.filter(id => id !== action.id)]
             }
         case 'users/SET-FILTER':
             return {

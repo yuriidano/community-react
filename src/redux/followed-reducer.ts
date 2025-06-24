@@ -10,7 +10,7 @@ type NulbleType<T> = null | T;
 let initialState = {
     followedUsers: [] as Array<UserType>,
     totalUsersCount: 20,
-    pageSize: 100,
+    pageSize: 30,
     currentPage: 1,
     isFetching: false,
     followingInProgress: [] as Array<number>,

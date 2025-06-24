@@ -25,7 +25,7 @@ const chatReducer = (state = initialState, action: actionsType):InitialStateType
         case "chat/MESSAGES-RECIVED":
             return {
                 ...state,
-                messages: [...state.messages, ...action.payload.messages.map(m => ({...m, id: v1()}))].filter((item, index, array) => index >= array.length - 50)
+                messages: [...state.messages, ...action.payload.messages.map(m => ({...m, id: v1()}))].filter((_, index, array) => index >= array.length - 50)
             }
         case 'chat/STATUS-CHANGED':
             return {
@@ -83,7 +83,6 @@ export const startMessagesListining = ():ThunkMusicType => async (dispatch) => {
 };
 
 export const stopMessagesListining = ():ThunkMusicType => async (dispatch) => {
-//+ 
     chatAPI.stop();
     chatAPI.unSubscribe('messages-recived', newMessageHandlerCriator(dispatch))
     chatAPI.unSubscribe('status-changed', newMessageHandlerCriator(dispatch));

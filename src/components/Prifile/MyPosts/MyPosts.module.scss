@@ -35,7 +35,7 @@
   @media (max-width: 992px){
     padding-left: 40px;
   }
-  @media (max-width: 380px){
+  @media (max-width: 580px){
     padding-left: 0px;
     padding-right: 0px;
   }
@@ -43,7 +43,6 @@
 
 
 .body {
-  min-height: 60px;
   border-radius: 10px;
   display: inline-flex;
   min-width: 500px;
@@ -51,7 +50,6 @@
   justify-content: space-between;
   padding-left: 60px;
   padding-right: 15px;
-  cursor: pointer;
   background-color: rgb(255, 255, 255);
   background-color: rgb(255, 255, 255);
   -webkit-box-shadow: 0px 1px 13px -7px rgba(128, 113, 133, 1);
@@ -59,14 +57,11 @@
   box-shadow: 0px 1px 13px -7px rgba(128, 113, 133, 1);
   position: relative;
 
-  @media (max-width: 992px){
-    min-height: 40px;
-  }
   @media (max-width: 550px){
-    min-width: 28px;
+    min-width: 340px;
   }
-  @media (max-width: 380px){
-    min-width: 28px;
+  @media (max-width: 460px){
+    min-width: 248px;
   }
 }
 
@@ -88,11 +83,20 @@
   }
 }
 
+.inputBody {
+  flex:  1 1 auto;
+  display: flex;
+}
 
 .input {
+  min-height: 60px;
+  flex: 1 1 auto;
   & input::placeholder {
     font-size: 16px;
 
+  }
+    @media (max-width: 992px){
+    min-height: 40px;
   }
 }
 

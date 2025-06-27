@@ -12,7 +12,7 @@
 
 ## 📽️ Live Preview
 
-![Social Network Demo](./public/screenshots/social-network-preview.gif)
+![Social Network Demo](./public/screenshots/community-react-preview.gif)
 
 ---
 

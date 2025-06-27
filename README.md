@@ -1,70 +1,126 @@
-# Getting Started with Create React App
+<p align="center">
+  <img src="cover/community-react-cover.png" alt="Community React Cover" />
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🌐 Community React — Social Network
 
-## Available Scripts
+**Community React** is a modern social networking app featuring authentication, post creation and editing, messaging, user search and following, and real-time chat.
 
-In the project directory, you can run:
+[🌐 Live Demo](https://yuriidano.github.io/community-react/)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📽️ Live Preview
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![Social Network Demo](./public/screenshots/social-network-preview.gif)
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📸 Screenshots
 
-### `npm run build`
+### 🔐 Login Page
+![Login](./public/screenshots/login.jpg)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🧑‍💼 Profile Page
+![Profile](./public/screenshots/profile.jpg)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 👥 Users List
+![Users](./public/screenshots/users.jpg)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### ✅ Followed Users
+![Followed Users](./public/screenshots/followed-users.jpg)
 
-### `npm run eject`
+### 💬 Messages
+![Messages](./public/screenshots/messages.jpg)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 🗨️ Chat
+![Chat](./public/screenshots/chat.jpg)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ⚙️ Settings
+![Settings](./public/screenshots/settings.jpg)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+///
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🚀 Features
 
-### Code Splitting
+- 🔐 Authentication system with login and registration
+- 🧑‍💼 User profile management with editable personal info
+- 👥 User list with the ability to follow/unfollow other users
+- 💬 Private messaging system with real-time chat using WebSocket
+- 📝 Post creation, editing, and deletion via API
+- 🔎 User search for quick access to profiles
+- 🔄 Followed users page to keep track of your subscriptions
+- 🌐 API integration using social-network.samuraijs.com
+- 📱 Fully responsive layout for desktop and mobile devices
+- 🔃 Lazy loading for the Chat page to improve performance
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## 🛠️ Tech Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **React**
+- **Redux** 
+- **WebSocket** 
+- **React Router**
+- **Axios**
+- **React Hook Form / Redux-Form**
+- **Material UI**
+- **TypeScript**
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 💡 Highlights
 
-### Deployment
+- User authentication and registration system
+- Real-time private messaging with WebSocket for instant chat updates
+- Persistent user and chat state saved with localStorage
+- Optimized performance with lazy loading for Chat page
+- Fully responsive and modern UI design for desktop and mobile devices
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## 🌐 SEO & Indexing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Custom `sitemap.xml` and `robots.txt`
+- Meta tags for SEO (`title`, `description`, `viewport`)
+- OG tags for social media (`og:title`, `og:image`, `og:description`)
+
+---
+
+## 📁 Project Structure
+
+src/
+├── assets/      # Icons and images
+├── components/  # UI building blocks
+├── pages/       # App pages (Login, FollowedUsers, Profile, Users, Chat, Settings, NotFound)
+├── redux/       # Store, slices, RTK Query
+├── api/         # API calls and services
+├── utils/       # Helpers and logic
+├── types/       # TypeScript types
+
+---
+
+## 🧪 Run Locally
+
+```bash
+git clone https://github.com/yuriidano/community-react.git
+cd community-react
+npm install
+npm start
+```
+
+
+## 🔗 Links
+
+- 🌐 [Live App on GitHub Pages](https://yuriidano.github.io/community-react/)
+- 📦 [GitHub Repository](https://github.com/yuriidano/community-react)
+
+---
+
+> Built with 💛 by [Yurii Dano](https://github.com/yuriidano) — created as a portfolio project.

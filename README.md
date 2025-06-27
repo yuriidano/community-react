@@ -60,8 +60,6 @@
 
 ---
 
-
-
 ## 🛠️ Tech Stack
 
 - **React**
@@ -88,6 +86,7 @@
 ## 🌐 SEO & Indexing
 
 - Custom `sitemap.xml` and `robots.txt`
+- Site registered and verified in [Google Search Console](https://search.google.com/search-console)
 - Meta tags for SEO (`title`, `description`, `viewport`)
 - OG tags for social media (`og:title`, `og:image`, `og:description`)
 

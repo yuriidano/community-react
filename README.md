@@ -4,9 +4,25 @@
 
 # 🌐 Community React — Social Network
 
+[🌐 Live Demo](https://yuriidano.github.io/community-react/)
+
 **Community React** is a modern social networking app featuring authentication, post creation and editing, messaging, user search and following, and real-time chat.
 
-[🌐 Live Demo](https://yuriidano.github.io/community-react/)
+## 👨‍💻 About This Project
+
+This project was fully developed by me — from custom UI/UX design to complete frontend functionality — as a portfolio application demonstrating real-world frontend development skills.
+
+It uses a real external API ([SamuraiJS Social Network API](https://social-network.samuraijs.com/docs#)) for:
+- User authentication and authorization
+- Profile data and status updates
+- Following/unfollowing other users
+- Messaging system
+
+I implemented:
+- State management with Redux
+- Form handling with React Hook Form and Redux-Form
+- Real-time private chat using WebSocket
+- Responsive layout without any pre-made templates
 
 ---
 
@@ -41,8 +57,6 @@
 
 ---
 
-
-
 ///
 
 ## 🚀 Features
@@ -54,7 +68,11 @@
 - 📝 Post creation, editing, and deletion via API
 - 🔎 User search for quick access to profiles
 - 🔄 Followed users page to keep track of your subscriptions
-- 🌐 API integration using social-network.samuraijs.com
+- 🔗 Integration with a real external API — [SamuraiJS Social Network API](https://social-network.samuraijs.com/docs#), including:
+      - User authentication & authorization
+      - Profile management
+      - Follow/unfollow logic
+      - Posts and status updates
 - 📱 Fully responsive layout for desktop and mobile devices
 - 🔃 Lazy loading for the Chat page to improve performance
 
@@ -80,6 +98,8 @@
 - Persistent user and chat state saved with localStorage
 - Optimized performance with lazy loading for Chat page
 - Fully responsive and modern UI design for desktop and mobile devices
+- Powered by a real external API, not mock data
+- UI and UX designed from scratch, no templates
 
 ---
 
